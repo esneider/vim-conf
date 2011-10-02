@@ -54,10 +54,11 @@ set grepprg=grep\ -nH\ $*
 " Use javadoc-like highlighting for C, C++, C# and IDL files
 let g:load_doxygen_syntax=1
 
-" Choose one of the two following. The first doesn't highlight the text
-" section, and the second one highlights all the text section
+" If doxygen_javadoc_autobrief is 0, it doesn't highlight the text
+" section, else it highlights everything until doxygen_end_punctuation is
+" matched
 let doxygen_javadoc_autobrief=0
-" let doxygen_end_punctuation=''
+let doxygen_end_punctuation='^$'
 
 " Who doesn't like autoindent?
 set autoindent
