@@ -72,6 +72,9 @@ set shiftwidth=4
 set softtabstop=4
 set tabstop=4
 
+" Use tabs for makefiles
+autocmd FileType make setlocal noexpandtab
+
 " Use english for spellchecking, but don't spellcheck by default
 if version >= 700
    set spl=en spell
