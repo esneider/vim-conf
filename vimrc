@@ -51,6 +51,14 @@ filetype plugin on
 syntax enable
 set grepprg=grep\ -nH\ $*
 
+" Use javadoc-like highlighting for C, C++, C# and IDL files
+let g:load_doxygen_syntax=1
+
+" Choose one of the two following. The first doesn't highlight the text
+" section, and the second one highlights all the text section
+let doxygen_javadoc_autobrief=0
+" let doxygen_end_punctuation=''
+
 " Who doesn't like autoindent?
 set autoindent
 
