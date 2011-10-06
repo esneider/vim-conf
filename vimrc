@@ -1,4 +1,4 @@
-"{{{Auto Commands
+"{{{Aut o Commands
 
 " Automatically cd into the directory that the file is in
 "autocmd BufEnter * execute "chdir ".escape(expand("%:p:h"), ' ')
@@ -38,6 +38,7 @@ augroup END
 
 " Necesary  for lots of cool vim things
 set nocompatible
+autocmd FileType make setlocal noexpandtab
 
 " This shows what you are typing as a command.  I love this!
 set showcmd
@@ -128,7 +129,7 @@ set cursorline
 
 " }}}
 
-"{{{Look and Feel
+"{{{Lo ok and Feel
 
 
 " Favorite Color Scheme
@@ -164,9 +165,9 @@ set statusline=%F%m%r%h%w\ (%{&ff}){%Y}\ [%l,%v]\ [%p%%]
 
 " }}}
 
-"{{{ Functions
+"{{{ Func tions
 
-"{{{Theme Rotating
+"{{{Them e Rotating
 let themeindex=0
 function! RotateColorTheme()
    let y = -1
@@ -185,7 +186,7 @@ function! RotateColorTheme()
 endfunction
 " }}}
 
-"{{{ Paste Toggle
+"{{{ Pa ste Toggle
 let paste_mode = 0 " 0 = normal, 1 = paste
 
 func! Paste_on_off()
@@ -200,7 +201,7 @@ func! Paste_on_off()
 endfunc
 "}}}
 
-"{{{ Todo List Mode
+"{{{ To do List Mode
 
 function! TodoListMode()
    e ~/.todo.otl
@@ -216,7 +217,7 @@ endfunction
 
 "}}}
 
-"{{{ Mappings
+ "{{{ Mappings
 
 " Open Url on this line with the browser \w
 "map <Leader>w :call Browser ()<CR>
@@ -308,7 +309,7 @@ let Tlist_Enable_Fold_Column = 0
 let Tlist_Exit_OnlyWindow = 1
 let Tlist_Use_SingleClick = 1
 let Tlist_Inc_Winwidth = 0
-"}}}
+" }}}
 
 "let g:rct_completion_use_fri = 1
 "let g:Tex_DefaultTargetFormat = "pdf"
@@ -338,4 +339,14 @@ inoremap <S-CR> <Esc>
 
 highlight OverLength ctermbg=darkred ctermfg=white guibg=#403B3B
 match OverLength /\%81v.\+/
+
+" shift plus movement keys changes selection
+set keymodel=startsel,stopsel
+
+" allow cursor keys to go right off end of one line, onto start of next
+set whichwrap+=<,>,[,]
+
+" map key to dismiss search highlightedness
+map <bs> :noh<CR>
+
 
