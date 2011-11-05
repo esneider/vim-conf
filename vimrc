@@ -1,4 +1,4 @@
-"{{{Aut o Commands
+"{{{Auto Commands
 
 " Automatically cd into the directory that the file is in
 "autocmd BufEnter * execute "chdir ".escape(expand("%:p:h"), ' ')
@@ -129,7 +129,7 @@ set cursorline
 
 " }}}
 
-"{{{Lo ok and Feel
+"{{{Look and Feel
 
 
 " Favorite Color Scheme
@@ -155,6 +155,7 @@ if has("gui_running")
    "set colums=150
 
 else
+   "set term=xterm-256color
    set t_Co=256
    colorscheme kellys
 endif
@@ -165,9 +166,9 @@ set statusline=%F%m%r%h%w\ (%{&ff}){%Y}\ [%l,%v]\ [%p%%]
 
 " }}}
 
-"{{{ Func tions
+"{{{ Functions
 
-"{{{Them e Rotating
+"{{{Theme Rotating
 let themeindex=0
 function! RotateColorTheme()
    let y = -1
@@ -186,7 +187,7 @@ function! RotateColorTheme()
 endfunction
 " }}}
 
-"{{{ Pa ste Toggle
+"{{{ Paste Toggle
 let paste_mode = 0 " 0 = normal, 1 = paste
 
 func! Paste_on_off()
@@ -215,12 +216,39 @@ endfunction
 
 "}}}
 
+"{{{ Swap open buffers
+
+function! MarkWindowSwap()
+    let g:markedWinNum = winnr()
+endfunction
+
+function! DoWindowSwap()
+    "Mark destination
+    let curNum = winnr()
+    let curBuf = bufnr( "%" )
+    exe g:markedWinNum . "wincmd w"
+    "Switch to source and shuffle dest->source
+    let markedBuf = bufnr( "%" )
+    "Hide and open so that we aren't prompted and keep history
+    exe 'hide buf' curBuf
+    "Switch to dest and shuffle source->dest
+    exe curNum . "wincmd w"
+    "Hide and open so that we aren't prompted and keep history
+    exe 'hide buf' markedBuf
+endfunction
+
 "}}}
 
- "{{{ Mappings
+"}}}
+
+"{{{ Mappings
 
 " Open Url on this line with the browser \w
 "map <Leader>w :call Browser ()<CR>
+
+" Swap buffers
+nmap <silent> <leader>mw :call MarkWindowSwap()<CR>
+nmap <silent> <leader>pw :call DoWindowSwap()<CR>
 
 " Open the Project Plugin <F2>
 nnoremap <silent> <F2> :Project<CR>
