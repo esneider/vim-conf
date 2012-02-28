@@ -1,9 +1,15 @@
 " Description:	a colour scheme inspired by kellys bicycles
 "  Maintainer:	kamil.stachowski@gmail.com
 "     License:	gpl 3+
-"     Version:	0.3 (2008.12.07)
+"     Version:	0.4 (2011.01.11)
 
 " changelog:
+"         0.4:	2011.01.11
+"				fixed 256-colour
+"				improved php and TeX
+"         		linked htmlItalic to Underlined
+"         		added Conceal
+"         		added netrw
 "         0.3:	2008.12.07
 "				finished ada, haskell, html, lisp, pascal, php, python, ruby, scheme, sh, xml and vim
 "				changed preproc to slightly darker
@@ -32,23 +38,25 @@ let colors_name = "kellys"
 " blue			62acce	81
 " blue slight	9ab2c8	74
 " brown slight	d1c79e	144
-" green	yellowy	d1d435	184
+" green yellowy	d1d435	184
 " grey dark		67686b	240
 " grey light	e1e0e5	254
 " orange		e6ac32	178
 " red			9d0e15	124
-
-" tabline
+" +
+" green			00d700	40
 
 if has("gui_running")
 	hi Comment		guifg=#67686b	guibg=#2a2b2f	gui=none
 	hi Cursor 		guifg=#2a2b2f	guibg=#e1e0e5	gui=none
+	hi Conceal		guifg=#e1e0e5	guibg=#67686b	gui=none
 	hi Constant 	guifg=#d1c79e	guibg=#2a2b2f	gui=none
 	hi CursorLine		          	guibg=#303132	gui=none
-	hi DiffAdd		guifg=#2a2b2f	guibg=#9ab2c8	gui=none
+	hi DiffAdd		guifg=#2a2b2f	guibg=#00d700	gui=none
 	hi DiffChange	guifg=#2a2b2f	guibg=#d1c79e	gui=none
 	hi DiffDelete	guifg=#67686b	guibg=#2a2b2f	gui=none
 	hi DiffText		guifg=#9d0e15	guibg=#d1c79e	gui=none
+	hi Error		guifg=#9d0e15	guibg=#2a2b2f	gui=underline
 	hi Folded 		guifg=#2a2b2f	guibg=#67686b	gui=none
 	hi MatchParen	guifg=#d1d435	guibg=#2a2b2f	gui=bold,underline
 	hi ModeMsg		guifg=#e1e0e5	guibg=#2a2b2f	gui=bold
@@ -57,7 +65,7 @@ if has("gui_running")
 	hi PmenuSel		guifg=#2a2b2f	guibg=#62acce	gui=bold
 	hi PmenuSbar	guifg=#2a2b2f	guibg=#2a2b2f	gui=none
 	hi PmenuThumb	guifg=#2a2b2f	guibg=#62acce	gui=none
-	hi PreProc		guifg=#d1d435	guibg=#2a2b2f	gui=none 
+	hi PreProc		guifg=#d1d435	guibg=#2a2b2f	gui=none
 	hi Search		guifg=#2a2b2f	guibg=#e1e0e5	gui=none
 	hi Special		guifg=#9ab2c8	guibg=#2a2b2f	gui=none
 	hi Statement	guifg=#62acce	guibg=#2a2b2f	gui=bold
@@ -67,17 +75,19 @@ if has("gui_running")
 	hi Type 		guifg=#e6ac32	guibg=#2a2b2f	gui=none
 	hi Underlined	guifg=#e1e0e5	guibg=#2a2b2f	gui=underline
 	hi Visual		guifg=#2a2b2f	guibg=#e1e0e5	gui=none
-	hi Wildmenu		guifg=#62acce	guibg=#2a2b2f	gui=bold
+	hi Wildmenu		guifg=#00d700	guibg=#2a2b2f	gui=none
 else
 	if &t_Co == 256
 		hi Comment		ctermfg=239	ctermbg=235	cterm=none
+		hi Conceal		ctermfg=254	ctermbg=239	cterm=none
 		hi Cursor 		ctermfg=235	ctermbg=254	cterm=none
 		hi Constant 	ctermfg=144	ctermbg=235	cterm=none
 		hi CursorLine		       	ctermbg=236	cterm=none
-		hi DiffAdd		ctermfg=235	ctermbg=74	cterm=none
+		hi DiffAdd		ctermfg=235	ctermbg=40	cterm=none
 		hi DiffChange	ctermfg=235	ctermbg=144	cterm=none
 		hi DiffDelete	ctermfg=239	ctermbg=235	cterm=none
 		hi DiffText		ctermfg=124	ctermbg=144	cterm=none
+		hi Error		ctermfg=254	ctermbg=235	cterm=underline
 		hi Folded 		ctermfg=239	ctermbg=235	cterm=none
 		hi MatchParen	ctermfg=184	ctermbg=235	cterm=bold,underline
 		hi ModeMsg		ctermfg=254	ctermbg=235	cterm=bold
@@ -86,17 +96,17 @@ else
 		hi PmenuSel		ctermfg=235	ctermbg=81	cterm=bold
 		hi PmenuSbar	ctermfg=235	ctermbg=235	cterm=none
 		hi PmenuThumb	ctermfg=235	ctermbg=81	cterm=none
-		hi PreProc		ctermfg=184	ctermbg=235	cterm=none 
+		hi PreProc		ctermfg=184	ctermbg=235	cterm=none
 		hi Search		ctermfg=235	ctermbg=254	cterm=none
 		hi Special		ctermfg=74	ctermbg=235	cterm=none
 		hi Statement	ctermfg=81	ctermbg=235	cterm=none
 		hi StatusLine 	ctermfg=235	ctermbg=81	cterm=bold
 		hi StatusLineNC ctermfg=235	ctermbg=254	cterm=none
 		hi Todo 		ctermfg=254	ctermbg=124	cterm=bold
-		hi Type 		ctermfg=178	ctermbg=234	cterm=none
-		hi Underlined	ctermfg=254	ctermbg=234	cterm=underline
-		hi Visual		ctermfg=235	ctermbg=254	cterm=none
-		hi Wildmenu		ctermfg=81	ctermbg=234	cterm=bold
+		hi Type 		ctermfg=178	ctermbg=235	cterm=none
+		hi Underlined	ctermfg=254	ctermbg=235	cterm=underline
+		hi Visual		ctermfg=235	ctermbg=255	cterm=none
+		hi Wildmenu		ctermfg=40	ctermbg=235	cterm=none
 	endif
 endif
 
@@ -104,11 +114,11 @@ hi! link Boolean		Constant
 hi! link Character		Constant
 hi! link Conditional	Statement
 hi! link CursorColumn	CursorLine
-hi! link Debug			Special	
+hi! link Debug			Special
 hi! link Define			PreProc
 hi! link Delimiter		Special
 hi! link Directory		Type
-hi! link Error			Todo
+hi! link Error			Error
 hi! link ErrorMsg		Error
 hi! link Exception		Statement
 hi! link Float			Constant
@@ -132,7 +142,7 @@ hi! link Repeat			Statement
 hi! link SignColumn		FoldColumn
 hi! link SpecialChar	Special
 hi! link SpecialComment	Special
-hi! link SpecialKey		Special
+hi! link SpecialKey		Comment
 hi! link SpellBad		Error
 hi! link SpellCap		Error
 hi! link SpellLocal		Error
@@ -160,6 +170,7 @@ hi! link hsConSym			Operator
 " html
 hi! link htmlArg			Statement
 hi! link htmlEndTag			Special
+hi! link htmlItalic			Underlined
 hi! link htmlLink			Underlined
 hi! link htmlSpecialTagName	PreProc
 hi! link htmlTag			Special
@@ -173,6 +184,10 @@ hi! link lispConcat			Special
 hi! link lispDecl			Type
 hi! link lispFunc			Special
 hi! link lispKey			PreProc
+" netrw
+hi! link netrwDir			Special
+hi! link netrwExe			Wildmenu
+hi! link netrwSymLink		Statement
 " pas
 hi! link pascalAsmKey		Statement
 hi! link pascalDirective	PreProc
@@ -182,7 +197,7 @@ hi! link pascalStatement	Type
 hi! link pascalStruct		Type
 " php
 hi! link phpComparison		Special
-hi! link phpDefine			Normal
+hi! link phpDefine			Type
 hi! link phpIdentifier		Normal
 hi! link phpMemberSelector	Special
 hi! link phpRegion			Special
@@ -205,6 +220,18 @@ hi! link shStatement		Special
 hi! link shVariable			Normal
 " sql
 hi! link sqlKeyword			Statement
+" tex
+hi! link texDocType			PreProc
+hi! link texLigature		Constant
+hi! link texMatcher			Normal
+hi! link texNewCmd			PreProc
+hi! link texOnlyMath		Constant
+hi! link texRefZone			Constant
+hi! link texSection			Type
+hi! link texSectionMarker	Type
+hi! link texSectionModifier	Constant
+hi! link texTypeSize		Special
+hi! link texTypeStyle		Special
 " vim
 hi! link vimCommand			Statement
 hi! link vimCommentTitle	Normal
@@ -234,3 +261,11 @@ hi! link xmlEndTag			Statement
 hi! link xmlProcessingDelim	PreProc
 hi! link xmlNamespace		PreProc
 hi! link xmlTagName			Statement
+
+" hi! link TexTypeStyle		Comment
+" hi! link TexStatement		Comment
+" hi! link TexRefZone			Normal
+" hi! link TexSectionName		Comment
+" hi! link TexSectionMarker	Comment
+" hi! link Delimiter			Comment
+" hi! link TexMatcher			Comment

@@ -1,12 +1,18 @@
-"{{{Auto Commands
+
+" WARNING:
+"   * The Tagbar plugin needs `exhuberant ctags' to work.
+"   * The Powerline plugin need to have a patched font to be pretty. For more
+"   info go to https://github.com/Lokaltog/vim-powerline
+
 
 " Automatically cd into the directory that the file is in
-"autocmd BufEnter * execute "chdir ".escape(expand("%:p:h"), ' ')
+autocmd BufEnter * execute "chdir ".escape(expand("%:p:h"), ' ')
 
 " Remove any trailing whitespace that is in the file
 autocmd BufRead,BufWrite * if ! &bin | silent! %s/\s\+$//ge | endif
 
-" Restore cursor position to where it was before
+"Restore cursor position to where it was before closing it
+"{{{
 augroup JumpCursorOnEdit
    au!
    autocmd BufReadPost *
@@ -31,26 +37,34 @@ augroup JumpCursorOnEdit
             \   unlet b:doopenfold |
             \ endif
 augroup END
-
 "}}}
 
-"{{{Misc Settings
+" Open NERDTree plugin and unfocus it
+autocmd VimEnter * NERDTree
+autocmd VimEnter * wincmd p
+
+" Make Syntastic plugin passive
+autocmd VimEnter * SyntasticToggleMode
+
+" Use tabs in makefiles
+autocmd FileType make setlocal noexpandtab
 
 " Necesary  for lots of cool vim things
 set nocompatible
-autocmd FileType make setlocal noexpandtab
 
-" This shows what you are typing as a command.  I love this!
+" This shows what you are typing as a command
 set showcmd
 
-" Folding Stuffs
+" Fold text when markers {{{ and }}} are found
 set foldmethod=marker
 
-" Needed for Syntax Highlighting and stuff
-filetype on
-filetype plugin on
+" Syntax highlighting and indentation on
+filetype plugin indent on
 syntax enable
-set grepprg=grep\ -nH\ $*
+set autoindent
+
+" Set flags for grep command
+set grepprg=grep\ -nHE\ $*\ /dev/null
 
 " Use javadoc-like highlighting for C, C++, C# and IDL files
 let g:load_doxygen_syntax=1
@@ -61,26 +75,14 @@ let g:load_doxygen_syntax=1
 let doxygen_javadoc_autobrief=0
 let doxygen_end_punctuation='^$'
 
-" Who doesn't like autoindent?
-set autoindent
-
-" Spaces are better than a tab character
+" Use spaces instead of tabs (and be smart on newlines)
 set expandtab
 set smarttab
 
-" Who wants an 8 character tab?  Not me!
+" Tab equals 4 spaces
 set shiftwidth=4
 set softtabstop=4
 set tabstop=4
-
-" Use tabs for makefiles
-autocmd FileType make setlocal noexpandtab
-
-" Use english for spellchecking, but don't spellcheck by default
-if version >= 700
-   set spl=en spell
-   set nospell
-endif
 
 " Real men use gcc
 compiler gcc
@@ -92,132 +94,73 @@ set wildmode=list:longest,full
 " Enable mouse support in console
 set mouse=a
 
-" Got backspace?
+" Make backspace work like it should
 set backspace=2
 
-" Line Numbers PWN!
+" Show line numbers
 set number
 
-" Ignoring case is a fun trick
+" Ignore case when searching
 set ignorecase
 
-" And so is Artificial Intellegence!
+" Unless upper case is used
 set smartcase
 
-" This is totally awesome - remap jj to escape in insert mode.  You'll never type jj anyway, so it's great!
+" Remap jj to escape in insert mode
 inoremap jj <Esc>
-
 nnoremap JJJJ <Nop>
 
-" Incremental searching is sexy
+" Use incremental searching (search while typing)
 set incsearch
 
 " Highlight things that we find with the search
 set hlsearch
 
-" Since I use linux, I want this
-let g:clipbrdDefaultReg = '+'
-
 " When I close a tab, remove the buffer
 set nohidden
 
-" Set off the other paren
+" Highlight matching parent
 highlight MatchParen ctermbg=4
 
 " Highlight the line that the cursor is on
 set cursorline
 
-" }}}
+" Have 5 lines ahead of the cursor in screen whenever possible
+set scrolloff=5
 
-"{{{Look and Feel
+" Disable fucking bell
+set vb t_vb=
 
+" shift plus movement keys changes selection
+set keymodel=startsel,stopsel
 
-" Favorite Color Scheme
+" allow cursor keys to go right off end of one line, onto start of next
+set whichwrap+=<,>,[,]
+
+" map key to dismiss search highlightedness
+map <bs> :noh<CR>
+
+" Tab completion features
+"  longest: inserts the longest common text
+"  menuone: shows the menu even when there's just one match
+"  preview: shows extra information of the selected option
+set completeopt=longest,menuone,preview
+
+" Set font and colors
 if has("gui_running")
-   colorscheme kellys
-   " Remove Toolbar
-   set guioptions-=T
-   "Terminus is AWESOME
    set guifont=Menlo:h16
-   "if has("gui_gtk2")
-   "   set guifont=Terminus\ 11
-   "elseif has("gui_photon")
-   "   set guifont=Courier\ New:s11
-   "elseif has("gui_kde")
-   "   set guifont=Courier\ New/11/-1/5/50/0/0/0/1/0
-   "elseif has("x11")
-   "   set guifont=-*-courier-medium-r-normal-*-*-180-*-*-m-*-*
-   "else
-   "   set guifont=Courier_New:h11:cDEFAULT
-   "endif
-
-   "set lines=50
-   "set colums=150
-
 else
-   "set term=xterm-256color
    set t_Co=256
-   colorscheme kellys
 endif
 
-"Status line gnarliness
+" Set color scheme
+colorscheme kellys
+
+" Status line setup (not necessary with Powerline plugin)
 set laststatus=2
 set statusline=%F%m%r%h%w\ (%{&ff}){%Y}\ [%l,%v]\ [%p%%]
 
-" }}}
-
-"{{{ Functions
-
-"{{{Theme Rotating
-let themeindex=0
-function! RotateColorTheme()
-   let y = -1
-   while y == -1
-      let colorstring = "inkpot#ron#blue#elflord#evening#koehler#murphy#pablo#desert#torte#"
-      let x = match( colorstring, "#", g:themeindex )
-      let y = match( colorstring, "#", x + 1 )
-      let g:themeindex = x + 1
-      if y == -1
-         let g:themeindex = 0
-      else
-         let themestring = strpart(colorstring, x + 1, y - x - 1)
-         return ":colorscheme ".themestring
-      endif
-   endwhile
-endfunction
-" }}}
-
-"{{{ Paste Toggle
-let paste_mode = 0 " 0 = normal, 1 = paste
-
-func! Paste_on_off()
-   if g:paste_mode == 0
-      set paste
-      let g:paste_mode = 1
-   else
-      set nopaste
-      let g:paste_mode = 0
-   endif
-   return
-endfunc
-"}}}
-
-"{{{ To do List Mode
-
-function! TodoListMode()
-   e ~/.todo.otl
-   Calendar
-   wincmd l
-   set foldlevel=1
-   tabnew ~/.notes.txt
-   tabfirst
-   " or 'norm! zMzr'
-endfunction
-
-"}}}
-
 "{{{ Swap open buffers
-
 function! MarkWindowSwap()
     let g:markedWinNum = winnr()
 endfunction
@@ -236,34 +179,25 @@ function! DoWindowSwap()
     "Hide and open so that we aren't prompted and keep history
     exe 'hide buf' markedBuf
 endfunction
-
 "}}}
-
-"}}}
-
-"{{{ Mappings
-
-" Open Url on this line with the browser \w
-"map <Leader>w :call Browser ()<CR>
 
 " Swap buffers
 nmap <silent> <leader>mw :call MarkWindowSwap()<CR>
 nmap <silent> <leader>pw :call DoWindowSwap()<CR>
 
-" Open the Project Plugin <F2>
-nnoremap <silent> <F2> :Project<CR>
+" Open the NERDTree Plugin
+nnoremap <silent> <Leader>t :NERDTreeToggle<CR>
 
-" Open the Project Plugin
-nnoremap <silent> <Leader>pal  :Project .vimproject<CR>
+" Open the Tagbar Plugin
+nnoremap <silent> <Leader>l :TagbarToggle<CR>
 
-" TODO Mode
-nnoremap <silent> <Leader>todo :execute TodoListMode()<CR>
+" Check syntax with Syntastic plugin
+nnoremap <silent> <Leader>s :w<CR>:SyntasticCheck<CR>
 
-"Open the NERDTree Plugin
-nnoremap <silent> <Leader>nt :NERDTree<CR>
+" Open the Syntastic plugin errors list
+nnoremap <silent> <Leader>e :Errors<CR>
 
-" Open the TagList Plugin <F3>
-nnoremap <silent> <F3> :Tlist<CR>
+" TODO: NERDCommenter plugin shortcuts
 
 " Next Tab
 nnoremap <silent> <C-Right> :tabnext<CR>
@@ -274,37 +208,16 @@ nnoremap <silent> <C-Left> :tabprevious<CR>
 " New Tab
 nnoremap <silent> <C-t> :tabnew<CR>
 
-" Rotate Color Scheme <F8>
-nnoremap <silent> <F8> :execute RotateColorTheme()<CR>
-
-" DOS is for fools.
-nnoremap <silent> <F9> :%s/$//g<CR>:%s// /g<CR>
-
-" Paste Mode!  Dang! <F10>
-nnoremap <silent> <F10> :call Paste_on_off()<CR>
-set pastetoggle=<F10>
-
 " Edit vimrc \ev
 nnoremap <silent> <Leader>ev :tabnew<CR>:e ~/.vimrc<CR>
 
-" Edit gvimrc \gv
-nnoremap <silent> <Leader>gv :tabnew<CR>:e ~/.gvimrc<CR>
-
-" Up and down are more logical with g..
+" Up and down are more logical with g
 nnoremap <silent> k gk
 nnoremap <silent> j gj
-inoremap <silent> <Up> <Esc>gka
-inoremap <silent> <Down> <Esc>gja
+inoremap <silent> <Up> <C-o>gk
+inoremap <silent> <Down> <C-o>gj
 
-" Good call Benjie (r for i)
-nnoremap <silent> <Home> i <Esc>r
-nnoremap <silent> <End> a <Esc>r
-
-" Create Blank Newlines and stay in Normal mode
-nnoremap <silent> zj o<Esc>
-nnoremap <silent> zk O<Esc>
-
-" Space will toggle folds!
+" Space will toggle folds
 nnoremap <space> za
 
 " Search mappings: These will make it so that going to the next one in a
@@ -323,58 +236,22 @@ imap <silent> <C-S-Down> <Esc>:wincmd j<CR>
 imap <silent> <C-S-Left> <Esc>:wincmd h<CR>
 imap <silent> <C-S-Right> <Esc>:wincmd l<CR>
 
-" Testing
-set completeopt=longest,menuone,preview
+" NERDTree plugin configuration
+let NERDTreeDirArrows=1
+let NERDTreeWinSize=25
 
-" conflicts with supertab plugin and i don't know how they work
-"inoremap <expr> <cr> pumvisible() ? "\<c-y>" : "\<c-g>u\<cr>"
-"inoremap <expr> <c-n> pumvisible() ? "\<lt>c-n>" : "\<lt>c-n>\<lt>c-r>=pumvisible() ? \"\\<lt>down>\" : \"\"\<lt>cr>"
-"inoremap <expr> <m-;> pumvisible() ? "\<lt>c-n>" : "\<lt>c-x>\<lt>c-o>\<lt>c-n>\<lt>c-p>\<lt>c-r>=pumvisible() ? \"\\<lt>down>\" : \"\"\<lt>cr>"
+" Taglist plugin configuration
+let g:tagbar_compact = 1
+let g:tagbar_width = 30
 
-"{{{Taglist configuration
-let Tlist_Use_Right_Window = 1
-let Tlist_Enable_Fold_Column = 0
-let Tlist_Exit_OnlyWindow = 1
-let Tlist_Use_SingleClick = 1
-let Tlist_Inc_Winwidth = 0
-" }}}
-
-"let g:rct_completion_use_fri = 1
-"let g:Tex_DefaultTargetFormat = "pdf"
-"let g:Tex_ViewRule_pdf = "kpdf"
-
-filetype plugin indent on
-syntax on
-
-" Have 5 lines ahead of the curson in screen whenever possible
-set scrolloff=5
-
-" Disable fucking bell
-set vb t_vb=
-
-" Open NERDTree
-autocmd VimEnter * NERDTree
-autocmd VimEnter * wincmd p
-
-" Intelligent autocomplete
+" SuperTab plugin configuration
 let g:SuperTabDefaultCompletionType = "context"
+let g:SuperTabLongestEnhanced = 1
+let g:SuperTabLongestHighlight = 1
 
-" Map Shift-Enter to Esc
-inoremap <S-CR> <Esc>
+" Syntastic plugin configuration
+let g:syntastic_loc_list_height=5
 
-" Show 80-characters column marker
-"set colorcolumn=80
-
-highlight OverLength ctermbg=darkred ctermfg=white guibg=#403B3B
-match OverLength /\%81v.\+/
-
-" shift plus movement keys changes selection
-set keymodel=startsel,stopsel
-
-" allow cursor keys to go right off end of one line, onto start of next
-set whichwrap+=<,>,[,]
-
-" map key to dismiss search highlightedness
-map <bs> :noh<CR>
-
+" Powerline plugin configuration
+let g:Powerline_symbols = 'fancy'
 
