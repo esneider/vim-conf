@@ -176,7 +176,7 @@ endif
 colorscheme kellys
 
 " Status line setup (not necessary with Powerline plugin)
-" set laststatus=2
+set laststatus=2
 " set statusline=%F%m%r%h%w\ (%{&ff}){%Y}\ [%l,%v]\ [%p%%]
 
 "{{{ Swap open buffers
