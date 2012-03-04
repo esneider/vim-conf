@@ -11,6 +11,9 @@ autocmd BufEnter * execute "chdir ".escape(expand("%:p:h"), ' ')
 " Remove any trailing whitespace that is in the file
 autocmd BufRead,BufWrite * if ! &bin | silent! %s/\s\+$//ge | endif
 
+" Highlight characters after column 80
+autocmd BufWinEnter * let w:m2=matchadd('ErrorMsg', '\%>80v.\+', -1)
+
 "Restore cursor position to where it was before closing it
 "{{{
 augroup JumpCursorOnEdit
@@ -154,6 +157,12 @@ map <bs> :noh<CR>
 "  menuone: shows the menu even when there's just one match
 "  preview: shows extra information of the selected option
 set completeopt=longest,menuone,preview
+
+" Put new splits to the right of the current one
+set splitright
+
+" When at 3 spaces, and I hit > ... go to 4, not 7
+set shiftround
 
 if has("gui_running")
     " Set font (possibly only works in macvim)
