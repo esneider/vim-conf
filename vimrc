@@ -49,7 +49,16 @@ autocmd VimEnter * SyntasticToggleMode
 " Use tabs in makefiles
 autocmd FileType make setlocal noexpandtab
 
-" Necesary  for lots of cool vim things
+" Configure omni completion
+autocmd FileType python     set omnifunc=pythoncomplete#Complete
+autocmd FileType javascript set omnifunc=javascriptcomplete#CompleteJS
+autocmd FileType html       set omnifunc=htmlcomplete#CompleteTags
+autocmd FileType css        set omnifunc=csscomplete#CompleteCSS
+autocmd FileType xml        set omnifunc=xmlcomplete#CompleteTags
+autocmd FileType php        set omnifunc=phpcomplete#CompletePHP
+autocmd FileType c          set omnifunc=ccomplete#Complete
+
+" Necesary for lots of cool vim things
 set nocompatible
 
 " This shows what you are typing as a command
@@ -131,13 +140,13 @@ set scrolloff=5
 " Disable fucking bell
 set vb t_vb=
 
-" shift plus movement keys changes selection
+" Shift plus movement keys changes selection
 set keymodel=startsel,stopsel
 
-" allow cursor keys to go right off end of one line, onto start of next
+" Allow cursor keys to go right off end of one line, onto start of next
 set whichwrap+=<,>,[,]
 
-" map key to dismiss search highlightedness
+" Map key to dismiss search highlightedness
 map <bs> :noh<CR>
 
 " Tab completion features
@@ -146,19 +155,20 @@ map <bs> :noh<CR>
 "  preview: shows extra information of the selected option
 set completeopt=longest,menuone,preview
 
-" Set font and colors
 if has("gui_running")
-   set guifont=Menlo:h16
+    " Set font (possibly only works in macvim)
+    set guifont=Menlo:h16
 else
-   set t_Co=256
+    " Force the tty to use 256 colors
+    set t_Co=256
 endif
 
 " Set color scheme
 colorscheme kellys
 
 " Status line setup (not necessary with Powerline plugin)
-set laststatus=2
-set statusline=%F%m%r%h%w\ (%{&ff}){%Y}\ [%l,%v]\ [%p%%]
+" set laststatus=2
+" set statusline=%F%m%r%h%w\ (%{&ff}){%Y}\ [%l,%v]\ [%p%%]
 
 "{{{ Swap open buffers
 function! MarkWindowSwap()
