@@ -12,7 +12,7 @@ autocmd BufEnter * execute "chdir ".escape(expand("%:p:h"), ' ')
 autocmd BufRead,BufWrite * if ! &bin | silent! %s/\s\+$//ge | endif
 
 " Highlight characters after column 80
-autocmd BufWinEnter * let w:m2=matchadd('ErrorMsg', '\%>80v.\+', -1)
+autocmd BufWinEnter * let w:m2=matchadd('CursorLine', '\%>80v.\+', -1)
 
 "Restore cursor position to where it was before closing it
 "{{{
@@ -47,7 +47,7 @@ autocmd VimEnter * NERDTree
 autocmd VimEnter * wincmd p
 
 " Make Syntastic plugin passive
-autocmd VimEnter * SyntasticToggleMode
+autocmd VimEnter * silent! SyntasticToggleMode
 
 " Use tabs in makefiles
 autocmd FileType make setlocal noexpandtab
@@ -176,7 +176,7 @@ endif
 colorscheme kellys
 
 " Status line setup (not necessary with Powerline plugin)
-" set laststatus=2
+set laststatus=2
 " set statusline=%F%m%r%h%w\ (%{&ff}){%Y}\ [%l,%v]\ [%p%%]
 
 "{{{ Swap open buffers
