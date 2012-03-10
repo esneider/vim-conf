@@ -1,7 +1,6 @@
-
 " WARNING:
 "   * The Tagbar plugin needs `exhuberant ctags' to work.
-"   * The Powerline plugin need to have a patched font to be pretty. For more
+"   * The Powerline plugin needs to have a patched font to be pretty. For more
 "   info go to https://github.com/Lokaltog/vim-powerline
 
 
