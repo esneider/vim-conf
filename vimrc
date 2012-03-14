@@ -165,6 +165,9 @@ set splitright
 " When at 3 spaces, and I hit > ... go to 4, not 7
 set shiftround
 
+" Allow for cursor beyond last character
+set virtualedit=onemore
+
 if has("gui_running")
     " Set font (possibly only works in macvim)
     set guifont=Menlo:h16
@@ -255,6 +258,13 @@ imap <silent> <C-S-Up> <Esc>:wincmd k<CR>
 imap <silent> <C-S-Down> <Esc>:wincmd j<CR>
 imap <silent> <C-S-Left> <Esc>:wincmd h<CR>
 imap <silent> <C-S-Right> <Esc>:wincmd l<CR>
+
+" Stupid shift key fixes
+cmap W w
+cmap WQ wq
+cmap wQ wq
+cmap Wq wq
+cmap Q q
 
 " NERDTree plugin configuration
 let NERDTreeDirArrows=1
