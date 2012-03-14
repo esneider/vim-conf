@@ -209,7 +209,7 @@ nmap <silent> <leader>mw :call MarkWindowSwap()<CR>
 nmap <silent> <leader>pw :call DoWindowSwap()<CR>
 
 " Open the NERDTree Plugin
-nnoremap <silent> <Leader>t :NERDTreeToggle<CR>
+nnoremap <silent> <Leader>t :NERDTreeToggle<CR>:NERDTreeMirror<CR>
 
 " Open the Tagbar Plugin
 nnoremap <silent> <Leader>l :TagbarToggle<CR>
@@ -262,6 +262,7 @@ imap <silent> <C-S-Right> <Esc>:wincmd l<CR>
 " NERDTree plugin configuration
 let NERDTreeDirArrows=1
 let NERDTreeWinSize=25
+let NERDTreeIgnore=['\.pyc', '\~$', '\.swo$', '\.swp$', '\.git', '\.hg', '\.svn', '\.bzr']
 
 " Taglist plugin configuration
 let g:tagbar_compact = 1
