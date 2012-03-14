@@ -259,13 +259,6 @@ imap <silent> <C-S-Down> <Esc>:wincmd j<CR>
 imap <silent> <C-S-Left> <Esc>:wincmd h<CR>
 imap <silent> <C-S-Right> <Esc>:wincmd l<CR>
 
-" Stupid shift key fixes
-cmap W w
-cmap WQ wq
-cmap wQ wq
-cmap Wq wq
-cmap Q q
-
 " NERDTree plugin configuration
 let NERDTreeDirArrows=1
 let NERDTreeWinSize=25
