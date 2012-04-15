@@ -168,6 +168,9 @@ set shiftround
 " Allow for cursor beyond last character
 set virtualedit=onemore
 
+" Entries of the commands history
+set history=1000
+
 if has("gui_running")
     " Set font (possibly only works in macvim)
     set guifont=Menlo:h16
