@@ -129,6 +129,9 @@ set incsearch
 " Highlight things that we find with the search
 set hlsearch
 
+" Don't redraw while executing macros (good performance config)
+set lazyredraw
+
 " When I close a tab, remove the buffer
 set nohidden
 
@@ -148,7 +151,7 @@ set vb t_vb=
 set keymodel=startsel,stopsel
 
 " Allow cursor keys to go right off end of one line, onto start of next
-set whichwrap+=<,>,[,]
+set whichwrap+=<,>,[,],h,l
 
 " Map key to dismiss search highlightedness
 map <bs> :noh<CR>
