@@ -135,6 +135,9 @@ set lazyredraw
 " When I close a tab, remove the buffer
 set nohidden
 
+" Set to auto read when a file is changed from the outside
+set autoread
+
 " Highlight matching parent
 highlight MatchParen ctermbg=4
 
