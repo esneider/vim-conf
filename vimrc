@@ -15,33 +15,11 @@ autocmd BufRead,BufWrite * if ! &bin | silent! %s/\s\+$//ge | endif
 " Highlight characters after column 80
 autocmd BufWinEnter * let w:m2=matchadd('CursorLine', '\%>80v.\+', -1)
 
-"Restore cursor position to where it was before closing it
-"{{{
-augroup JumpCursorOnEdit
-   au!
-   autocmd BufReadPost *
-            \ if expand("<afile>:p:h") !=? $TEMP |
-            \   if line("'\"") > 1 && line("'\"") <= line("$") |
-            \     let JumpCursorOnEdit_foo = line("'\"") |
-            \     let b:doopenfold = 1 |
-            \     if (foldlevel(JumpCursorOnEdit_foo) > foldlevel(JumpCursorOnEdit_foo - 1)) |
-            \        let JumpCursorOnEdit_foo = JumpCursorOnEdit_foo - 1 |
-            \        let b:doopenfold = 2 |
-            \     endif |
-            \     exe JumpCursorOnEdit_foo |
-            \   endif |
-            \ endif
-   " Need to postpone using "zv" until after reading the modelines.
-   autocmd BufWinEnter *
-            \ if exists("b:doopenfold") |
-            \   exe "normal zv" |
-            \   if(b:doopenfold > 1) |
-            \       exe  "+".1 |
-            \   endif |
-            \   unlet b:doopenfold |
-            \ endif
-augroup END
-"}}}
+" Restore cursor position to where it was before closing it
+autocmd BufReadPost *
+  \ if line("'\"") > 1 && line("'\"") <= line("$") |
+  \   exe "normal! g`\"" |
+  \ endif
 
 " Open NERDTree plugin and unfocus it
 autocmd VimEnter * NERDTree
@@ -54,12 +32,14 @@ autocmd VimEnter * silent! SyntasticToggleMode
 autocmd FileType make setlocal noexpandtab
 
 " Configure omni completion
+" set omnifunc=syntaxcomplete#Complete
 autocmd FileType python     set omnifunc=pythoncomplete#Complete
 autocmd FileType javascript set omnifunc=javascriptcomplete#CompleteJS
 autocmd FileType html       set omnifunc=htmlcomplete#CompleteTags
 autocmd FileType css        set omnifunc=csscomplete#CompleteCSS
 autocmd FileType xml        set omnifunc=xmlcomplete#CompleteTags
 autocmd FileType php        set omnifunc=phpcomplete#CompletePHP
+autocmd FileType ruby       set omnifunc=rubycomplete#Complete
 autocmd FileType c          set omnifunc=ccomplete#Complete
 
 " Necesary for lots of cool vim things
@@ -75,6 +55,9 @@ set foldmethod=marker
 filetype plugin indent on
 syntax enable
 set autoindent
+
+" Change mapleader
+let mapleader=","
 
 " Set flags for grep command
 set grepprg=grep\ -nHE\ $*\ /dev/null
@@ -150,6 +133,9 @@ set scrolloff=5
 " Disable fucking bell
 set vb t_vb=
 
+" Don’t reset cursor to start of line when moving around.
+set nostartofline
+
 " Shift plus movement keys changes selection
 set keymodel=startsel,stopsel
 
@@ -176,6 +162,9 @@ set virtualedit=onemore
 
 " Entries of the commands history
 set history=1000
+
+" Tex flavor
+let g:tex_flavor='latex'
 
 if has("gui_running")
     " Set font (possibly only works in macvim)
@@ -223,6 +212,9 @@ nnoremap <silent> <Leader>t :NERDTreeToggle<CR>:NERDTreeMirror<CR>
 " Open the Tagbar Plugin
 nnoremap <silent> <Leader>l :TagbarToggle<CR>
 
+" Open the Gundo Plugin
+nnoremap <silent> <Leader>g :GundoToggle<CR>
+
 " Check syntax with Syntastic plugin
 nnoremap <silent> <Leader>s :w<CR>:SyntasticCheck<CR>
 
@@ -253,7 +245,7 @@ inoremap <silent> <Down> <C-o>gj
 nnoremap <space> za
 
 " Search mappings: These will make it so that going to the next one in a
-" search will center on the line it's found in.
+" search will center on the line it's found in
 map N Nzz
 map n nzz
 
@@ -268,6 +260,15 @@ imap <silent> <C-S-Down> <Esc>:wincmd j<CR>
 imap <silent> <C-S-Left> <Esc>:wincmd h<CR>
 imap <silent> <C-S-Right> <Esc>:wincmd l<CR>
 
+" Some typo corrections
+command! WQ wq
+command! Wq wq
+command! W w
+command! Q q
+
+" Disable Ex mode
+map Q <Nop>
+
 " NERDTree plugin configuration
 let NERDTreeDirArrows=1
 let NERDTreeWinSize=25
@@ -276,6 +277,11 @@ let NERDTreeIgnore=['\.pyc', '\~$', '\.swo$', '\.swp$', '\.git', '\.hg', '\.svn'
 " Taglist plugin configuration
 let g:tagbar_compact = 1
 let g:tagbar_width = 30
+
+" Gundo plugin configuration
+let g:gundo_width = 30
+let g:gundo_preview_height = 10
+let g:gundo_right = 1
 
 " SuperTab plugin configuration
 let g:SuperTabDefaultCompletionType = "context"
