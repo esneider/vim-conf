@@ -1,9 +1,44 @@
 " WARNING:
-"   * The Tagbar plugin needs `exhuberant ctags' to work.
+"   * The Tagbar plugin needs `exuberant ctags' to work.
 "   * The Powerline plugin needs to have a patched font to be pretty.
-"     For more info go to:
-"       https://github.com/Lokaltog/vim-powerline
-"       https://github.com/Lokaltog/vim-powerline/wiki/Patched-fonts
+"     You can install one of the fonts in '~/.vim/bundle/powerline-fonts'
+
+
+"""""""""""""""""
+" Vundle commands
+"""""""""""""""""
+
+
+" Necesary for lots of cool vim things
+set nocompatible
+
+" Required for vundle
+filetype off
+
+set rtp+=~/.vim/bundle/vundle/
+call vundle#rc()
+
+Bundle 'gmarik/vundle'
+Bundle 'Lokaltog/vim-powerline'
+Bundle 'Lokaltog/powerline-fonts'
+Bundle 'scrooloose/nerdtree'
+Bundle 'scrooloose/nerdcommenter'
+Bundle 'scrooloose/syntastic'
+Bundle 'ervandew/supertab'
+Bundle 'sjl/gundo.vim'
+Bundle 'majutsushi/tagbar'
+Bundle 'vim-scripts/taglist.vim'
+Bundle 'vim-scripts/kellys'
+
+" Syntax highlighting and indentation on
+filetype plugin indent on
+syntax enable
+set autoindent
+
+
+"""""""""""""""
+" Auto commands
+"""""""""""""""
 
 
 " Automatically cd into the directory that the file is in
@@ -42,19 +77,17 @@ autocmd FileType php        set omnifunc=phpcomplete#CompletePHP
 autocmd FileType ruby       set omnifunc=rubycomplete#Complete
 autocmd FileType c          set omnifunc=ccomplete#Complete
 
-" Necesary for lots of cool vim things
-set nocompatible
+
+""""""""""""""""
+" General config
+""""""""""""""""
+
 
 " This shows what you are typing as a command
 set showcmd
 
 " Fold text when markers {{{ and }}} are found
 set foldmethod=marker
-
-" Syntax highlighting and indentation on
-filetype plugin indent on
-syntax enable
-set autoindent
 
 " Change mapleader
 let mapleader=","
@@ -175,7 +208,7 @@ else
 endif
 
 " Set color scheme
-colorscheme kellys
+silent! colorscheme kellys
 
 " Status line setup (not necessary with Powerline plugin)
 set laststatus=2
