@@ -13,8 +13,13 @@
 set nocompatible
 
 " Required for vundle
+filetype on
 filetype off
 
+" Avoid SSL certificate problems
+let $GIT_SSL_NO_VERIFY = 'true'
+
+" Call vundle
 set rtp+=~/.vim/bundle/vundle/
 call vundle#rc()
 
@@ -92,18 +97,6 @@ set foldmethod=marker
 " Change mapleader
 let mapleader=","
 
-" Set flags for grep command
-set grepprg=grep\ -nHE\ $*\ /dev/null
-
-" Use javadoc-like highlighting for C, C++, C# and IDL files
-let g:load_doxygen_syntax=1
-
-" If doxygen_javadoc_autobrief is 0, it doesn't highlight the text
-" section, else it highlights everything until doxygen_end_punctuation is
-" matched
-let doxygen_javadoc_autobrief=0
-let doxygen_end_punctuation='^$'
-
 " Use spaces instead of tabs (and be smart on newlines)
 set expandtab
 set smarttab
@@ -112,9 +105,6 @@ set smarttab
 set shiftwidth=4
 set softtabstop=4
 set tabstop=4
-
-" Real men use gcc
-compiler gcc
 
 " Cool tab completion stuff
 set wildmenu
@@ -175,9 +165,6 @@ set keymodel=startsel,stopsel
 " Allow cursor keys to go right off end of one line, onto start of next
 set whichwrap+=<,>,[,],h,l
 
-" Map key to dismiss search highlightedness
-map <bs> :noh<CR>
-
 " Tab completion features
 "  longest: inserts the longest common text
 "  menuone: shows the menu even when there's just one match
@@ -199,6 +186,21 @@ set history=1000
 " Tex flavor
 let g:tex_flavor='latex'
 
+" Real men use gcc
+compiler gcc
+
+" Set flags for grep command
+set grepprg=grep\ -nHE\ $*\ /dev/null
+
+" Use javadoc-like highlighting for C, C++, C# and IDL files
+let g:load_doxygen_syntax=1
+
+" If doxygen_javadoc_autobrief is 0, it doesn't highlight the text
+" section, else it highlights everything until doxygen_end_punctuation is
+" matched
+let doxygen_javadoc_autobrief=0
+let doxygen_end_punctuation='^$'
+
 if has("gui_running")
     " Set font (possibly only works in macvim)
     set guifont=Menlo:h16
@@ -212,32 +214,79 @@ silent! colorscheme kellys
 
 " Status line setup (not necessary with Powerline plugin)
 set laststatus=2
-" set statusline=%F%m%r%h%w\ (%{&ff}){%Y}\ [%l,%v]\ [%p%%]
 
-"{{{ Swap open buffers
-function! MarkWindowSwap()
-    let g:markedWinNum = winnr()
-endfunction
 
-function! DoWindowSwap()
-    "Mark destination
-    let curNum = winnr()
-    let curBuf = bufnr( "%" )
-    exe g:markedWinNum . "wincmd w"
-    "Switch to source and shuffle dest->source
-    let markedBuf = bufnr( "%" )
-    "Hide and open so that we aren't prompted and keep history
-    exe 'hide buf' curBuf
-    "Switch to dest and shuffle source->dest
-    exe curNum . "wincmd w"
-    "Hide and open so that we aren't prompted and keep history
-    exe 'hide buf' markedBuf
-endfunction
-"}}}
+""""""""""""""
+" Kay mappings
+""""""""""""""
+
+
+" Map backspace key to dismiss search highlightedness
+nnoremap <BS> :noh<CR>
+
+" Type ; instead of : to begin a command faster
+nnoremap ; :
+
+" Disable Ex mode
+noremap Q <Nop>
+
+" Next tab (Ctrl-Shift-Right)
+nnoremap <silent> <C-S-Right> :tabnext<CR>
+inoremap <silent> <C-S-Right> :tabnext<CR>
+
+" Previous tab (Ctrl-Shift-Left)
+nnoremap <silent> <C-S-Left> :tabprevious<CR>
+inoremap <silent> <C-S-Left> :tabprevious<CR>
+
+" New tab (Ctrl-T)
+nnoremap <silent> <C-t> :tabnew<CR>
+inoremap <silent> <C-t> :tabnew<CR>
+
+" Move through splits with Alt-Shift-{Up,Right,Down,Left}
+nnoremap <silent> <T-S-Up> :wincmd k<CR>
+nnoremap <silent> <T-S-Down> :wincmd j<CR>
+nnoremap <silent> <T-S-Left> :wincmd h<CR>
+nnoremap <silent> <T-S-Right> :wincmd l<CR>
+inoremap <silent> <T-S-Up> <Esc>:wincmd k<CR>
+inoremap <silent> <T-S-Down> <Esc>:wincmd j<CR>
+inoremap <silent> <T-S-Left> <Esc>:wincmd h<CR>
+inoremap <silent> <T-S-Right> <Esc>:wincmd l<CR>
+
+" Up and down are more logical with g
+nnoremap <silent> k gk
+nnoremap <silent> j gj
+inoremap <silent> <Up> <C-o>gk
+inoremap <silent> <Down> <C-o>gj
+
+" Space will toggle folds
+nnoremap <space> za
+
+" Search mappings: These will make it so that going to the next one in a
+" search will center on the line it's found in
+noremap N Nzz
+noremap n nzz
+
+
+""""""""""""""""""
+" Command mappings
+""""""""""""""""""
+
+
+" Some typo corrections
+command! WQ wq
+command! Wq wq
+command! W w
+command! Q q
+
+
+"""""""""""""""""
+" Leader mappings
+"""""""""""""""""
+
 
 " Swap buffers
-nmap <silent> <leader>mw :call MarkWindowSwap()<CR>
-nmap <silent> <leader>pw :call DoWindowSwap()<CR>
+nnoremap <silent> <leader>mw :call MarkWindowSwap()<CR>
+nnoremap <silent> <leader>pw :call DoWindowSwap()<CR>
 
 " Open the NERDTree Plugin
 nnoremap <silent> <Leader>t :NERDTreeToggle<CR>:NERDTreeMirror<CR>
@@ -254,53 +303,16 @@ nnoremap <silent> <Leader>s :w<CR>:SyntasticCheck<CR>
 " Open the Syntastic plugin errors list
 nnoremap <silent> <Leader>e :Errors<CR>
 
-" TODO: NERDCommenter plugin shortcuts
-
-" Next Tab
-nnoremap <silent> <C-Right> :tabnext<CR>
-
-" Previous Tab
-nnoremap <silent> <C-Left> :tabprevious<CR>
-
-" New Tab
-nnoremap <silent> <C-t> :tabnew<CR>
-
 " Edit vimrc \ev
 nnoremap <silent> <Leader>ev :tabnew<CR>:e ~/.vimrc<CR>
 
-" Up and down are more logical with g
-nnoremap <silent> k gk
-nnoremap <silent> j gj
-inoremap <silent> <Up> <C-o>gk
-inoremap <silent> <Down> <C-o>gj
+" TODO: NERDCommenter plugin shortcuts
 
-" Space will toggle folds
-nnoremap <space> za
 
-" Search mappings: These will make it so that going to the next one in a
-" search will center on the line it's found in
-map N Nzz
-map n nzz
+""""""""""""""""
+" Plugins config
+""""""""""""""""
 
-" Move through splits with ctrl-shift instead of ctrl-w
-nmap <silent> <C-S-Up> :wincmd k<CR>
-nmap <silent> <C-S-Down> :wincmd j<CR>
-nmap <silent> <C-S-Left> :wincmd h<CR>
-nmap <silent> <C-S-Right> :wincmd l<CR>
-
-imap <silent> <C-S-Up> <Esc>:wincmd k<CR>
-imap <silent> <C-S-Down> <Esc>:wincmd j<CR>
-imap <silent> <C-S-Left> <Esc>:wincmd h<CR>
-imap <silent> <C-S-Right> <Esc>:wincmd l<CR>
-
-" Some typo corrections
-command! WQ wq
-command! Wq wq
-command! W w
-command! Q q
-
-" Disable Ex mode
-map Q <Nop>
 
 " NERDTree plugin configuration
 let NERDTreeDirArrows=1
@@ -326,4 +338,31 @@ let g:syntastic_loc_list_height=5
 
 " Powerline plugin configuration
 let g:Powerline_symbols = 'fancy'
+
+
+"""""""""
+" Helpers
+"""""""""
+
+
+"{{{ Swap open buffers
+function! MarkWindowSwap()
+    let g:markedWinNum = winnr()
+endfunction
+
+function! DoWindowSwap()
+    "Mark destination
+    let curNum = winnr()
+    let curBuf = bufnr( "%" )
+    exe g:markedWinNum . "wincmd w"
+    "Switch to source and shuffle dest->source
+    let markedBuf = bufnr( "%" )
+    "Hide and open so that we aren't prompted and keep history
+    exe 'hide buf' curBuf
+    "Switch to dest and shuffle source->dest
+    exe curNum . "wincmd w"
+    "Hide and open so that we aren't prompted and keep history
+    exe 'hide buf' markedBuf
+endfunction
+"}}}
 
