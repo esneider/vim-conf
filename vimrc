@@ -1,5 +1,5 @@
 " WARNING:
-"   * The Tagbar plugin needs `exuberant ctags' to work.
+"   * The Tagbar plugin needs 'exuberant ctags' to work.
 "   * The Powerline plugin needs to have a patched font to be pretty.
 "     You can install one of the fonts in '~/.vim/bundle/powerline-fonts'
 
@@ -46,24 +46,21 @@ set autoindent
 """""""""""""""
 
 
-" Automatically cd into the directory that the file is in
+" Automatically cd into the file's directory
 autocmd BufEnter * execute "chdir ".escape(expand("%:p:h"), ' ')
 
-" Remove any trailing whitespace that is in the file
+" Remove any trailing whitespace
 autocmd BufRead,BufWrite * if ! &bin | silent! %s/\s\+$//ge | endif
 
 " Highlight characters after column 80
 autocmd BufWinEnter * let w:m2=matchadd('CursorLine', '\%>80v.\+', -1)
 
-" Restore cursor position to where it was before closing it
+" Restore cursor position to where it was before closing
 autocmd BufReadPost *
-  \ if line("'\"") > 1 && line("'\"") <= line("$") |
-  \   exe "normal! g`\"" |
-  \ endif
+  \ if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g`\"" | endif
 
 " Open NERDTree plugin and unfocus it
-autocmd VimEnter * NERDTree
-autocmd VimEnter * wincmd p
+autocmd VimEnter * NERDTree | wincmd p
 
 " Make Syntastic plugin passive
 autocmd VimEnter * silent! SyntasticToggleMode
@@ -125,10 +122,6 @@ set ignorecase
 " Unless upper case is used
 set smartcase
 
-" Remap jj to escape in insert mode
-inoremap jj <Esc>
-nnoremap JJJJ <Nop>
-
 " Use incremental searching (search while typing)
 set incsearch
 
@@ -183,23 +176,11 @@ set virtualedit=onemore
 " Entries of the commands history
 set history=1000
 
-" Tex flavor
-let g:tex_flavor='latex'
-
-" Real men use gcc
-compiler gcc
+" Show status line
+set laststatus=2
 
 " Set flags for grep command
 set grepprg=grep\ -nHE\ $*\ /dev/null
-
-" Use javadoc-like highlighting for C, C++, C# and IDL files
-let g:load_doxygen_syntax=1
-
-" If doxygen_javadoc_autobrief is 0, it doesn't highlight the text
-" section, else it highlights everything until doxygen_end_punctuation is
-" matched
-let doxygen_javadoc_autobrief=0
-let doxygen_end_punctuation='^$'
 
 if has("gui_running")
     " Set font (possibly only works in macvim)
@@ -212,8 +193,17 @@ endif
 " Set color scheme
 silent! colorscheme kellys
 
-" Status line setup (not necessary with Powerline plugin)
-set laststatus=2
+" Real men use gcc
+compiler gcc
+
+" Tex flavor
+let g:tex_flavor='latex'
+
+" Use javadoc-like highlighting for C, C++, C# and IDL files
+let g:load_doxygen_syntax=1
+
+" Don't autobrief in javadoc comments
+let doxygen_javadoc_autobrief=0
 
 
 """"""""""""""
@@ -261,10 +251,12 @@ inoremap <silent> <Down> <C-o>gj
 " Space will toggle folds
 nnoremap <space> za
 
-" Search mappings: These will make it so that going to the next one in a
-" search will center on the line it's found in
+" Center on the matching line when moving through search results
 noremap N Nzz
 noremap n nzz
+
+" Remap jj to escape in insert mode
+inoremap jj <Esc>
 
 
 """"""""""""""""""

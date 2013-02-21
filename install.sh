@@ -1,5 +1,13 @@
 #!/bin/bash
 
+# Check if working directory set on the repo
+
+if ! [ -f vimrc ]
+then
+    echo "ERROR: you should 'cd' into the repository"
+    exit 1
+fi
+
 # Check for git presence
 
 if ! (git --version || git -v) > /dev/null 2> /dev/null
