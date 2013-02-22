@@ -23,17 +23,25 @@ let $GIT_SSL_NO_VERIFY = 'true'
 set rtp+=~/.vim/bundle/vundle/
 call vundle#rc()
 
-Bundle 'gmarik/vundle'
-Bundle 'Lokaltog/vim-powerline'
-Bundle 'Lokaltog/powerline-fonts'
-Bundle 'scrooloose/nerdtree'
-Bundle 'scrooloose/nerdcommenter'
-Bundle 'scrooloose/syntastic'
-Bundle 'ervandew/supertab'
-Bundle 'sjl/gundo.vim'
-Bundle 'majutsushi/tagbar'
-Bundle 'vim-scripts/taglist.vim'
-Bundle 'vim-scripts/kellys'
+Bundle 'gmarik/vundle'            " Manage plugins (github repos)
+Bundle 'tpope/vim-surround'       " Add surround adjetives to vim
+Bundle 'tpope/vim-repeat'         " Suport repeat of surround actions
+Bundle 'tsaleh/vim-matchit'       " % matches complex opening/closing entities
+Bundle 'tomtom/tcomment_vim'      " Toggle comments (//)
+Bundle 'scrooloose/nerdtree'      " File browser (,t)
+Bundle 'scrooloose/syntastic'     " Syntax checker (,s)
+Bundle 'ervandew/supertab'        " Tab completion (tab)
+Bundle 'sjl/gundo.vim'            " Show undo tree (,u)
+Bundle 'sjl/clam.vim'             " Run console commands (!command)
+Bundle 'majutsushi/tagbar'        " Show file tags list like variabes, etc (,l)
+Bundle 'Lokaltog/vim-easymotion'  " Select noun movements with help (,,noun)
+Bundle 'Lokaltog/vim-powerline'   " Pretty status bar
+Bundle 'esneider/powerline-fonts' " Patched fonts for powerline
+Bundle 'vim-scripts/kellys'       " Colorscheme
+Bundle 'vim-scripts/ZoomWin'      " Toggle window zoom (,z)
+" Bundle 'vim-scripts/taglist.vim'
+" Bundle 'kien/ctrlp.vim'
+
 
 " Syntax highlighting and indentation on
 filetype plugin indent on
@@ -88,11 +96,18 @@ autocmd FileType c          set omnifunc=ccomplete#Complete
 " This shows what you are typing as a command
 set showcmd
 
+" Use utf8
+set encoding=utf-8
+
 " Fold text when markers {{{ and }}} are found
 set foldmethod=marker
 
 " Change mapleader
 let mapleader=","
+
+" Faster commands
+set ttimeout
+set ttimeoutlen=50
 
 " Use spaces instead of tabs (and be smart on newlines)
 set expandtab
@@ -106,6 +121,7 @@ set tabstop=4
 " Cool tab completion stuff
 set wildmenu
 set wildmode=list:longest,full
+set wildignore=*.swp,*.bak,*.pyc,*.class
 
 " Enable mouse support in console
 set mouse=a
@@ -127,6 +143,9 @@ set incsearch
 
 " Highlight things that we find with the search
 set hlsearch
+
+" search/replace globally (on a line) by default
+set gdefault
 
 " Don't redraw while executing macros (good performance config)
 set lazyredraw
@@ -176,8 +195,26 @@ set virtualedit=onemore
 " Entries of the commands history
 set history=1000
 
+" Entries of the undo list
+set undolevels=1000
+
+" Keep a persistent backup file
+if v:version >= 730
+    set undofile
+    set undodir=~/.vim/.undo,~/tmp,/tmp
+endif
+
+" No backup file
+set nobackup
+
+" Directory for swap files (avoids adding them to your repo by mistake)
+set directory=~/.vim/.tmp,~/tmp,/tmp
+
 " Show status line
 set laststatus=2
+
+" Prevent some security exploits
+set modelines=0
 
 " Set flags for grep command
 set grepprg=grep\ -nHE\ $*\ /dev/null
@@ -217,6 +254,10 @@ nnoremap <BS> :noh<CR>
 " Type ; instead of : to begin a command faster
 nnoremap ; :
 
+" Turn off Vim’s regex characters and makes searches use normal regexes
+nnoremap / /\v
+vnoremap / /\v
+
 " Disable Ex mode
 noremap Q <Nop>
 
@@ -233,6 +274,7 @@ nnoremap <silent> <C-t> :tabnew<CR>
 inoremap <silent> <C-t> :tabnew<CR>
 
 " Move through splits with Alt-Shift-{Up,Right,Down,Left}
+" For Mac
 nnoremap <silent> <T-S-Up> :wincmd k<CR>
 nnoremap <silent> <T-S-Down> :wincmd j<CR>
 nnoremap <silent> <T-S-Left> :wincmd h<CR>
@@ -241,6 +283,15 @@ inoremap <silent> <T-S-Up> <Esc>:wincmd k<CR>
 inoremap <silent> <T-S-Down> <Esc>:wincmd j<CR>
 inoremap <silent> <T-S-Left> <Esc>:wincmd h<CR>
 inoremap <silent> <T-S-Right> <Esc>:wincmd l<CR>
+" For Linux
+nnoremap <silent> <M-S-Up> :wincmd k<CR>
+nnoremap <silent> <M-S-Down> :wincmd j<CR>
+nnoremap <silent> <M-S-Left> :wincmd h<CR>
+nnoremap <silent> <M-S-Right> :wincmd l<CR>
+inoremap <silent> <M-S-Up> <Esc>:wincmd k<CR>
+inoremap <silent> <M-S-Down> <Esc>:wincmd j<CR>
+inoremap <silent> <M-S-Left> <Esc>:wincmd h<CR>
+inoremap <silent> <M-S-Right> <Esc>:wincmd l<CR>
 
 " Up and down are more logical with g
 nnoremap <silent> k gk
@@ -257,6 +308,21 @@ noremap n nzz
 
 " Remap jj to escape in insert mode
 inoremap jj <Esc>
+
+" Make Y consistent with C and D
+nnoremap Y y$
+
+" Repeat the last substitution
+nnoremap & :&&<CR>
+xnoremap & :&&<CR>
+
+" Run console command (Clam plugin)
+nnoremap ! :Clam<space>
+vnoremap ! :ClamVisual<space>
+
+" Toggle comments (tComment plugin)
+nmap // gcc<space>
+vmap // gc<space>
 
 
 """"""""""""""""""
@@ -295,10 +361,11 @@ nnoremap <silent> <Leader>s :w<CR>:SyntasticCheck<CR>
 " Open the Syntastic plugin errors list
 nnoremap <silent> <Leader>e :Errors<CR>
 
+" Toggle full screen with ZoomWin plugin
+nnoremap <silent> <Leader>z :ZoomWin<CR>
+
 " Edit vimrc \ev
 nnoremap <silent> <Leader>ev :tabnew<CR>:e ~/.vimrc<CR>
-
-" TODO: NERDCommenter plugin shortcuts
 
 
 """"""""""""""""

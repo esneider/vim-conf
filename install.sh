@@ -8,6 +8,14 @@ then
     exit 1
 fi
 
+# Check for vim presence
+
+if ! (vim --version || vim -v) > /dev/null 2> /dev/null
+then
+    echo "ERROR: you must install 'vim'"
+    exit 1
+fi
+
 # Check for git presence
 
 if ! (git --version || git -v) > /dev/null 2> /dev/null
@@ -59,14 +67,7 @@ cp vimrc ~/.vimrc
 
 echo "Installing plugins..."
 
-if (vim --version || vim -v) > /dev/null 2> /dev/null
-then
-    VI="vim"
-else
-    VI="vi"
-fi
-
-$VI +BundleInstall +qall
+vim +BundleInstall +qall
 
 # Check for exuberant presence
 
