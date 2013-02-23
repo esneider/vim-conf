@@ -23,24 +23,58 @@ let $GIT_SSL_NO_VERIFY = 'true'
 set rtp+=~/.vim/bundle/vundle/
 call vundle#rc()
 
-Bundle 'gmarik/vundle'            " Manage plugins (github repos)
-Bundle 'tpope/vim-surround'       " Add surround adjetives to vim
-Bundle 'tpope/vim-repeat'         " Suport repeat of surround actions
-Bundle 'tsaleh/vim-matchit'       " % matches complex opening/closing entities
-Bundle 'tomtom/tcomment_vim'      " Toggle comments (//)
-Bundle 'scrooloose/nerdtree'      " File browser (,t)
-Bundle 'scrooloose/syntastic'     " Syntax checker (,s)
-Bundle 'ervandew/supertab'        " Tab completion (tab)
-Bundle 'sjl/gundo.vim'            " Show undo tree (,u)
-Bundle 'sjl/clam.vim'             " Run console commands (!command)
-Bundle 'majutsushi/tagbar'        " Show file tags list like variabes, etc (,l)
-Bundle 'Lokaltog/vim-easymotion'  " Select noun movements with help (,,noun)
-Bundle 'Lokaltog/vim-powerline'   " Pretty status bar
-Bundle 'esneider/powerline-fonts' " Patched fonts for powerline
-Bundle 'vim-scripts/kellys'       " Colorscheme
-Bundle 'vim-scripts/ZoomWin'      " Toggle window zoom (,z)
+" Manage plugins (github repos)
+Bundle 'gmarik/vundle'
+
+" Add surround adjetives to vim
+Bundle 'tpope/vim-surround'
+
+" Suport repeat of surround actions
+Bundle 'tpope/vim-repeat'
+
+" % matches complex opening/closing entities
+Bundle 'tsaleh/vim-matchit'
+
+" Toggle comments (//)
+Bundle 'tomtom/tcomment_vim'
+
+" File browser (,t)
+Bundle 'scrooloose/nerdtree'
+
+" Syntax checker (,s)
+Bundle 'scrooloose/syntastic'
+
+" Tab completion (tab)
+Bundle 'ervandew/supertab'
+
+" Show undo tree (,u)
+Bundle 'sjl/gundo.vim'
+
+" Run console commands (!command)
+Bundle 'sjl/clam.vim'
+
+" Show file tags list like variabes, etc (,l)
+Bundle 'majutsushi/tagbar'
+
+" Select noun movements with help (,,noun)
+Bundle 'Lokaltog/vim-easymotion'
+
+" Pretty status bar
+Bundle 'Lokaltog/vim-powerline'
+
+" Patched fonts for powerline
+Bundle 'esneider/powerline-fonts'
+
+" Colorscheme
+Bundle 'vim-scripts/kellys'
+
+" Toggle window zoom (,z)
+Bundle 'vim-scripts/ZoomWin'
+
+" Fuzzy file finder (,o)
+Bundle 'kien/ctrlp.vim'
+
 " Bundle 'vim-scripts/taglist.vim'
-" Bundle 'kien/ctrlp.vim'
 
 
 " Syntax highlighting and indentation on
@@ -397,6 +431,15 @@ let g:syntastic_loc_list_height=5
 
 " Powerline plugin configuration
 let g:Powerline_symbols = 'fancy'
+
+" CtrlP plugin configuration
+let g:ctrlp_map = '<leader>o'
+let g:ctrlp_max_files = 10000
+let g:ctrlp_max_depth = 40
+let g:ctrlp_match_window_bottom=1
+let g:ctrlp_max_height = 20
+let g:ctrlp_match_window_reversed = 1
+let g:ctrlp_switch_buffer = 'e'
 
 
 """""""""
