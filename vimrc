@@ -2,10 +2,11 @@
 "   * The Tagbar plugin needs 'exuberant ctags' to work.
 "   * The Powerline plugin needs to have a patched font to be pretty.
 "     You can install one of the fonts in '~/.vim/bundle/powerline-fonts'
+"     and set your terminal to use it
 
 
 """""""""""""""""
-" Vundle commands
+" Vundle commands {{{
 """""""""""""""""
 
 
@@ -26,7 +27,7 @@ call vundle#rc()
 " Manage plugins (github repos)
 Bundle 'gmarik/vundle'
 
-" Add surround adjetives to vim
+" Add surround adjetive to vim (s)
 Bundle 'tpope/vim-surround'
 
 " Suport repeat of surround actions
@@ -47,7 +48,7 @@ Bundle 'scrooloose/syntastic'
 " Tab completion (tab)
 Bundle 'ervandew/supertab'
 
-" Show undo tree (,u)
+" Show undo tree (,g)
 Bundle 'sjl/gundo.vim'
 
 " Run console commands (!command)
@@ -76,15 +77,10 @@ Bundle 'kien/ctrlp.vim'
 
 " Bundle 'vim-scripts/taglist.vim'
 
-
-" Syntax highlighting and indentation on
-filetype plugin indent on
-syntax enable
-set autoindent
-
+" }}}
 
 """""""""""""""
-" Auto commands
+" Auto commands {{{
 """""""""""""""
 
 
@@ -121,11 +117,24 @@ autocmd FileType php        set omnifunc=phpcomplete#CompletePHP
 autocmd FileType ruby       set omnifunc=rubycomplete#Complete
 autocmd FileType c          set omnifunc=ccomplete#Complete
 
+" }}}
 
 """"""""""""""""
-" General config
+" General config {{{
 """"""""""""""""
 
+
+" Enable file type specific behaviour
+filetype plugin indent on
+
+" Enable syntax highlighting
+syntax enable
+
+" Enable autoindenting on new lines
+set autoindent
+
+" Copy the indent structure when autoindenting
+set copyindent
 
 " This shows what you are typing as a command
 set showcmd
@@ -193,6 +202,9 @@ set autoread
 " Highlight matching parent
 highlight MatchParen ctermbg=4
 
+" Highlight diff conflict markers
+match ErrorMsg '^\(<\|=\|>\)\{7\}\([^=].\+\)\?$'
+
 " Highlight the line that the cursor is on
 set cursorline
 
@@ -220,11 +232,16 @@ set completeopt=longest,menuone,preview
 " Put new splits to the right of the current one
 set splitright
 
-" When at 3 spaces, and I hit > ... go to 4, not 7
+" When at 3 spaces, and hit > ... go to 4, not 7
 set shiftround
 
-" Allow for cursor beyond last character
-set virtualedit=onemore
+" Allowing the cursor in invalid places
+"  onemore: cursor beyond last character
+"  block: cursor everywhere in visual block mode
+set virtualedit=onemore,block
+
+" EOL type selection
+set fileformats="unix,dos,mac"
 
 " Entries of the commands history
 set history=1000
@@ -276,9 +293,10 @@ let g:load_doxygen_syntax=1
 " Don't autobrief in javadoc comments
 let doxygen_javadoc_autobrief=0
 
+" }}}
 
 """"""""""""""
-" Kay mappings
+" Key mappings {{{
 """"""""""""""
 
 
@@ -358,9 +376,10 @@ vnoremap ! :ClamVisual<space>
 nmap // gcc<space>
 vmap // gc<space>
 
+" }}}
 
 """"""""""""""""""
-" Command mappings
+" Command mappings {{{
 """"""""""""""""""
 
 
@@ -370,9 +389,13 @@ command! Wq wq
 command! W w
 command! Q q
 
+" Save file with sudo
+cnoremap w!! w !sudo tee % >/dev/null
+
+" }}}
 
 """""""""""""""""
-" Leader mappings
+" Leader mappings {{{
 """""""""""""""""
 
 
@@ -398,12 +421,16 @@ nnoremap <silent> <Leader>e :Errors<CR>
 " Toggle full screen with ZoomWin plugin
 nnoremap <silent> <Leader>z :ZoomWin<CR>
 
-" Edit vimrc \ev
+" Edit vimrc in a new tab
 nnoremap <silent> <Leader>ev :tabnew<CR>:e ~/.vimrc<CR>
 
+" Jump to next diff conflict marker
+nnoremap <silent> <leader>c /^\(<\\|=\\|>\)\{7\}\([^=].\+\)\?$<CR>
+
+" }}}
 
 """"""""""""""""
-" Plugins config
+" Plugins config {{{
 """"""""""""""""
 
 
@@ -418,13 +445,14 @@ let g:tagbar_width = 30
 
 " Gundo plugin configuration
 let g:gundo_width = 30
-let g:gundo_preview_height = 10
+let g:gundo_preview_height = 15
 let g:gundo_right = 1
 
 " SuperTab plugin configuration
 let g:SuperTabDefaultCompletionType = "context"
 let g:SuperTabLongestEnhanced = 1
 let g:SuperTabLongestHighlight = 1
+let g:SuperTabCrMapping = 1
 
 " Syntastic plugin configuration
 let g:syntastic_loc_list_height=5
@@ -441,13 +469,13 @@ let g:ctrlp_max_height = 20
 let g:ctrlp_match_window_reversed = 1
 let g:ctrlp_switch_buffer = 'e'
 
+" }}}
 
 """""""""
-" Helpers
+" Helpers {{{
 """""""""
 
 
-"{{{ Swap open buffers
 function! MarkWindowSwap()
     let g:markedWinNum = winnr()
 endfunction
@@ -466,5 +494,6 @@ function! DoWindowSwap()
     "Hide and open so that we aren't prompted and keep history
     exe 'hide buf' markedBuf
 endfunction
-"}}}
+
+" }}}
 

@@ -78,7 +78,7 @@ fi
 
 echo "Done!!!"
 echo
-echo "NOTE: You may want to install one of the fonts in"
+echo "NOTE: You may want to install and set your terminal to use one of the fonts in"
 echo "      '~/.vim/bundle/powerline-fonts'"
 echo "      to have a pretty tagbar"
 
