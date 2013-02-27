@@ -71,14 +71,24 @@ vim +BundleInstall +qall
 
 # Check for exuberant presence
 
-if ! (ctags --version | egrep -i "exuberant") > /dev/null 2> /dev/null
-then
-    echo "You should install 'exuberant ctags' to use the tagbar plugin"
-fi
-
 echo "Done!!!"
 echo
-echo "NOTE: You may want to install and set your terminal to use one of the fonts in"
+echo "NOTE:"
+
+if ! (ctags --version | egrep -i "exuberant") > /dev/null 2> /dev/null &&
+   ! (ctags --v       | egrep -i "exuberant") > /dev/null 2> /dev/null
+then
+    echo "      You should install 'exuberant ctags' to use the tagbar plugin"
+    echo
+fi
+
+# if ! (ack --version || ack -v) > /dev/null 2> /dev/null
+# then
+#     echo "      You should install 'ack' to use the ack plugin"
+#     echo
+# fi
+
+echo "      You may want to install and set your terminal to use one of the fonts in"
 echo "      '~/.vim/bundle/powerline-fonts'"
 echo "      to have a pretty tagbar"
 

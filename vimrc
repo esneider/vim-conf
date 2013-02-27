@@ -27,7 +27,7 @@ call vundle#rc()
 " Manage plugins (github repos)
 Bundle 'gmarik/vundle'
 
-" Add surround adjetive to vim (s)
+" Add surround modifier to vim (s)
 Bundle 'tpope/vim-surround'
 
 " Suport repeat of surround actions
@@ -74,8 +74,6 @@ Bundle 'vim-scripts/ZoomWin'
 
 " Fuzzy file finder (,o)
 Bundle 'kien/ctrlp.vim'
-
-" Bundle 'vim-scripts/taglist.vim'
 
 " }}}
 
@@ -205,6 +203,9 @@ highlight MatchParen ctermbg=4
 " Highlight diff conflict markers
 match ErrorMsg '^\(<\|=\|>\)\{7\}\([^=].\+\)\?$'
 
+" Don't try to highlight lines longer than 500 characters
+set synmaxcol=500
+
 " Highlight the line that the cursor is on
 set cursorline
 
@@ -278,6 +279,9 @@ else
     set t_Co=256
 endif
 
+" Dark background
+set background=dark
+
 " Set color scheme
 silent! colorscheme kellys
 
@@ -309,21 +313,23 @@ nnoremap ; :
 " Turn off Vim’s regex characters and makes searches use normal regexes
 nnoremap / /\v
 vnoremap / /\v
+nnoremap ? ?\v
+vnoremap ? ?\v
 
 " Disable Ex mode
 noremap Q <Nop>
 
 " Next tab (Ctrl-Shift-Right)
 nnoremap <silent> <C-S-Right> :tabnext<CR>
-inoremap <silent> <C-S-Right> :tabnext<CR>
+inoremap <silent> <C-S-Right> <Esc>:tabnext<CR>
 
 " Previous tab (Ctrl-Shift-Left)
 nnoremap <silent> <C-S-Left> :tabprevious<CR>
-inoremap <silent> <C-S-Left> :tabprevious<CR>
+inoremap <silent> <C-S-Left> <Esc>:tabprevious<CR>
 
 " New tab (Ctrl-T)
 nnoremap <silent> <C-t> :tabnew<CR>
-inoremap <silent> <C-t> :tabnew<CR>
+inoremap <silent> <C-t> <Esc>:tabnew<CR>
 
 " Move through splits with Alt-Shift-{Up,Right,Down,Left}
 " For Mac
@@ -351,7 +357,7 @@ nnoremap <silent> j gj
 inoremap <silent> <Up> <C-o>gk
 inoremap <silent> <Down> <C-o>gj
 
-" Space will toggle folds
+" Toggle folds with space
 nnoremap <space> za
 
 " Center on the matching line when moving through search results
@@ -442,6 +448,8 @@ let NERDTreeIgnore=['\.pyc', '\~$', '\.swo$', '\.swp$', '\.git', '\.hg', '\.svn'
 " Taglist plugin configuration
 let g:tagbar_compact = 1
 let g:tagbar_width = 30
+let g:tagbar_usearrows = 1
+let g:tagbar_sort = 0
 
 " Gundo plugin configuration
 let g:gundo_width = 30
