@@ -112,7 +112,7 @@ autocmd Filetype *
   \ if &omnifunc == "" | setlocal omnifunc=syntaxcomplete#Complete | endif
 
 " Supertab plugin completion style
-autocmd FileType * call SuperTabChain(&omnifunc, '<c-p>')
+autocmd FileType * silent! call SuperTabChain(&omnifunc, '<c-p>')
 
 " }}}
 
