@@ -75,6 +75,9 @@ Bundle 'vim-scripts/ZoomWin'
 " Fuzzy file finder (,o)
 Bundle 'kien/ctrlp.vim'
 
+" Rename a file (:rename)
+Bundle 'danro/rename.vim'
+
 " }}}
 
 """""""""""""""
@@ -104,16 +107,9 @@ autocmd VimEnter * silent! SyntasticToggleMode
 " Use tabs in makefiles
 autocmd FileType make setlocal noexpandtab
 
-" Configure omni completion
-" set omnifunc=syntaxcomplete#Complete
-autocmd FileType python     set omnifunc=pythoncomplete#Complete
-autocmd FileType javascript set omnifunc=javascriptcomplete#CompleteJS
-autocmd FileType html       set omnifunc=htmlcomplete#CompleteTags
-autocmd FileType css        set omnifunc=csscomplete#CompleteCSS
-autocmd FileType xml        set omnifunc=xmlcomplete#CompleteTags
-autocmd FileType php        set omnifunc=phpcomplete#CompletePHP
-autocmd FileType ruby       set omnifunc=rubycomplete#Complete
-autocmd FileType c          set omnifunc=ccomplete#Complete
+" Setup syntax completion by highligh rules for unsupported filetypes
+autocmd Filetype *
+  \ if &omnifunc == "" | setlocal omnifunc=syntaxcomplete#Complete | endif
 
 " }}}
 
@@ -121,57 +117,66 @@ autocmd FileType c          set omnifunc=ccomplete#Complete
 " General config {{{
 """"""""""""""""
 
-
 " Enable file type specific behaviour
 filetype plugin indent on
-
-" Enable syntax highlighting
-syntax enable
-
-" Enable autoindenting on new lines
-set autoindent
-
-" Copy the indent structure when autoindenting
-set copyindent
-
-" This shows what you are typing as a command
-set showcmd
 
 " Use utf8
 set encoding=utf-8
 
-" Fold text when markers {{{ and }}} are found
-set foldmethod=marker
+" When I close a tab, remove the buffer
+set nohidden
 
-" Change mapleader
-let mapleader=","
+" Automatically read a file when it is changed from the outside
+set autoread
+
+" Automatic EOL type selection
+set fileformats="unix,dos,mac"
+
+" Don't redraw while executing macros (good performance config)
+set lazyredraw
+
+" Entries of the commands history
+set history=1000
+
+" Entries of the undo list
+set undolevels=1000
+
+" Keep a persistent undo backup file
+if v:version >= 730
+    set undofile
+    set undodir=~/.vim/.undo,~/tmp,/tmp
+endif
+
+" Directory for swap files (avoids adding them to your repo by mistake)
+set directory=~/.vim/.tmp,~/tmp,/tmp
+
+" Prevent some security exploits
+set modelines=0
+
+" Disable fucking bell
+set vb t_vb=
 
 " Faster commands
 set ttimeout
 set ttimeoutlen=50
 
-" Use spaces instead of tabs (and be smart on newlines)
-set expandtab
-set smarttab
+" Fold text when markers {{{ and }}} are found
+set foldmethod=marker
 
-" Tab equals 4 spaces
-set shiftwidth=4
-set softtabstop=4
-set tabstop=4
+" }}}
 
-" Cool tab completion stuff
+""""""""""""""""""""""""""""
+" Complete and search config {{{
+""""""""""""""""""""""""""""
+
+
+" Comand line completion stuff
 set wildmenu
 set wildmode=list:longest,full
 set wildignore=*.swp,*.bak,*.pyc,*.class
 
-" Enable mouse support in console
-set mouse=a
-
-" Make backspace work like it should
-set backspace=2
-
-" Show line numbers
-set number
+" Tab completion stuff
+set completeopt=longest,menuone,preview
 
 " Ignore case when searching
 set ignorecase
@@ -188,32 +193,35 @@ set hlsearch
 " search/replace globally (on a line) by default
 set gdefault
 
-" Don't redraw while executing macros (good performance config)
-set lazyredraw
+" Set flags for grep command
+set grepprg=grep\ -nHE\ $*\ /dev/null
 
-" When I close a tab, remove the buffer
-set nohidden
+" }}}
 
-" Set to auto read when a file is changed from the outside
-set autoread
+""""""""""""""
+" Input config {{{
+""""""""""""""
 
-" Highlight matching parent
-highlight MatchParen ctermbg=4
+" Enable autoindenting on new lines
+set autoindent
 
-" Highlight diff conflict markers
-match ErrorMsg '^\(<\|=\|>\)\{7\}\([^=].\+\)\?$'
+" Copy the indent structure when autoindenting
+set copyindent
 
-" Don't try to highlight lines longer than 500 characters
-set synmaxcol=500
+" Use spaces instead of tabs (and be smart on newlines)
+set expandtab
+set smarttab
 
-" Highlight the line that the cursor is on
-set cursorline
+" Tab equals 4 spaces
+set shiftwidth=4
+set softtabstop=4
+set tabstop=4
 
-" Have 5 lines ahead of the cursor in screen whenever possible
-set scrolloff=5
+" Make backspace work like it should
+set backspace=2
 
-" Disable fucking bell
-set vb t_vb=
+" Enable mouse support in console
+set mouse=a
 
 " Don’t reset cursor to start of line when moving around.
 set nostartofline
@@ -224,59 +232,57 @@ set keymodel=startsel,stopsel
 " Allow cursor keys to go right off end of one line, onto start of next
 set whichwrap+=<,>,[,],h,l
 
-" Tab completion features
-"  longest: inserts the longest common text
-"  menuone: shows the menu even when there's just one match
-"  preview: shows extra information of the selected option
-set completeopt=longest,menuone,preview
-
-" Put new splits to the right of the current one
-set splitright
-
 " When at 3 spaces, and hit > ... go to 4, not 7
 set shiftround
 
-" Allowing the cursor in invalid places
-"  onemore: cursor beyond last character
-"  block: cursor everywhere in visual block mode
+" Allowe the cursor one beyond last character and everywhere in V-block mode
 set virtualedit=onemore,block
 
-" EOL type selection
-set fileformats="unix,dos,mac"
+" Put new vertical splits to the right of the current one
+set splitright
 
-" Entries of the commands history
-set history=1000
+" Put new horizontal splits below the current one
+set splitbelow
 
-" Entries of the undo list
-set undolevels=1000
+" }}}
 
-" Keep a persistent backup file
-if v:version >= 730
-    set undofile
-    set undodir=~/.vim/.undo,~/tmp,/tmp
-endif
+""""""""""""""
+" Style config {{{
+""""""""""""""
 
-" No backup file
-set nobackup
 
-" Directory for swap files (avoids adding them to your repo by mistake)
-set directory=~/.vim/.tmp,~/tmp,/tmp
+" Enable syntax highlighting
+syntax enable
+
+" Show line numbers
+set number
 
 " Show status line
 set laststatus=2
 
-" Prevent some security exploits
-set modelines=0
+" This shows what you are typing as a command
+set showcmd
 
-" Set flags for grep command
-set grepprg=grep\ -nHE\ $*\ /dev/null
+" Have 5 lines ahead of the cursor in screen whenever possible
+set scrolloff=5
 
-if has("gui_running")
-    " Set font (possibly only works in macvim)
-    set guifont=Menlo:h16
-else
-    " Force the tty to use 256 colors
-    set t_Co=256
+" Highlight matching parent
+highlight MatchParen ctermbg=4
+
+" Highlight diff conflict markers
+match ErrorMsg '^\(<\|=\|>\)\{7\}\([^=].\+\)\?$'
+
+" Highlight the line that the cursor is on
+set cursorline
+
+" Set font for MacVim
+if has("gui_macvim")
+  set guifont=Menlo:h15
+end
+
+" Force the tty to use 256 colors
+if !has("gui_running")
+  set t_Co=256
 endif
 
 " Dark background
@@ -285,17 +291,8 @@ set background=dark
 " Set color scheme
 silent! colorscheme kellys
 
-" Real men use gcc
-compiler gcc
-
-" Tex flavor
-let g:tex_flavor='latex'
-
-" Use javadoc-like highlighting for C, C++, C# and IDL files
-let g:load_doxygen_syntax=1
-
-" Don't autobrief in javadoc comments
-let doxygen_javadoc_autobrief=0
+" Don't try to highlight lines longer than 500 characters
+set synmaxcol=500
 
 " }}}
 
@@ -382,6 +379,10 @@ vnoremap ! :ClamVisual<space>
 nmap // gcc<space>
 vmap // gc<space>
 
+" Remain in visual mode after '<' or '>'
+vnoremap < <gv
+vnoremap > >gv
+
 " }}}
 
 """"""""""""""""""
@@ -404,6 +405,9 @@ cnoremap w!! w !sudo tee % >/dev/null
 " Leader mappings {{{
 """""""""""""""""
 
+
+" Change mapleader
+let mapleader=","
 
 " Swap buffers
 nnoremap <silent> <leader>mw :call MarkWindowSwap()<CR>
@@ -464,6 +468,8 @@ let g:SuperTabCrMapping = 1
 
 " Syntastic plugin configuration
 let g:syntastic_loc_list_height=5
+let g:syntastic_error_symbol = '✗'
+let g:syntastic_warning_symbol = '⚠'
 
 " Powerline plugin configuration
 let g:Powerline_symbols = 'fancy'
@@ -476,6 +482,13 @@ let g:ctrlp_match_window_bottom=1
 let g:ctrlp_max_height = 20
 let g:ctrlp_match_window_reversed = 1
 let g:ctrlp_switch_buffer = 'e'
+
+" Doxygen syntax configuration (javadoc highlighting for C, C++, C# files)
+let g:load_doxygen_syntax=1
+let doxygen_javadoc_autobrief=0
+
+" Tex syntax configuration
+let g:tex_flavor='latex'
 
 " }}}
 
