@@ -111,6 +111,9 @@ autocmd FileType make setlocal noexpandtab
 autocmd Filetype *
   \ if &omnifunc == "" | setlocal omnifunc=syntaxcomplete#Complete | endif
 
+" Supertab plugin completion style
+autocmd FileType * call SuperTabChain(&omnifunc, '<c-p>')
+
 " }}}
 
 """"""""""""""""
@@ -462,9 +465,9 @@ let g:gundo_right = 1
 
 " SuperTab plugin configuration
 let g:SuperTabDefaultCompletionType = "context"
+let g:SuperTabContextDefaultCompletionType = '<c-x><c-u>'
 let g:SuperTabLongestEnhanced = 1
 let g:SuperTabLongestHighlight = 1
-let g:SuperTabCrMapping = 1
 
 " Syntastic plugin configuration
 let g:syntastic_loc_list_height=5
