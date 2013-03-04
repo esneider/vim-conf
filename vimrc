@@ -78,6 +78,9 @@ Bundle 'kien/ctrlp.vim'
 " Rename a file (:rename)
 Bundle 'danro/rename.vim'
 
+" More interactive find (,f)
+Bundle 'gcmt/psearch.vim'
+
 " }}}
 
 """""""""""""""
@@ -412,9 +415,11 @@ cnoremap w!! w !sudo tee % >/dev/null
 " Change mapleader
 let mapleader=","
 
-" Swap buffers
+" Mark window for swap
 nnoremap <silent> <leader>mw :call MarkWindowSwap()<CR>
-nnoremap <silent> <leader>pw :call DoWindowSwap()<CR>
+
+" Swap current window with the one previously marked
+nnoremap <silent> <leader>sw :call DoWindowSwap()<CR>
 
 " Open the NERDTree Plugin
 nnoremap <silent> <Leader>t :NERDTreeToggle<CR>:NERDTreeMirror<CR>
@@ -435,10 +440,13 @@ nnoremap <silent> <Leader>e :Errors<CR>
 nnoremap <silent> <Leader>z :ZoomWin<CR>
 
 " Edit vimrc in a new tab
-nnoremap <silent> <Leader>ev :tabnew<CR>:e ~/.vimrc<CR>
+nnoremap <silent> <Leader>v :tabnew<CR>:e ~/.vimrc<CR>
 
 " Jump to next diff conflict marker
-nnoremap <silent> <leader>c /^\(<\\|=\\|>\)\{7\}\([^=].\+\)\?$<CR>
+nnoremap <silent> <Leader>c /^\(<\\|=\\|>\)\{7\}\([^=].\+\)\?$<CR>
+
+" Open the PSearch plugin
+nnoremap <silent> <Leader>f :PSearch<CR>
 
 " }}}
 
@@ -448,9 +456,9 @@ nnoremap <silent> <leader>c /^\(<\\|=\\|>\)\{7\}\([^=].\+\)\?$<CR>
 
 
 " NERDTree plugin configuration
-let NERDTreeDirArrows=1
-let NERDTreeWinSize=25
-let NERDTreeIgnore=['\.pyc', '\~$', '\.swo$', '\.swp$', '\.git', '\.hg', '\.svn', '\.bzr']
+let NERDTreeDirArrows = 1
+let NERDTreeWinSize = 25
+let NERDTreeIgnore = ['\.pyc', '\~$', '\.swo$', '\.swp$', '\.git', '\.hg', '\.svn', '\.bzr']
 
 " Taglist plugin configuration
 let g:tagbar_compact = 1
@@ -470,7 +478,7 @@ let g:SuperTabLongestEnhanced = 1
 let g:SuperTabLongestHighlight = 1
 
 " Syntastic plugin configuration
-let g:syntastic_loc_list_height=5
+let g:syntastic_loc_list_height = 5
 let g:syntastic_error_symbol = '✗'
 let g:syntastic_warning_symbol = '⚠'
 
@@ -481,17 +489,20 @@ let g:Powerline_symbols = 'fancy'
 let g:ctrlp_map = '<leader>o'
 let g:ctrlp_max_files = 10000
 let g:ctrlp_max_depth = 40
-let g:ctrlp_match_window_bottom=1
+let g:ctrlp_match_window_bottom = 1
 let g:ctrlp_max_height = 20
 let g:ctrlp_match_window_reversed = 1
 let g:ctrlp_switch_buffer = 'e'
 
 " Doxygen syntax configuration (javadoc highlighting for C, C++, C# files)
-let g:load_doxygen_syntax=1
-let doxygen_javadoc_autobrief=0
+let g:load_doxygen_syntax = 1
+let doxygen_javadoc_autobrief = 0
 
 " Tex syntax configuration
-let g:tex_flavor='latex'
+let g:tex_flavor = 'latex'
+
+" PSearch plugin configuration
+let g:pse_max_height = 20
 
 " }}}
 
