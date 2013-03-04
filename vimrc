@@ -136,7 +136,7 @@ set nohidden
 set autoread
 
 " Automatic EOL type selection
-set fileformats="unix,dos,mac"
+" set fileformats="unix,dos,mac"
 
 " Don't redraw while executing macros (good performance config)
 set lazyredraw
@@ -382,8 +382,8 @@ nnoremap ! :Clam<space>
 vnoremap ! :ClamVisual<space>
 
 " Toggle comments (tComment plugin)
-nmap // gcc<space>
-vmap // gc<space>
+nmap // gcc<Esc>
+vmap // gc<Esc>
 
 " Remain in visual mode after '<' or '>'
 vnoremap < <gv
