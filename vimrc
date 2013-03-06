@@ -102,7 +102,7 @@ autocmd BufReadPost *
   \ if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g`\"" | endif
 
 " Open NERDTree plugin and unfocus it
-autocmd VimEnter * NERDTree | wincmd p
+autocmd VimEnter * silent! NERDTree | wincmd p
 
 " Make Syntastic plugin passive
 autocmd VimEnter * silent! SyntasticToggleMode
@@ -136,7 +136,7 @@ set nohidden
 set autoread
 
 " Automatic EOL type selection
-" set fileformats="unix,dos,mac"
+" set fileformats='unix,dos,mac'
 
 " Don't redraw while executing macros (good performance config)
 set lazyredraw
@@ -311,7 +311,7 @@ set synmaxcol=500
 nnoremap <BS> :noh<CR>
 
 " Type ; instead of : to begin a command faster
-nnoremap ; :
+" nnoremap ; :
 
 " Turn off Vim’s regex characters and makes searches use normal regexes
 nnoremap / /\v
@@ -516,17 +516,12 @@ function! MarkWindowSwap()
 endfunction
 
 function! DoWindowSwap()
-    "Mark destination
     let curNum = winnr()
     let curBuf = bufnr( "%" )
     exe g:markedWinNum . "wincmd w"
-    "Switch to source and shuffle dest->source
     let markedBuf = bufnr( "%" )
-    "Hide and open so that we aren't prompted and keep history
     exe 'hide buf' curBuf
-    "Switch to dest and shuffle source->dest
     exe curNum . "wincmd w"
-    "Hide and open so that we aren't prompted and keep history
     exe 'hide buf' markedBuf
 endfunction
 
