@@ -505,12 +505,9 @@ let g:Powerline_symbols = 'fancy'
 
 " CtrlP plugin configuration
 let g:ctrlp_map = '<leader>o'
-let g:ctrlp_max_files = 10000
-let g:ctrlp_max_depth = 40
-let g:ctrlp_match_window_bottom = 1
 let g:ctrlp_max_height = 20
-let g:ctrlp_match_window_reversed = 1
-let g:ctrlp_switch_buffer = 'e'
+let g:ctrlp_switch_buffer = 'et'
+let g:ctrlp_clear_cache_on_exit = 0
 
 " Doxygen syntax configuration (javadoc highlighting for C, C++, C# files)
 let g:load_doxygen_syntax = 1
