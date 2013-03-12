@@ -339,15 +339,15 @@ noremap Q <Nop>
 
 " Next tab (Ctrl-Shift-Right)
 nnoremap <silent> <C-S-Right> :tabnext<CR>
-inoremap <silent> <C-S-Right> <Esc>:tabnext<CR>
+inoremap <silent> <C-S-Right> <C-o>:tabnext<CR>
 
 " Previous tab (Ctrl-Shift-Left)
 nnoremap <silent> <C-S-Left> :tabprevious<CR>
-inoremap <silent> <C-S-Left> <Esc>:tabprevious<CR>
+inoremap <silent> <C-S-Left> <C-o>:tabprevious<CR>
 
 " New tab (Ctrl-T)
 nnoremap <silent> <C-t> :tabnew<CR>
-inoremap <silent> <C-t> <Esc>:tabnew<CR>
+inoremap <silent> <C-t> <C-o>:tabnew<CR>
 
 " Move through splits with Alt-Shift-{Up,Right,Down,Left}
 " For Mac
@@ -355,19 +355,19 @@ nnoremap <silent> <T-S-Up> :wincmd k<CR>
 nnoremap <silent> <T-S-Down> :wincmd j<CR>
 nnoremap <silent> <T-S-Left> :wincmd h<CR>
 nnoremap <silent> <T-S-Right> :wincmd l<CR>
-inoremap <silent> <T-S-Up> <Esc>:wincmd k<CR>
-inoremap <silent> <T-S-Down> <Esc>:wincmd j<CR>
-inoremap <silent> <T-S-Left> <Esc>:wincmd h<CR>
-inoremap <silent> <T-S-Right> <Esc>:wincmd l<CR>
+inoremap <silent> <T-S-Up> <C-o>:wincmd k<CR>
+inoremap <silent> <T-S-Down> <C-o>:wincmd j<CR>
+inoremap <silent> <T-S-Left> <C-o>:wincmd h<CR>
+inoremap <silent> <T-S-Right> <C-o>:wincmd l<CR>
 " For Linux
 nnoremap <silent> <M-S-Up> :wincmd k<CR>
 nnoremap <silent> <M-S-Down> :wincmd j<CR>
 nnoremap <silent> <M-S-Left> :wincmd h<CR>
 nnoremap <silent> <M-S-Right> :wincmd l<CR>
-inoremap <silent> <M-S-Up> <Esc>:wincmd k<CR>
-inoremap <silent> <M-S-Down> <Esc>:wincmd j<CR>
-inoremap <silent> <M-S-Left> <Esc>:wincmd h<CR>
-inoremap <silent> <M-S-Right> <Esc>:wincmd l<CR>
+inoremap <silent> <M-S-Up> <C-o>:wincmd k<CR>
+inoremap <silent> <M-S-Down> <C-o>:wincmd j<CR>
+inoremap <silent> <M-S-Left> <C-o>:wincmd h<CR>
+inoremap <silent> <M-S-Right> <C-o>:wincmd l<CR>
 
 " Up and down are more logical with g
 nnoremap <silent> k gk
