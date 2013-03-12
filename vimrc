@@ -129,6 +129,9 @@ autocmd Filetype *
 " Supertab plugin completion style
 autocmd FileType * silent! call SuperTabChain(&omnifunc, '<c-p>')
 
+" Check for file changes after 'updatetime' milliseconds of cursor hold
+autocmd CursorHold * checktime
+
 " }}}
 
 """"""""""""""""
