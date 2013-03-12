@@ -67,6 +67,15 @@ Bundle 'Lokaltog/vim-powerline'
 Bundle 'esneider/powerline-fonts'
 
 " Colorscheme
+Bundle 'tomasr/molokai'
+
+" Colorscheme
+Bundle 'Lokaltog/vim-distinguished'
+
+" Colorscheme
+Bundle 'nanotech/jellybeans.vim'
+
+" Colorscheme
 Bundle 'vim-scripts/kellys'
 
 " Toggle window zoom (,z)
