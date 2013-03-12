@@ -90,6 +90,9 @@ Bundle 'danro/rename.vim'
 " More interactive find (,f)
 Bundle 'gcmt/psearch.vim'
 
+" Switch between source and header file (,h)
+Bundle 'derekwyatt/vim-fswitch'
+
 " }}}
 
 """""""""""""""
@@ -456,6 +459,9 @@ nnoremap <silent> <Leader>c /^\(<\\|=\\|>\)\{7\}\([^=].\+\)\?$<CR>
 
 " Open the PSearch plugin
 nnoremap <silent> <Leader>f :PSearch<CR>
+
+" Switch between source and header file with FSwitch plugin
+nnoremap <silent> <Leader>h :FSHere<CR>
 
 " }}}
 
