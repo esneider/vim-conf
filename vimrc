@@ -66,6 +66,9 @@ Bundle 'Lokaltog/vim-powerline'
 " Patched fonts for powerline
 Bundle 'esneider/powerline-fonts'
 
+" Function and namespace highlighting
+Bundle 'esneider/simlight.vim'
+
 " Colorscheme
 Bundle 'tomasr/molokai'
 
@@ -298,7 +301,7 @@ set cursorline
 
 " Set font for MacVim
 if has("gui_macvim")
-  set guifont=Menlo:h15
+    set guifont=Menlo:h15
 end
 
 " Force the tty to use 256 colors
@@ -311,6 +314,11 @@ set background=dark
 
 " Set color scheme
 silent! colorscheme kellys
+
+" Highlight functions
+silent! if g:colors_name == 'kellys'
+    highlight Function guifg=#e1e0e5 guibg=#2a2b2f gui=bold ctermfg=254 ctermbg=235 cterm=bold
+endif
 
 " Don't try to highlight lines longer than 500 characters
 set synmaxcol=500
@@ -376,7 +384,7 @@ inoremap <silent> <Up> <C-o>gk
 inoremap <silent> <Down> <C-o>gj
 
 " Toggle folds with space
-nnoremap <space> za
+nnoremap <Space> za
 
 " Center on the matching line when moving through search results
 noremap N Nzz
@@ -393,8 +401,8 @@ nnoremap & :&&<CR>
 xnoremap & :&&<CR>
 
 " Run console command (Clam plugin)
-nnoremap ! :Clam<space>
-vnoremap ! :ClamVisual<space>
+nnoremap ! :Clam<Space>
+vnoremap ! :ClamVisual<Space>
 
 " Toggle comments (tComment plugin)
 nmap // gcc<Esc>
@@ -431,10 +439,10 @@ cnoremap w!! w !sudo tee % >/dev/null
 let mapleader=","
 
 " Mark window for swap
-nnoremap <silent> <leader>mw :call MarkWindowSwap()<CR>
+nnoremap <silent> <Leader>mw :call MarkWindowSwap()<CR>
 
 " Swap current window with the one previously marked
-nnoremap <silent> <leader>sw :call DoWindowSwap()<CR>
+nnoremap <silent> <Leader>sw :call DoWindowSwap()<CR>
 
 " Open the NERDTree Plugin
 nnoremap <silent> <Leader>t :NERDTreeToggle<CR>:NERDTreeMirror<CR>
@@ -491,7 +499,7 @@ let g:gundo_right = 1
 
 " SuperTab plugin configuration
 let g:SuperTabDefaultCompletionType = "context"
-let g:SuperTabContextDefaultCompletionType = '<c-x><c-u>'
+let g:SuperTabContextDefaultCompletionType = '<C-x><C-u>'
 let g:SuperTabLongestEnhanced = 1
 let g:SuperTabLongestHighlight = 1
 
@@ -504,7 +512,7 @@ let g:syntastic_warning_symbol = '⚠'
 let g:Powerline_symbols = 'fancy'
 
 " CtrlP plugin configuration
-let g:ctrlp_map = '<leader>o'
+let g:ctrlp_map = '<Leader>o'
 let g:ctrlp_max_height = 20
 let g:ctrlp_switch_buffer = 'et'
 let g:ctrlp_clear_cache_on_exit = 0
@@ -533,11 +541,11 @@ endfunction
 function! DoWindowSwap()
     let curNum = winnr()
     let curBuf = bufnr( "%" )
-    exe g:markedWinNum . "wincmd w"
+    execute g:markedWinNum . "wincmd w"
     let markedBuf = bufnr( "%" )
-    exe 'hide buf' curBuf
-    exe curNum . "wincmd w"
-    exe 'hide buf' markedBuf
+    execute 'hide buf' curBuf
+    execute curNum . "wincmd w"
+    execute 'hide buf' markedBuf
 endfunction
 
 " }}}
