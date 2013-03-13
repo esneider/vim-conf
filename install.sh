@@ -61,7 +61,7 @@ fi
 
 echo "Installing..."
 
-cp vimrc ~/.vimrc
+ln -s vimrc ~/.vimrc
 
 # Install plugins
 
