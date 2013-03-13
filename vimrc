@@ -317,7 +317,8 @@ silent! colorscheme kellys
 
 " Highlight functions
 silent! if g:colors_name == 'kellys'
-    highlight Function guifg=#e1e0e5 guibg=#2a2b2f gui=bold ctermfg=254 ctermbg=235 cterm=bold
+    highlight Function  guifg=#afdfdf guibg=#2a2b2f gui=bold ctermfg=152 ctermbg=235 cterm=none
+    highlight Namespace guifg=#a8a8a8 guibg=#2a2b2f gui=none ctermfg=248 ctermbg=235 cterm=none
 endif
 
 " Don't try to highlight lines longer than 500 characters
