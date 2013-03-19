@@ -315,10 +315,10 @@ set background=dark
 " Set color scheme
 silent! colorscheme kellys
 
-" Highlight functions
+" Highlight functions and namespaces
 silent! if g:colors_name == 'kellys'
-    highlight Function  guifg=#afdfdf guibg=#2a2b2f gui=bold ctermfg=152 ctermbg=235 cterm=none
-    highlight Namespace guifg=#a8a8a8 guibg=#2a2b2f gui=none ctermfg=248 ctermbg=235 cterm=none
+    highlight SLFunction  guifg=#afdfdf guibg=#2a2b2f gui=bold ctermfg=152 ctermbg=235 cterm=none
+    highlight SLNamespace guifg=#a8a8a8 guibg=#2a2b2f gui=none ctermfg=248 ctermbg=235 cterm=none
 endif
 
 " Don't try to highlight lines longer than 500 characters
