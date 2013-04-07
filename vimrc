@@ -33,6 +33,9 @@ Bundle 'tpope/vim-surround'
 " Suport repeat of surround actions
 Bundle 'tpope/vim-repeat'
 
+" Session management (:Obsess)
+" Bundle 'tpope/vim-obsession'
+
 " % matches complex opening/closing entities
 Bundle 'tsaleh/vim-matchit'
 
@@ -57,9 +60,6 @@ Bundle 'sjl/clam.vim'
 " Show file tags list like variabes, etc (,l)
 Bundle 'majutsushi/tagbar'
 
-" Select noun movements with help (,,noun)
-Bundle 'Lokaltog/vim-easymotion'
-
 " Pretty status bar
 Bundle 'Lokaltog/vim-powerline'
 
@@ -81,20 +81,17 @@ Bundle 'nanotech/jellybeans.vim'
 " Colorscheme
 Bundle 'vim-scripts/kellys'
 
-" Toggle window zoom (,z)
-Bundle 'vim-scripts/ZoomWin'
-
 " Fuzzy file finder (,o)
 Bundle 'kien/ctrlp.vim'
-
-" Rename a file (:rename)
-Bundle 'danro/rename.vim'
 
 " More interactive find (,f)
 Bundle 'gcmt/psearch.vim'
 
 " Switch between source and header file (,h)
 Bundle 'derekwyatt/vim-fswitch'
+
+" Make NERDTree more awesome
+Bundle 'jistr/vim-nerdtree-tabs'
 
 " }}}
 
@@ -446,7 +443,7 @@ nnoremap <silent> <Leader>mw :call MarkWindowSwap()<CR>
 nnoremap <silent> <Leader>sw :call DoWindowSwap()<CR>
 
 " Open the NERDTree Plugin
-nnoremap <silent> <Leader>t :NERDTreeToggle<CR>:NERDTreeMirror<CR>
+nnoremap <silent> <Leader>t :NERDTreeTabsToggle<CR>
 
 " Open the Tagbar Plugin
 nnoremap <silent> <Leader>l :TagbarToggle<CR>
@@ -459,9 +456,6 @@ nnoremap <silent> <Leader>s :w<CR>:SyntasticCheck<CR>
 
 " Open the Syntastic plugin errors list
 nnoremap <silent> <Leader>e :Errors<CR>
-
-" Toggle full screen with ZoomWin plugin
-nnoremap <silent> <Leader>z :ZoomWin<CR>
 
 " Edit vimrc in a new tab
 nnoremap <silent> <Leader>v :tabnew<CR>:e ~/.vimrc<CR>
@@ -487,6 +481,9 @@ let NERDTreeDirArrows = 1
 let NERDTreeWinSize = 25
 let NERDTreeIgnore = ['\.pyc', '\~$', '\.swo$', '\.swp$', '\.git', '\.hg', '\.svn', '\.bzr']
 
+" NERDTreeTabs plugin configuration
+let g:nerdtree_tabs_open_on_console_startup = 1
+
 " Taglist plugin configuration
 let g:tagbar_compact = 1
 let g:tagbar_width = 30
@@ -503,6 +500,7 @@ let g:SuperTabDefaultCompletionType = "context"
 let g:SuperTabContextDefaultCompletionType = '<C-x><C-u>'
 let g:SuperTabLongestEnhanced = 1
 let g:SuperTabLongestHighlight = 1
+let g:SuperTabClosePreviewOnPopupClose = 1
 
 " Syntastic plugin configuration
 let g:syntastic_loc_list_height = 5
