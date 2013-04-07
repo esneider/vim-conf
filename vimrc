@@ -184,6 +184,9 @@ set ttimeoutlen=50
 " Fold text when markers {{{ and }}} are found
 set foldmethod=marker
 
+" Update after 1 second of no activity (check for external file change, etc)
+set updatetime=1000
+
 " }}}
 
 """"""""""""""""""""""""""""
