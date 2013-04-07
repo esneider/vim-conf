@@ -317,8 +317,8 @@ silent! colorscheme kellys
 
 " Highlight functions and namespaces
 silent! if g:colors_name == 'kellys'
-    highlight SLFunction  guifg=#afdfdf guibg=#2a2b2f gui=bold ctermfg=152 ctermbg=235 cterm=none
-    highlight SLNamespace guifg=#a8a8a8 guibg=#2a2b2f gui=none ctermfg=248 ctermbg=235 cterm=none
+    highlight SLFunction  guifg=#afdfdf guibg=#2a2b2f ctermfg=152 ctermbg=235
+    highlight SLNamespace guifg=#a8a8a8 guibg=#2a2b2f ctermfg=248 ctermbg=235
 endif
 
 " Don't try to highlight lines longer than 500 characters
@@ -337,7 +337,7 @@ nnoremap <BS> :noh<CR>
 " Type ; instead of : to begin a command faster
 " nnoremap ; :
 
-" Turn off Vim’s regex characters and makes searches use normal regexes
+" Turn off Vim’s regex characters and make searches use normal regexes
 nnoremap / /\v
 vnoremap / /\v
 nnoremap ? ?\v
@@ -427,7 +427,7 @@ command! W w
 command! Q q
 
 " Save file with sudo
-cnoremap w!! w !sudo tee % >/dev/null
+cnoremap w!! w !sudo tee % > /dev/null
 
 " }}}
 
