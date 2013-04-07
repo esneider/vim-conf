@@ -100,9 +100,6 @@ Bundle 'jistr/vim-nerdtree-tabs'
 """""""""""""""
 
 
-" Automatically cd into the file's directory
-autocmd BufEnter * execute "chdir ".escape(expand("%:p:h"), ' ')
-
 " Remove any trailing whitespace
 autocmd BufRead,BufWrite * if ! &bin | silent! %s/\s\+$//ge | endif
 
@@ -146,6 +143,9 @@ set nohidden
 
 " Automatically read a file when it is changed from the outside
 set autoread
+
+" Automatically cd into the file's directory
+set autochdir
 
 " Automatic EOL type selection
 " set fileformats='unix,dos,mac'
@@ -437,10 +437,7 @@ cnoremap w!! w !sudo tee % > /dev/null
 let mapleader=","
 
 " Mark window for swap
-nnoremap <silent> <Leader>mw :call MarkWindowSwap()<CR>
-
-" Swap current window with the one previously marked
-nnoremap <silent> <Leader>sw :call DoWindowSwap()<CR>
+nnoremap <silent> <Leader>w :call SwapWindows()<CR>
 
 " Open the NERDTree Plugin
 nnoremap <silent> <Leader>t :NERDTreeTabsToggle<CR>
@@ -526,6 +523,9 @@ let g:tex_flavor = 'latex'
 " PSearch plugin configuration
 let g:pse_max_height = 20
 
+" SwapWindows function
+let g:windowToSwap = -1
+
 " }}}
 
 """""""""
@@ -533,18 +533,23 @@ let g:pse_max_height = 20
 """""""""
 
 
-function! MarkWindowSwap()
-    let g:markedWinNum = winnr()
-endfunction
+function! SwapWindows()
+    if g:windowToSwap == -1
+        let g:windowToSwap = winnr()
+        echom "Selected current window for swapping"
+        return
+    endif
 
-function! DoWindowSwap()
     let curNum = winnr()
-    let curBuf = bufnr( "%" )
-    execute g:markedWinNum . "wincmd w"
-    let markedBuf = bufnr( "%" )
+    let curBuf = bufnr("%")
+    execute g:windowToSwap . "wincmd w"
+    let markedBuf = bufnr("%")
+
     execute 'hide buf' curBuf
     execute curNum . "wincmd w"
     execute 'hide buf' markedBuf
+
+    let g:windowToSwap = -1
 endfunction
 
 " }}}
