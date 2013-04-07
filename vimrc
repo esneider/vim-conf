@@ -113,9 +113,6 @@ autocmd BufWinEnter * let w:m2=matchadd('CursorLine', '\%>80v.\+', -1)
 autocmd BufReadPost *
   \ if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g`\"" | endif
 
-" Open NERDTree plugin and unfocus it
-autocmd VimEnter * silent! NERDTree | wincmd p
-
 " Make Syntastic plugin passive
 autocmd VimEnter * silent! SyntasticToggleMode
 
