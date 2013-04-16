@@ -417,6 +417,7 @@ vnoremap < <gv
 vnoremap > >gv
 
 " Cancel completion with <Esc>
+inoremap <expr> <Esc>Q <Esc>Q
 inoremap <expr> <Esc> pumvisible() ? "\<C-e>" : "\<Esc>"
 
 " }}}
