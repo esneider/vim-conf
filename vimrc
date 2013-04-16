@@ -415,9 +415,9 @@ vnoremap > >gv
 "   Cancel completion with <Esc>
 inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
 inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<Tab>"
-inoremap <expr> <Esc>Q <Esc>Q
-inoremap <expr> <Esc> pumvisible() ? "\<C-e>" : "\<Esc>"
-inoremap <expr> <C-e> neocomplcache#cancel_popup()
+" inoremap <expr> <Esc>Q <Esc>Q
+" inoremap <expr> <Esc> pumvisible() ? "\<C-e>" : "\<Esc>"
+" inoremap <expr> <C-e> neocomplcache#cancel_popup()
 
 " }}}
 
