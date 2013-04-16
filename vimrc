@@ -187,6 +187,9 @@ set foldmethod=marker
 " Update after 1 second of no activity (check for external file change, etc)
 set updatetime=1000
 
+" Don't resize all remaining splits when opening/closing a split
+set noequalalways
+
 " }}}
 
 """"""""""""""""""""""""""""
