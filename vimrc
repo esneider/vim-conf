@@ -33,9 +33,6 @@ Bundle 'tpope/vim-surround'
 " Suport repeat of surround actions
 Bundle 'tpope/vim-repeat'
 
-" Session management (:Obsess)
-" Bundle 'tpope/vim-obsession'
-
 " % matches complex opening/closing entities
 Bundle 'tsaleh/vim-matchit'
 
@@ -92,6 +89,9 @@ Bundle 'derekwyatt/vim-fswitch'
 
 " Make NERDTree more awesome
 Bundle 'jistr/vim-nerdtree-tabs'
+
+" Ack search (,a)
+Bundle 'mileszs/ack.vim'
 
 " }}}
 
@@ -221,7 +221,7 @@ set hlsearch
 set gdefault
 
 " Set flags for grep command
-set grepprg=grep\ -nHE\ $*\ /dev/null
+set grepprg=grep\ -nH\ $*\ /dev/null
 
 " }}}
 
@@ -476,6 +476,10 @@ nnoremap <silent> <Leader>f :PSearch<CR>
 " Switch between source and header file with FSwitch plugin
 nnoremap <silent> <Leader>h :FSHere<CR>
 
+" Find in files, with Ack plugin
+nnoremap <Leader>a :Ack!<Space>""<Left>
+vnoremap <Leader>a "zy:execute 'Ack! -Q "'.escape(getreg('z'), '"').'"'<CR><C-C>
+
 " }}}
 
 """"""""""""""""
@@ -535,6 +539,9 @@ let g:pse_max_height = 20
 
 " SwapWindows function
 let g:windowToSwap = -1
+
+" Ack plugin
+let g:ackprg = "~/.vim/extras/ack.pl -H --nocolor --nogroup --column"
 
 " }}}
 

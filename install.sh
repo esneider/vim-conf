@@ -1,5 +1,7 @@
 #!/bin/bash
 
+EXTRA="${HOME}/.vim/extras"
+
 # Check if working directory set on the repo
 
 if ! [ -f vimrc ]
@@ -74,6 +76,23 @@ echo "Installing plugins..."
 
 vim +BundleInstall +qall
 
+# Install ack
+
+echo "Installing ack..."
+
+mkdir "$EXTRA" > /dev/null 2> /dev/null
+
+if ! (curl --version || curl -v ) > /dev/null 2> /dev/null
+then
+    echo "You don't have curl, so ack won't be installed"
+
+elif ! curl -# http://betterthangrep.com/ack-standalone > "${EXTRA}/ack.pl"
+then
+    echo "Can't get ack, proceding anyway"
+else
+    chmod 0755 "${EXTRA}/ack.pl"
+fi
+
 # Check for exuberant presence
 
 echo "Done!!!"
@@ -87,11 +106,11 @@ then
     echo
 fi
 
-# if ! (ack --version || ack -v) > /dev/null 2> /dev/null
-# then
-#     echo "      You should install 'ack' to use the ack plugin"
-#     echo
-# fi
+if ! (perl --version || perl -v) > /dev/null 2> /dev/null
+then
+    echo "      You should install 'perl' to use the ack plugin"
+    echo
+fi
 
 echo "      You may want to install and set your terminal to use one of the fonts in"
 echo "      '~/.vim/bundle/powerline-fonts'"
