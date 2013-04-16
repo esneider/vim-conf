@@ -126,6 +126,9 @@ autocmd FileType * silent! call SuperTabChain(&omnifunc, '<c-p>')
 " Check for file changes after 'updatetime' milliseconds of cursor hold
 autocmd CursorHold * checktime
 
+" Clear window mark (SwapWindows function)
+autocmd InsertLeave * silent! let g:windowToSwap = -1
+
 " }}}
 
 """"""""""""""""
