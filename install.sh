@@ -61,7 +61,12 @@ fi
 
 echo "Installing..."
 
-ln vimrc ~/.vimrc
+if ! ln vimrc ~/.vimrc > /dev/null 2> /dev/null
+then
+    echo "Failed to hard-link vimrc, falling back to copy"
+
+    cp vimrc ~/.vimrc
+fi
 
 # Install plugins
 
