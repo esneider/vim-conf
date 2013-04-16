@@ -45,9 +45,6 @@ Bundle 'scrooloose/nerdtree'
 " Syntax checker (,s)
 Bundle 'scrooloose/syntastic'
 
-" Tab completion (tab)
-Bundle 'ervandew/supertab'
-
 " Show undo tree (,g)
 Bundle 'sjl/gundo.vim'
 
@@ -92,6 +89,9 @@ Bundle 'jistr/vim-nerdtree-tabs'
 
 " Ack search (,a)
 Bundle 'mileszs/ack.vim'
+
+" Autocompletion (tab)
+Bundle 'Shougo/neocomplcache'
 
 " }}}
 
@@ -150,9 +150,6 @@ set autoread
 " Automatically cd into the file's directory
 set autochdir
 
-" Automatic EOL type selection
-" set fileformats='unix,dos,mac'
-
 " Don't redraw while executing macros (good performance config)
 set lazyredraw
 
@@ -203,7 +200,7 @@ set wildmode=list:longest,full
 set wildignore=*.swp,*.bak,*.pyc,*.class
 
 " Tab completion stuff
-set completeopt=longest,menuone,preview
+set completeopt=longest,menuone
 
 " Ignore case when searching
 set ignorecase
@@ -335,10 +332,7 @@ set synmaxcol=500
 
 
 " Map backspace key to dismiss search highlightedness
-nnoremap <BS> :noh<CR>
-
-" Type ; instead of : to begin a command faster
-" nnoremap ; :
+nnoremap <silent> <BS> :noh<CR>
 
 " Turn off Vim’s regex characters and make searches use normal regexes
 nnoremap / /\v
@@ -416,9 +410,14 @@ vmap // gc<Esc>
 vnoremap < <gv
 vnoremap > >gv
 
-" Cancel completion with <Esc>
+" Autocompletion stuff
+"   Prev/next suggestion with <Tab> <S-Tab>
+"   Cancel completion with <Esc>
+inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
+inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<Tab>"
 inoremap <expr> <Esc>Q <Esc>Q
 inoremap <expr> <Esc> pumvisible() ? "\<C-e>" : "\<Esc>"
+inoremap <expr> <C-e> neocomplcache#cancel_popup()
 
 " }}}
 
@@ -506,13 +505,6 @@ let g:gundo_width = 30
 let g:gundo_preview_height = 15
 let g:gundo_right = 1
 
-" SuperTab plugin configuration
-let g:SuperTabDefaultCompletionType = "context"
-let g:SuperTabContextDefaultCompletionType = '<C-x><C-u>'
-let g:SuperTabLongestEnhanced = 1
-let g:SuperTabLongestHighlight = 1
-let g:SuperTabClosePreviewOnPopupClose = 1
-
 " Syntastic plugin configuration
 let g:syntastic_loc_list_height = 5
 let g:syntastic_error_symbol = '✗'
@@ -540,8 +532,24 @@ let g:pse_max_height = 20
 " SwapWindows function
 let g:windowToSwap = -1
 
-" Ack plugin
+" Ack plugin configuration
 let g:ackprg = "~/.vim/extras/ack.pl -H --nocolor --nogroup --column"
+
+" NeoComplCache plugin configuration
+let g:neocomplcache_enable_at_startup = 1
+let g:neocomplcache_enable_smart_case = 1
+let g:neocomplcache_enable_camel_case_completion = 1
+let g:neocomplcache_enable_underbar_completion = 1
+let g:neocomplcache_enable_wildcard = 0
+let g:neocomplcache_enable_insert_char_pre = 1
+let g:neocomplcache_min_syntax_length = 3
+let g:neocomplcache_max_list = 10
+let g:neocomplcache_omni_patterns = {}
+let g:neocomplcache_omni_patterns.php = '[^. \t]->\h\w*\|\h\w*::'
+let g:neocomplcache_omni_patterns.perl = '\h\w*->\h\w*\|\h\w*::'
+let g:neocomplcache_omni_patterns.c = '[^.[:digit:] *\t]\%(\.\|->\)'
+let g:neocomplcache_omni_patterns.cpp = '[^.[:digit:] *\t]\%(\.\|->\)\|\h\w*::'
+let g:neocomplcache_omni_patterns.ruby = '[^. *\t]\.\h\w*\|\h\w*::'
 
 " }}}
 
