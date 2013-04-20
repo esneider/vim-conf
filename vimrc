@@ -469,7 +469,12 @@ nnoremap <silent> <Leader>h :FSHere<CR>
 
 " Find in files, with Ack plugin
 nnoremap <Leader>a :Ack!<Space>""<Left>
-vnoremap <Leader>a "zy:execute 'Ack! -Q "'.escape(getreg('z'), '"').'"'<CR><C-C>
+
+" Paste from the SO clipboard
+nnoremap <silent> <Leader>p "*p
+
+" Yank to the SO clipboard
+vnoremap <silent> <Leader>y "*y
 
 " }}}
 
