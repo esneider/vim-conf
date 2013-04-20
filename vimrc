@@ -512,7 +512,7 @@ let g:Powerline_symbols = 'fancy'
 
 " CtrlP plugin configuration
 let g:ctrlp_map = '<Leader>o'
-let g:ctrlp_max_height = 20
+let g:ctrlp_max_height = 15
 let g:ctrlp_switch_buffer = 'et'
 let g:ctrlp_clear_cache_on_exit = 0
 
