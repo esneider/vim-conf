@@ -90,7 +90,7 @@ Bundle 'jistr/vim-nerdtree-tabs'
 " Ack search (,a)
 Bundle 'mileszs/ack.vim'
 
-" Autocompletion (tab)
+" Automatic completion (select with tab)
 Bundle 'Shougo/neocomplcache'
 
 " }}}
@@ -119,9 +119,6 @@ autocmd FileType make setlocal noexpandtab
 " Setup syntax completion by highligh rules for unsupported filetypes
 autocmd Filetype *
   \ if &omnifunc == "" | setlocal omnifunc=syntaxcomplete#Complete | endif
-
-" Supertab plugin completion style
-autocmd FileType * silent! call SuperTabChain(&omnifunc, '<c-p>')
 
 " Check for file changes after 'updatetime' milliseconds of cursor hold
 autocmd CursorHold * checktime
@@ -410,14 +407,9 @@ vmap // gc<Esc>
 vnoremap < <gv
 vnoremap > >gv
 
-" Autocompletion stuff
-"   Prev/next suggestion with <Tab> <S-Tab>
-"   Cancel completion with <Esc>
+" Autocomplete next/prev with <Tab>/<S-Tab>
 inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
 inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<Tab>"
-" inoremap <expr> <Esc>Q <Esc>Q
-" inoremap <expr> <Esc> pumvisible() ? "\<C-e>" : "\<Esc>"
-" inoremap <expr> <C-e> neocomplcache#cancel_popup()
 
 " }}}
 
