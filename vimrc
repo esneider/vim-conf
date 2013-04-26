@@ -64,15 +64,6 @@ Bundle 'esneider/powerline-fonts'
 Bundle 'esneider/simlight.vim'
 
 " Colorscheme
-Bundle 'tomasr/molokai'
-
-" Colorscheme
-Bundle 'Lokaltog/vim-distinguished'
-
-" Colorscheme
-Bundle 'nanotech/jellybeans.vim'
-
-" Colorscheme
 Bundle 'vim-scripts/kellys'
 
 " Fuzzy file finder (,o)
@@ -331,19 +322,17 @@ set background=dark
 silent! colorscheme kellys
 
 " Highlight functions and namespaces
-silent! if g:colors_name == 'kellys'
-    highlight SLFunction  guifg=#afdfdf guibg=#2a2b2f ctermfg=152 ctermbg=235
-    highlight SLNamespace guifg=#a8a8a8 guibg=#2a2b2f ctermfg=248 ctermbg=235
-endif
+highlight SLFunction  guifg=#afdfdf ctermfg=152
+highlight SLNamespace guifg=#a8a8a8 ctermfg=248
 
 " Don't try to highlight lines longer than 500 characters
 set synmaxcol=500
 
 " }}}
 
-"""""""""""""""""""""""""""
+"""""""""""""""""""""""""""""
 " Windows and tabs navigation {{{
-"""""""""""""""""""""""""""
+"""""""""""""""""""""""""""""
 
 
 " Next tab (Ctrl-Shift-Right)
