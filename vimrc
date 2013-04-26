@@ -110,9 +110,6 @@ autocmd BufWinEnter * let w:m2=matchadd('CursorLine', '\%>80v.\+', -1)
 autocmd BufReadPost *
   \ if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g`\"" | endif
 
-" Make Syntastic plugin passive
-autocmd VimEnter * silent! SyntasticToggleMode
-
 " Use tabs in makefiles
 autocmd FileType make setlocal noexpandtab
 
@@ -156,15 +153,6 @@ set history=1000
 " Entries of the undo list
 set undolevels=1000
 
-" Keep a persistent undo backup file
-if v:version >= 730
-    set undofile
-    set undodir=~/.vim/.undo,~/tmp,/tmp
-endif
-
-" Directory for swap files (avoids adding them to your repo by mistake)
-set directory=~/.vim/.tmp,~/tmp,/tmp
-
 " Prevent some security exploits
 set modelines=0
 
@@ -183,6 +171,36 @@ set updatetime=1000
 
 " Don't resize all remaining splits when opening/closing a split
 set noequalalways
+
+" Load menus
+source $VIMRUNTIME/menu.vim
+
+" Set Ctrl-Z to act like <Tab> on cmdline
+set wcm=<C-Z>
+
+" }}}
+
+""""""""""""""""""""
+" Directories config {{{
+""""""""""""""""""""
+
+" Make a backup of the original file when writing
+set writebackup
+
+" And don't delete it after a succesful write
+set backup
+
+" Directory for backups
+set backupdir=~/.vim/.backup,~/tmp,/tmp
+
+" Directory for swap files (avoids adding them to your repo by mistake)
+set directory=~/.vim/.tmp//,~/tmp//,/tmp//
+
+" Keep a persistent undo backup file
+if v:version >= 730
+    set undofile
+    set undodir=~/.vim/.undo,~/tmp,/tmp
+endif
 
 " }}}
 
@@ -411,6 +429,9 @@ vnoremap > >gv
 inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
 inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<Tab>"
 
+" Don't yank (to the default register) when pasting in visual mode
+vnoremap p "_dP
+
 " }}}
 
 """"""""""""""""""
@@ -426,6 +447,9 @@ command! Q q
 
 " Save file with sudo
 cnoremap w!! w !sudo tee % > /dev/null
+
+" Ctrl-A to go to the start of line
+cnoremap <C-A> <Home>
 
 " }}}
 
@@ -447,7 +471,7 @@ nnoremap <silent> <Leader>t :NERDTreeTabsToggle<CR>
 nnoremap <silent> <Leader>l :TagbarToggle<CR>
 
 " Open the Gundo Plugin
-nnoremap <silent> <Leader>g :GundoToggle<CR>
+nnoremap <silent> <Leader>u :GundoToggle<CR>
 
 " Check syntax with Syntastic plugin
 nnoremap <silent> <Leader>s :w<CR>:SyntasticCheck<CR>
@@ -475,6 +499,9 @@ nnoremap <silent> <Leader>p "*p
 
 " Yank to the SO clipboard
 vnoremap <silent> <Leader>y "*y
+
+" Vim menu
+nnoremap <Leader>m :emenu <C-Z>
 
 " }}}
 
@@ -506,6 +533,8 @@ let g:gundo_right = 1
 let g:syntastic_loc_list_height = 5
 let g:syntastic_error_symbol = '✗'
 let g:syntastic_warning_symbol = '⚠'
+let g:syntastic_mode_map = {'mode': 'passive'}
+
 
 " Powerline plugin configuration
 let g:Powerline_symbols = 'fancy'
@@ -540,13 +569,14 @@ let g:neocomplcache_enable_underbar_completion = 1
 let g:neocomplcache_enable_wildcard = 0
 let g:neocomplcache_enable_insert_char_pre = 1
 let g:neocomplcache_min_syntax_length = 3
-let g:neocomplcache_max_list = 10
+let g:neocomplcache_max_list = 7
 let g:neocomplcache_omni_patterns = {}
 let g:neocomplcache_omni_patterns.php = '[^. \t]->\h\w*\|\h\w*::'
 let g:neocomplcache_omni_patterns.perl = '\h\w*->\h\w*\|\h\w*::'
 let g:neocomplcache_omni_patterns.c = '[^.[:digit:] *\t]\%(\.\|->\)'
 let g:neocomplcache_omni_patterns.cpp = '[^.[:digit:] *\t]\%(\.\|->\)\|\h\w*::'
 let g:neocomplcache_omni_patterns.ruby = '[^. *\t]\.\h\w*\|\h\w*::'
+let g:neocomplcache_omni_patterns.python = ''
 
 " }}}
 
