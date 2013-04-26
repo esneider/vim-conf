@@ -341,22 +341,10 @@ set synmaxcol=500
 
 " }}}
 
-""""""""""""""
-" Key mappings {{{
-""""""""""""""
+"""""""""""""""""""""""""""
+" Windows and tabs navigation {{{
+"""""""""""""""""""""""""""
 
-
-" Map backspace key to dismiss search highlightedness
-nnoremap <silent> <BS> :noh<CR>
-
-" Turn off Vim’s regex characters and make searches use normal regexes
-nnoremap / /\v
-vnoremap / /\v
-nnoremap ? ?\v
-vnoremap ? ?\v
-
-" Disable Ex mode
-noremap Q <Nop>
 
 " Next tab (Ctrl-Shift-Right)
 nnoremap <silent> <C-S-Right> :tabnext<CR>
@@ -389,6 +377,25 @@ inoremap <silent> <M-S-Up> <C-o>:wincmd k<CR>
 inoremap <silent> <M-S-Down> <C-o>:wincmd j<CR>
 inoremap <silent> <M-S-Left> <C-o>:wincmd h<CR>
 inoremap <silent> <M-S-Right> <C-o>:wincmd l<CR>
+
+" }}}
+
+""""""""""""""
+" Key mappings {{{
+""""""""""""""
+
+
+" Map backspace key to dismiss search highlightedness
+nnoremap <silent> <BS> :noh<CR>
+
+" Turn off Vim’s regex characters and make searches use normal regexes
+nnoremap / /\v
+vnoremap / /\v
+nnoremap ? ?\v
+vnoremap ? ?\v
+
+" Disable Ex mode
+noremap Q <Nop>
 
 " Up and down are more logical with g
 nnoremap <silent> k gk
