@@ -58,7 +58,7 @@ Bundle 'majutsushi/tagbar'
 Bundle 'Lokaltog/vim-powerline'
 
 " Patched fonts for powerline
-Bundle 'esneider/powerline-fonts'
+Bundle 'Lokaltog/powerline-fonts'
 
 " Function and namespace highlighting
 Bundle 'esneider/simlight.vim'
@@ -83,6 +83,12 @@ Bundle 'mileszs/ack.vim'
 
 " Automatic completion (select with tab)
 Bundle 'Shougo/neocomplcache'
+
+" Select regions in visual mode (+ and _)
+Bundle 'terryma/vim-expand-region'
+
+" Show repo diff signs (,d)
+Bundle 'mhinz/vim-signify'
 
 " }}}
 
@@ -499,6 +505,9 @@ vnoremap <silent> <Leader>y "*y
 " Vim menu
 nnoremap <Leader>m :emenu <C-Z>
 
+" Toggle repo diff signs
+nnoremap <silent> <Leader>d :SignifyToggle<CR>
+
 " }}}
 
 """"""""""""""""
@@ -573,6 +582,9 @@ let g:neocomplcache_omni_patterns.c = '[^.[:digit:] *\t]\%(\.\|->\)'
 let g:neocomplcache_omni_patterns.cpp = '[^.[:digit:] *\t]\%(\.\|->\)\|\h\w*::'
 let g:neocomplcache_omni_patterns.ruby = '[^. *\t]\.\h\w*\|\h\w*::'
 let g:neocomplcache_omni_patterns.python = ''
+
+" Signify plugin configuration
+let g:signify_sign_color_inherit_from_linenr = 1
 
 " }}}
 
