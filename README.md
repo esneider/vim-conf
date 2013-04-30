@@ -1,10 +1,11 @@
-To install:
+### To install:
+
 ```
-git clone https://github.com/esneider/vim_conf.git`
+git clone https://github.com/esneider/vim_conf.git
 cd vim_conf && ./install.sh
 ```
 
-Dependencies:
+### Dependencies:
 
 * vim (compiled with +python)
 * curl

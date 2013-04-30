@@ -90,6 +90,9 @@ Bundle 'terryma/vim-expand-region'
 " Show repo diff signs (,d)
 Bundle 'mhinz/vim-signify'
 
+" Multiple cursors (next: Ctrl-P, prev: Ctrl-N, skip: Ctrl-X)
+Bundle 'terryma/vim-multiple-cursors'
+
 " }}}
 
 """""""""""""""
@@ -373,6 +376,26 @@ inoremap <silent> <M-S-Down> <C-o>:wincmd j<CR>
 inoremap <silent> <M-S-Left> <C-o>:wincmd h<CR>
 inoremap <silent> <M-S-Right> <C-o>:wincmd l<CR>
 
+" Resize splits with Alt-{Up,Right,Down,Left}
+" For Mac (with Alt-Cmd-Direction)
+nnoremap <silent> <T-Up> :3wincmd +<CR>
+nnoremap <silent> <T-Down> :3wincmd -<CR>
+nnoremap <silent> <T-Left> :3wincmd <<CR>
+nnoremap <silent> <T-Right> :3wincmd ><CR>
+inoremap <silent> <T-Up> <C-o>:3wincmd +<CR>
+inoremap <silent> <T-Down> <C-o>:3wincmd -<CR>
+inoremap <silent> <T-Left> <C-o>:3wincmd <<CR>
+inoremap <silent> <T-Right> <C-o>:3wincmd ><CR>
+" For Linux
+nnoremap <silent> <M-Up> :3wincmd +<CR>
+nnoremap <silent> <M-Down> :3wincmd -<CR>
+nnoremap <silent> <M-Left> :3wincmd <<CR>
+nnoremap <silent> <M-Right> :3wincmd ><CR>
+inoremap <silent> <M-Up> <C-o>:3wincmd +<CR>
+inoremap <silent> <M-Down> <C-o>:3wincmd -<CR>
+inoremap <silent> <M-Left> <C-o>:3wincmd <<CR>
+inoremap <silent> <M-Right> <C-o>:3wincmd ><CR>
+
 " }}}
 
 """"""""""""""
@@ -585,6 +608,7 @@ let g:neocomplcache_omni_patterns.python = ''
 
 " Signify plugin configuration
 let g:signify_sign_color_inherit_from_linenr = 1
+let g:signify_update_on_bufenter = 0
 
 " }}}
 
