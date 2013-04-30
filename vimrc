@@ -200,7 +200,7 @@ set backupdir=~/.vim/.backup,~/tmp,/tmp
 set directory=~/.vim/.tmp//,~/tmp//,/tmp//
 
 " Keep a persistent undo backup file
-if v:version >= 703
+if has('persistent_undo')
     set undofile
     set undodir=~/.vim/.undo,~/tmp,/tmp
 endif
