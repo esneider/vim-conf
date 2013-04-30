@@ -1,10 +1,3 @@
-" WARNING:
-"   * The Tagbar plugin needs 'exuberant ctags' to work.
-"   * The Powerline plugin needs to have a patched font to be pretty.
-"     You can install one of the fonts in '~/.vim/bundle/powerline-fonts'
-"     and set your terminal to use it
-
-
 """""""""""""""""
 " Vundle commands {{{
 """""""""""""""""
@@ -590,7 +583,7 @@ let g:pse_max_height = 20
 let g:windowToSwap = -1
 
 " Ack plugin configuration
-let g:ackprg = "~/.vim/extras/ack.pl -H --nocolor --nogroup --column"
+let g:ackprg = "~/.vim/.extra/ack.pl -H --nocolor --nogroup --column"
 
 " NeoComplCache plugin configuration
 let g:neocomplcache_enable_at_startup = 1

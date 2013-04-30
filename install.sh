@@ -1,12 +1,14 @@
 #!/bin/bash
 
-EXTRA="${HOME}/.vim/extras"
+EXTRA="${HOME}/.vim/.extra"
 
 # Check if working directory set on the repo
 
+cd "$(dirname "$0")"
+
 if ! [ -f vimrc ]
 then
-    echo "ERROR: you should 'cd' into the repository"
+    echo "ERROR: can't find 'vimrc'"
     exit 1
 fi
 
@@ -90,21 +92,21 @@ if ! (curl --version || curl -v ) > /dev/null 2> /dev/null
 then
     echo "You don't have curl, so ack won't be installed"
 
-elif ! curl -# http://betterthangrep.com/ack-standalone > "${EXTRA}/ack.pl"
+elif ! curl -# http://beyondgrep.com/ack-2.04-single-file > "${EXTRA}/ack.pl"
 then
     echo "Can't get ack, proceding anyway"
 else
     chmod 0755 "${EXTRA}/ack.pl"
 fi
 
-# Check for exuberant presence
+# Check for exuberant ctags presence
 
 echo "Done!!!"
 echo
-echo "NOTE:"
+echo "NOTES:"
 
-if ! (ctags --version | egrep -i "exuberant") > /dev/null 2> /dev/null &&
-   ! (ctags --v       | egrep -i "exuberant") > /dev/null 2> /dev/null
+if ! (ctags --version | grep -Ei "exuberant") > /dev/null 2> /dev/null &&
+   ! (ctags --v       | grep -Ei "exuberant") > /dev/null 2> /dev/null
 then
     echo "      You should install 'exuberant ctags' to use the tagbar plugin"
     echo
@@ -117,6 +119,5 @@ then
 fi
 
 echo "      You may want to install and set your terminal to use one of the fonts in"
-echo "      '~/.vim/bundle/powerline-fonts'"
-echo "      to have a pretty tagbar"
+echo "      '~/.vim/bundle/powerline-fonts' to have a pretty status line"
 
