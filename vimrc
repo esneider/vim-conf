@@ -123,6 +123,9 @@ autocmd CursorHold * checktime
 " Clear window mark (SwapWindows function)
 autocmd InsertLeave * silent! let g:windowToSwap = -1
 
+" Disable Signify plugin at startup
+autocmd VimEnter * silent! autocmd! signify BufWritePost *
+
 " }}}
 
 """"""""""""""""
@@ -197,7 +200,7 @@ set backupdir=~/.vim/.backup,~/tmp,/tmp
 set directory=~/.vim/.tmp//,~/tmp//,/tmp//
 
 " Keep a persistent undo backup file
-if v:version >= 730
+if v:version >= 703
     set undofile
     set undodir=~/.vim/.undo,~/tmp,/tmp
 endif
