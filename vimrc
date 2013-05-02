@@ -38,13 +38,13 @@ Bundle 'scrooloose/nerdtree'
 " Syntax checker (,s)
 Bundle 'scrooloose/syntastic'
 
-" Show undo tree (,g)
+" Show undo tree (,u)
 Bundle 'sjl/gundo.vim'
 
 " Run console commands (!command)
 Bundle 'sjl/clam.vim'
 
-" Show file tags list like variabes, etc (,l)
+" Show file tags list like variables, etc (,l)
 Bundle 'majutsushi/tagbar'
 
 " Pretty status bar
