@@ -86,6 +86,9 @@ Bundle 'mhinz/vim-signify'
 " Multiple cursors (next: Ctrl-P, prev: Ctrl-N, skip: Ctrl-X)
 Bundle 'terryma/vim-multiple-cursors'
 
+" Collaborative editing
+" Bundle 'FredKSchott/CoVim'
+
 " }}}
 
 """""""""""""""
@@ -452,6 +455,7 @@ inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<Tab>"
 
 " Don't yank (to the default register) when pasting in visual mode
 vnoremap p "_dP
+vnoremap P "_dP
 
 " }}}
 
@@ -461,10 +465,10 @@ vnoremap p "_dP
 
 
 " Some typo corrections
-command! WQ wq
-command! Wq wq
-command! W w
-command! Q q
+command! -bang WQ wq<bang>
+command! -bang Wq wq<bang>
+command! -bang W w<bang>
+command! -bang Q q<bang>
 
 " Save file with sudo
 cnoremap w!! w !sudo tee % > /dev/null
@@ -605,6 +609,7 @@ let g:neocomplcache_omni_patterns.python = ''
 " Signify plugin configuration
 let g:signify_sign_color_inherit_from_linenr = 1
 let g:signify_update_on_bufenter = 0
+let g:signify_vcs_list = ['git', 'svn']
 
 " }}}
 

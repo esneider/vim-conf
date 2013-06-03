@@ -8,8 +8,11 @@ git clone https://github.com/esneider/vim_conf.git
 ### Dependencies:
 
 * vim (compiled with +python)
-* curl
-* perl
 * git
+
+#### Optionals (for plugins)
+
 * exuberant ctags
+* curl / wget
+* perl
 

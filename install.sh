@@ -1,73 +1,105 @@
 #!/bin/bash
 
-EXTRA="${HOME}/.vim/.extra"
+# Config
+
+EXTRAS_PATH="${HOME}/.vim/.extra"
+
+VUNDLE_URL="https://github.com/gmarik/vundle.git"
+
+ACK_URL="http://beyondgrep.com/ack-2.04-single-file"
+
+# Functions
+
+function run_silent {
+    eval "(${1}) > /dev/null 2> /dev/null"
+}
+
+function exists {
+    run_silent "command -v ${1}"
+}
+
+function version_has {
+    run_silent "${1} --version | grep -i \"${2}\""
+}
+
+function error {
+    echo "ERROR: ${1}"
+    exit 1
+}
+
+function warn {
+    echo "WARNING: ${1}"
+}
+
+function progress {
+    echo "${1}..."
+}
+
+function note {
+    echo "${1}" | fmt -sw 74 | sed "s/^/      /"
+    echo
+}
 
 # Check if working directory set on the repo
 
-cd "$(dirname "$0")"
+cd "$(dirname "${0}")"
 
 if ! [ -f vimrc ]
 then
-    echo "ERROR: can't find 'vimrc'"
-    exit 1
+    error "can't find 'vimrc'"
 fi
 
 # Check for vim presence
 
-if ! (vim --version || vim -v) > /dev/null 2> /dev/null
+if ! exists "vim"
 then
-    echo "ERROR: you must install 'vim'"
-    exit 1
+    error "you must install 'vim'"
 fi
 
 # Check for git presence
 
-if ! (git --version || git -v) > /dev/null 2> /dev/null
+if ! exists "git"
 then
-    echo "ERROR: you must install 'git'"
-    exit 1
+    error "you must install 'git'"
 fi
 
 # Check for internet connection (for github)
 
-echo "Checking internet conection..."
+progress "Checking internet conection"
 
-if ! ping -w 5000 -c 1 github.com > /dev/null 2> /dev/null &&
-   ! ping -W 5000 -c 1 github.com > /dev/null 2> /dev/null
+if ! run_silent "ping -w 5000 -c 1 github.com" &&
+   ! run_silent "ping -W 5000 -c 1 github.com"
 then
-    echo "ERROR: you don't have an internet connection or github may be down"
-    exit 1
+    error "you don't have an internet connection or github may be down"
 fi
 
 # Make backup
 
-echo "Making backup..."
+progress "Making backup"
 
-rm -rf ~/.vimrc.bak ~/.vim.bak 2> /dev/null
-mv ~/.vimrc ~/.vimrc.bak 2> /dev/null
-mv ~/.vim ~/.vim.bak 2> /dev/null
+run_silent "rm -rf ~/.vimrc.bak ~/.vim.bak"
+run_silent "mv ~/.vimrc ~/.vimrc.bak"
+run_silent "mv ~/.vim ~/.vim.bak"
 
 # Install vundle
 
-echo "Installing vundle..."
+progress "Installing vundle"
 
-if ! git clone https://github.com/gmarik/vundle.git ~/.vim/bundle/vundle 2> /dev/null
+if ! git clone "${VUNDLE_URL}" ~/.vim/bundle/vundle 2> /dev/null
 then
-    echo "ERROR: you may not have internet connection, or github may be down, try later"
+    run_silent "mv ~/.vimrc.bak ~/.vimrc"
+    run_silent "mv ~/.vim.bak ~/.vim"
 
-    mv ~/.vimrc.bak ~/.vimrc 2> /dev/null
-    mv ~/.vim.bak ~/.vim 2> /dev/null
-
-    exit 1
+    error "you may not have internet connection, or github may be down, try later"
 fi
 
 # Install
 
-echo "Installing..."
+progress "Installing"
 
-if ! ln vimrc ~/.vimrc > /dev/null 2> /dev/null
+if ! run_silent "ln vimrc ~/.vimrc"
 then
-    echo "Failed to hard-link vimrc, falling back to copy"
+    warn "failed to hard-link vimrc, falling back to copy"
 
     cp vimrc ~/.vimrc
 fi
@@ -78,46 +110,55 @@ mkdir ~/.vim/.undo
 
 # Install plugins
 
-echo "Installing plugins..."
+progress "Installing plugins"
 
 vim +BundleInstall +qall
 
 # Install ack
 
-echo "Installing ack..."
+progress "Installing ack"
 
-mkdir "$EXTRA" > /dev/null 2> /dev/null
+run_silent "mkdir \"${EXTRAS_PATH}\""
 
-if ! (curl --version || curl -v ) > /dev/null 2> /dev/null
+if ! exists "curl" && ! exists "wget"
 then
-    echo "You don't have curl, so ack won't be installed"
 
-elif ! curl -# http://beyondgrep.com/ack-2.04-single-file > "${EXTRA}/ack.pl"
+    warn "you don't have curl nor wget, so ack won't be installed"
+
+elif exists "curl" && curl -# "${ACK_URL}" > "${EXTRAS_PATH}/ack.pl"
 then
-    echo "Can't get ack, proceding anyway"
+
+    chmod 0755 "${EXTRAS_PATH}/ack.pl"
+
+elif exists "wget" && wget -nv -O "${EXTRAS_PATH}/ack.pl" "${ACK_URL}"
+then
+
+    chmod 0755 "${EXTRAS_PATH}/ack.pl"
 else
-    chmod 0755 "${EXTRA}/ack.pl"
+    warn "can't get ack, proceding anyway"
 fi
 
-# Check for exuberant ctags presence
+# Check plugin dependencies
 
 echo "Done!!!"
 echo
 echo "NOTES:"
 
-if ! (ctags --version | grep -Ei "exuberant") > /dev/null 2> /dev/null &&
-   ! (ctags --v       | grep -Ei "exuberant") > /dev/null 2> /dev/null
+if ! exists "ctags" || ! version_has "ctags" "exuberant"
 then
-    echo "      You should install 'exuberant ctags' to use the tagbar plugin"
-    echo
+    note "You should install 'exuberant ctags' to use the tagbar plugin"
 fi
 
-if ! (perl --version || perl -v) > /dev/null 2> /dev/null
+if ! exists "perl"
 then
-    echo "      You should install 'perl' to use the ack plugin"
-    echo
+    note "You should install 'perl' to use the ack plugin"
 fi
 
-echo "      You may want to install and set your terminal to use one of the fonts in"
-echo "      '~/.vim/bundle/powerline-fonts' to have a pretty status line"
+if ! version_has "vim" "+python"
+then
+    note "You should install vim with python support (+python) to use the ctrl-p plugin"
+fi
+
+note "You may want to install and set your terminal to use one of the fonts in \
+      '~/.vim/bundle/powerline-fonts' to have a pretty status line"
 
