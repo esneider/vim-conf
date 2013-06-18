@@ -62,6 +62,9 @@ Bundle 'vim-scripts/kellys'
 " Fuzzy file finder (,o)
 Bundle 'kien/ctrlp.vim'
 
+" Fuzzy function/method finder (,m ,M)
+Bundle 'tacahiroy/ctrlp-funky'
+
 " More interactive find (,f)
 Bundle 'gcmt/psearch.vim'
 
@@ -71,7 +74,7 @@ Bundle 'derekwyatt/vim-fswitch'
 " Make NERDTree more awesome
 Bundle 'jistr/vim-nerdtree-tabs'
 
-" Ack search (,a)
+" Ack search (,a ,A)
 Bundle 'mileszs/ack.vim'
 
 " Automatic completion (select with tab)
@@ -85,9 +88,6 @@ Bundle 'mhinz/vim-signify'
 
 " Multiple cursors (next: Ctrl-P, prev: Ctrl-N, skip: Ctrl-X)
 Bundle 'terryma/vim-multiple-cursors'
-
-" Collaborative editing
-" Bundle 'FredKSchott/CoVim'
 
 " }}}
 
@@ -118,9 +118,6 @@ autocmd CursorHold * checktime
 
 " Clear window mark (SwapWindows function)
 autocmd InsertLeave * silent! let g:windowToSwap = -1
-
-" Disable Signify plugin at startup
-autocmd VimEnter * silent! autocmd! signify BufWritePost *
 
 " }}}
 
@@ -170,9 +167,6 @@ set updatetime=1000
 
 " Don't resize all remaining splits when opening/closing a split
 set noequalalways
-
-" Load menus
-source $VIMRUNTIME/menu.vim
 
 " Set Ctrl-Z to act like <Tab> on cmdline
 set wcm=<C-Z>
@@ -454,7 +448,7 @@ inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
 inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<Tab>"
 
 " Don't yank (to the default register) when pasting in visual mode
-vnoremap p "_dP
+vnoremap p "_dp
 vnoremap P "_dP
 
 " }}}
@@ -519,17 +513,23 @@ nnoremap <silent> <Leader>h :FSHere<CR>
 " Find in files, with Ack plugin
 nnoremap <Leader>a :Ack!<Space>""<Left>
 
+" Find in files the word under the cursor, with Ack plugin
+nnoremap <Leader>A :Ack!<Space>"<C-R><C-W>"<Left>
+
 " Paste from the SO clipboard
 nnoremap <silent> <Leader>p "*p
 
 " Yank to the SO clipboard
 vnoremap <silent> <Leader>y "*y
 
-" Vim menu
-nnoremap <Leader>m :emenu <C-Z>
-
 " Toggle repo diff signs
 nnoremap <silent> <Leader>d :SignifyToggle<CR>
+
+" Open the CtrlP-Funky extension
+nnoremap <silent> <Leader>m :CtrlPFunky<CR>
+
+" Open the CtrlP-Funky extension with the word under the cursor
+nnoremap <silent> <Leader>M :CtrlPFunky <C-R><C-W><CR>
 
 " }}}
 
@@ -563,7 +563,6 @@ let g:syntastic_error_symbol = '✗'
 let g:syntastic_warning_symbol = '⚠'
 let g:syntastic_mode_map = {'mode': 'passive'}
 
-
 " Powerline plugin configuration
 let g:Powerline_symbols = 'fancy'
 
@@ -572,6 +571,7 @@ let g:ctrlp_map = '<Leader>o'
 let g:ctrlp_max_height = 15
 let g:ctrlp_switch_buffer = 'et'
 let g:ctrlp_clear_cache_on_exit = 0
+let g:ctrlp_extensions = ['funky']
 
 " Doxygen syntax configuration (javadoc highlighting for C, C++, C# files)
 let g:load_doxygen_syntax = 1
