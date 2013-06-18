@@ -95,7 +95,7 @@ fi
 
 # Install
 
-progress "Installing"
+progress "Installing vimrc"
 
 if ! run_silent "ln vimrc ~/.vimrc"
 then
