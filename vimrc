@@ -426,6 +426,10 @@ inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<Tab>"
 vnoremap p "_dP
 vnoremap P "_dP
 
+" Make * and # work with visual selection.
+vnoremap <silent> * yq/p<CR>
+vnoremap <silent> # yq?p<CR>
+
 " }}}
 
 """"""""""""""""""
