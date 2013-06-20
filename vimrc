@@ -90,7 +90,7 @@ Bundle 'mhinz/vim-signify'
 Bundle 'terryma/vim-multiple-cursors'
 
 " Window resizing (,w)
-Bundle "jimsei/winresizer"
+Bundle 'jimsei/winresizer'
 
 " }}}
 
@@ -169,9 +169,8 @@ set updatetime=1000
 " Don't resize all remaining splits when opening/closing a split
 set noequalalways
 
-" Don't bother with swap files or backups
+" Don't bother with swap files
 set noswapfile
-set nobackup
 
 " Keep a persistent undo backup file
 if has('persistent_undo')
@@ -317,9 +316,9 @@ set synmaxcol=500
 
 " }}}
 
-"""""""""""""""""""""""""""""
-" Windows and tabs navigation {{{
-"""""""""""""""""""""""""""""
+""""""""""""
+" Navigation {{{
+""""""""""""
 
 
 " Next tab (Ctrl-Shift-Right)
@@ -393,8 +392,8 @@ inoremap jj <Esc>
 nnoremap Y y$
 
 " Repeat the last substitution
-nnoremap & :&&<CR>
-xnoremap & :&&<CR>
+nnoremap <silent> & :&&<CR>
+xnoremap <silent> & :&&<CR>
 
 " Run console command (Clam plugin)
 nnoremap ! :Clam<Space>
