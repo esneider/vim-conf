@@ -119,14 +119,12 @@ autocmd Filetype *
 " Check for file changes after 'updatetime' milliseconds of cursor hold
 autocmd CursorHold * checktime
 
-" Clear window mark (SwapWindows function)
-autocmd InsertLeave * silent! let g:windowToSwap = -1
-
 " }}}
 
 """"""""""""""""
 " General config {{{
 """"""""""""""""
+
 
 " Enable file type specific behaviour
 filetype plugin indent on
@@ -179,6 +177,7 @@ set wcm=<C-Z>
 """"""""""""""""""""
 " Directories config {{{
 """"""""""""""""""""
+
 
 " Make a backup of the original file when writing
 set writebackup
@@ -236,6 +235,7 @@ set grepprg=grep\ -nH\ $*\ /dev/null
 """"""""""""""
 " Input config {{{
 """"""""""""""
+
 
 " Enable autoindenting on new lines
 set autoindent
@@ -431,7 +431,7 @@ inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
 inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<Tab>"
 
 " Don't yank (to the default register) when pasting in visual mode
-vnoremap p "_dp
+vnoremap p "_dP
 vnoremap P "_dP
 
 " }}}
