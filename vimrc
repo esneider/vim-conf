@@ -169,29 +169,14 @@ set updatetime=1000
 " Don't resize all remaining splits when opening/closing a split
 set noequalalways
 
-" }}}
-
-""""""""""""""""""""
-" Directories config {{{
-""""""""""""""""""""
-
-
-" Make a backup of the original file when writing
-set writebackup
-
-" And don't delete it after a succesful write
-set backup
-
-" Directory for backups
-set backupdir=~/.vim/.backup,~/tmp,/tmp
-
-" Directory for swap files (avoids adding them to your repo by mistake)
-set directory=~/.vim/.tmp//,~/tmp//,/tmp//
+" Don't bother with swap files or backups
+set noswapfile
+set nobackup
 
 " Keep a persistent undo backup file
 if has('persistent_undo')
     set undofile
-    set undodir=~/.vim/.undo,~/tmp,/tmp
+    set undodir=~/.vim/.undo//,~/tmp//,/tmp//
 endif
 
 " }}}

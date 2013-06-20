@@ -104,8 +104,6 @@ then
     cp vimrc ~/.vimrc
 fi
 
-mkdir ~/.vim/.backup
-mkdir ~/.vim/.tmp
 mkdir ~/.vim/.undo
 
 # Install plugins
