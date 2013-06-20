@@ -178,6 +178,9 @@ if has('persistent_undo')
     set undodir=~/.vim/.undo//,~/tmp//,/tmp//
 endif
 
+" Ctags index directories
+set tags=.git/tags;,.svn/tags;,tags;
+
 " }}}
 
 """"""""""""""""""""""""""""
