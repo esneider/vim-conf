@@ -169,9 +169,6 @@ set updatetime=1000
 " Don't resize all remaining splits when opening/closing a split
 set noequalalways
 
-" Set Ctrl-Z to act like <Tab> on cmdline
-set wcm=<C-Z>
-
 " }}}
 
 """"""""""""""""""""
