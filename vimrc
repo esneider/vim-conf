@@ -263,6 +263,14 @@ set splitright
 " Put new horizontal splits below the current one
 set splitbelow
 
+" Display as much as possibe of a window's last line
+set display+=lastline
+
+" Remove comment leaders when joining lines
+if v:version >= 703 && has("patch541")
+  set formatoptions+=j
+endif
+
 " }}}
 
 """"""""""""""
