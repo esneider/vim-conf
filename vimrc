@@ -80,11 +80,11 @@ Bundle 'Shougo/neocomplcache'
 " Select regions in visual mode (+ and _)
 Bundle 'terryma/vim-expand-region'
 
-" Show repo diff signs (,d)
-Bundle 'mhinz/vim-signify'
-
 " Multiple cursors (next: Ctrl-P, prev: Ctrl-N, skip: Ctrl-X)
 Bundle 'terryma/vim-multiple-cursors'
+
+" Show repo diff signs (,d)
+Bundle 'mhinz/vim-signify'
 
 " Window resizing (,w)
 Bundle 'jimsei/winresizer'
@@ -106,15 +106,25 @@ autocmd BufWinEnter * let w:m2=matchadd('CursorLine', '\%>80v.\+', -1)
 autocmd BufReadPost *
   \ if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g`\"" | endif
 
-" Use tabs in makefiles
-autocmd FileType make setlocal noexpandtab
-
 " Setup syntax completion by highligh rules for unsupported filetypes
 autocmd Filetype *
   \ if &omnifunc == "" | setlocal omnifunc=syntaxcomplete#Complete | endif
 
 " Check for file changes after 'updatetime' milliseconds of cursor hold
 autocmd CursorHold * checktime
+
+" }}}
+
+"""""""""""""""""""
+" Filetype commands {{{
+"""""""""""""""""""
+
+
+" Use tabs in makefiles
+autocmd FileType make setlocal noexpandtab
+
+" Spell check in commits
+autocmd FileType gitcommit,svn setlocal spell
 
 " }}}
 
@@ -188,7 +198,7 @@ set tags=.git/tags;,.svn/tags;,tags;
 " Comand line completion stuff
 set wildmenu
 set wildmode=list:longest,full
-set wildignore=*.swp,*.bak,*.pyc,*.class
+set wildignore=.svn,.git,*.o,*~,*.swp,*.pyc,*.class
 
 " Tab completion stuff
 set completeopt=longest,menuone
@@ -472,7 +482,7 @@ nnoremap <silent> <Leader>s :w<CR>:SyntasticCheck<CR>
 nnoremap <silent> <Leader>e :Errors<CR>
 
 " Edit vimrc in a new tab
-nnoremap <silent> <Leader>v :tabnew<CR>:e ~/.vimrc<CR>
+nnoremap <silent> <Leader>v :tabnew<CR>:edit $MYVIMRC<CR>
 
 " Jump to next diff conflict marker
 nnoremap <silent> <Leader>c /^\(<\\|=\\|>\)\{7\}\([^=].\+\)\?$<CR>
@@ -517,7 +527,7 @@ nnoremap <silent> <Leader>w :WinResizerStartResize<CR>
 " NERDTree plugin configuration
 let NERDTreeDirArrows = 1
 let NERDTreeWinSize = 25
-let NERDTreeIgnore = ['\.pyc', '\~$', '\.swo$', '\.swp$', '\.git', '\.hg', '\.svn', '\.bzr']
+let NERDTreeIgnore = ['\.svn', '\.git', '\.o$', '\~$', '\.swp$', '\.pyc$', '\.class$']
 
 " NERDTreeTabs plugin configuration
 let g:nerdtree_tabs_open_on_console_startup = 1
