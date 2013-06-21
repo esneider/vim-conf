@@ -8,6 +8,10 @@ VUNDLE_URL="https://github.com/gmarik/vundle.git"
 
 ACK_URL="http://beyondgrep.com/ack-2.04-single-file"
 
+FONTS_URL="https://github.com/Lokaltog/powerline-fonts.git"
+
+GITCTAGS_URL="https://github.com/esneider/gitctags.git"
+
 # Functions
 
 function run_silent {
@@ -120,20 +124,37 @@ run_silent "mkdir \"${EXTRAS_PATH}\""
 
 if ! exists "curl" && ! exists "wget"
 then
-
     warn "you don't have curl nor wget, so ack won't be installed"
 
 elif exists "curl" && curl -# "${ACK_URL}" > "${EXTRAS_PATH}/ack.pl"
 then
-
     chmod 0755 "${EXTRAS_PATH}/ack.pl"
 
 elif exists "wget" && wget -nv -O "${EXTRAS_PATH}/ack.pl" "${ACK_URL}"
 then
-
     chmod 0755 "${EXTRAS_PATH}/ack.pl"
 else
     warn "can't get ack, proceding anyway"
+fi
+
+# Install extras
+
+progress "Installing fonts"
+
+if ! git clone "${FONTS_URL}" "${EXTRAS_PATH}/fonts" 2> /dev/null
+then
+    warn "can't get fonts, proceding anyway"
+fi
+
+progress "Installing automatic git ctags"
+
+if ! git clone "${GITCTAGS_URL}" "${EXTRAS_PATH}/gitctags" 2> /dev/null
+then
+    warn "can't get git ctags, proceding anyway"
+
+elif ! run_silent "${EXTRAS_PATH}/gitctags/setup.sh"
+then
+    warn "error installing git ctags, proceding anyway"
 fi
 
 # Check plugin dependencies
@@ -158,5 +179,5 @@ then
 fi
 
 note "You may want to install and set your terminal to use one of the fonts in \
-      '~/.vim/bundle/powerline-fonts' to have a pretty status line"
+      '${EXTRAS_PATH}/fonts' to have a pretty status line"
 

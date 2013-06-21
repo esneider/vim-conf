@@ -50,9 +50,6 @@ Bundle 'majutsushi/tagbar'
 " Pretty status bar
 Bundle 'Lokaltog/vim-powerline'
 
-" Patched fonts for powerline
-Bundle 'Lokaltog/powerline-fonts'
-
 " Function and namespace highlighting
 Bundle 'esneider/simlight.vim'
 
