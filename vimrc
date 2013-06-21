@@ -188,6 +188,10 @@ endif
 " Ctags index directories
 set tags=.git/tags;,.svn/tags;,tags;
 
+" Ignore whitespace in diff mode and show 3 lines around each diff
+set diffopt+=iwhite
+set diffopt+=context:3
+
 " }}}
 
 """"""""""""""""""""""""""""
