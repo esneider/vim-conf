@@ -445,6 +445,9 @@ vnoremap P "_dP
 vnoremap <silent> * yq/p<CR>
 vnoremap <silent> # yq?p<CR>
 
+" Insert line and stay in normal mode
+nnoremap <silent> <CR> o<Esc>
+
 " }}}
 
 """"""""""""""""""
