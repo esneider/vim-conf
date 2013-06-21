@@ -32,7 +32,7 @@ Bundle 'tsaleh/vim-matchit'
 " Toggle comments (//)
 Bundle 'tomtom/tcomment_vim'
 
-" File browser (,t)
+" File browser (,n)
 Bundle 'scrooloose/nerdtree'
 
 " Syntax checker (,s)
@@ -371,6 +371,10 @@ inoremap <silent> <M-S-Down> <C-o>:wincmd j<CR>
 inoremap <silent> <M-S-Left> <C-o>:wincmd h<CR>
 inoremap <silent> <M-S-Right> <C-o>:wincmd l<CR>
 
+" Move to and from tag definition
+nnoremap <silent> ]t g<C-]>
+nnoremap <silent> [t <C-T>
+
 " }}}
 
 """"""""""""""
@@ -467,7 +471,7 @@ cnoremap <C-A> <Home>
 let mapleader=","
 
 " Open the NERDTree Plugin
-nnoremap <silent> <Leader>t :NERDTreeTabsToggle<CR>
+nnoremap <silent> <Leader>n :NERDTreeTabsToggle<CR>
 
 " Open the Tagbar Plugin
 nnoremap <silent> <Leader>l :TagbarToggle<CR>
@@ -517,6 +521,9 @@ nnoremap <silent> <Leader>M :CtrlPFunky <C-R><C-W><CR>
 " Open the WinResizer plugin
 nnoremap <silent> <Leader>w :WinResizerStartResize<CR>
 
+" Open the CtrlP-Tag extension
+nnoremap <silent> <Leader>t :CtrlPTag<CR>
+
 " }}}
 
 """"""""""""""""
@@ -557,7 +564,7 @@ let g:ctrlp_map = '<Leader>o'
 let g:ctrlp_max_height = 15
 let g:ctrlp_switch_buffer = 'et'
 let g:ctrlp_clear_cache_on_exit = 0
-let g:ctrlp_extensions = ['funky']
+let g:ctrlp_extensions = ['tag', 'funky']
 
 " Doxygen syntax configuration (javadoc highlighting for C, C++, C# files)
 let g:load_doxygen_syntax = 1
