@@ -364,25 +364,25 @@ inoremap <silent> <C-S-Left> <C-o>:tabprevious<CR>
 nnoremap <silent> <C-t> :tabnew<CR>
 inoremap <silent> <C-t> <C-o>:tabnew<CR>
 
-" Move through splits with Alt-Shift-{Up,Right,Down,Left}
+" Move through splits with Alt-{Up,Right,Down,Left}
 " For Mac
-nnoremap <silent> <T-S-Up> :wincmd k<CR>
-nnoremap <silent> <T-S-Down> :wincmd j<CR>
-nnoremap <silent> <T-S-Left> :wincmd h<CR>
-nnoremap <silent> <T-S-Right> :wincmd l<CR>
-inoremap <silent> <T-S-Up> <C-o>:wincmd k<CR>
-inoremap <silent> <T-S-Down> <C-o>:wincmd j<CR>
-inoremap <silent> <T-S-Left> <C-o>:wincmd h<CR>
-inoremap <silent> <T-S-Right> <C-o>:wincmd l<CR>
+nnoremap <silent> [A :wincmd k<CR>
+nnoremap <silent> [B :wincmd j<CR>
+nnoremap <silent> [D :wincmd h<CR>
+nnoremap <silent> [C :wincmd l<CR>
+nnoremap <silent> [A :wincmd k<CR>
+nnoremap <silent> [B :wincmd j<CR>
+nnoremap <silent> [D :wincmd h<CR>
+nnoremap <silent> [C :wincmd l<CR>
 " For Linux
-nnoremap <silent> <M-S-Up> :wincmd k<CR>
-nnoremap <silent> <M-S-Down> :wincmd j<CR>
-nnoremap <silent> <M-S-Left> :wincmd h<CR>
-nnoremap <silent> <M-S-Right> :wincmd l<CR>
-inoremap <silent> <M-S-Up> <C-o>:wincmd k<CR>
-inoremap <silent> <M-S-Down> <C-o>:wincmd j<CR>
-inoremap <silent> <M-S-Left> <C-o>:wincmd h<CR>
-inoremap <silent> <M-S-Right> <C-o>:wincmd l<CR>
+nnoremap <silent> <M-Up> :wincmd k<CR>
+nnoremap <silent> <M-Down> :wincmd j<CR>
+nnoremap <silent> <M-Left> :wincmd h<CR>
+nnoremap <silent> <M-Right> :wincmd l<CR>
+inoremap <silent> <M-Up> <C-o>:wincmd k<CR>
+inoremap <silent> <M-Down> <C-o>:wincmd j<CR>
+inoremap <silent> <M-Left> <C-o>:wincmd h<CR>
+inoremap <silent> <M-Right> <C-o>:wincmd l<CR>
 
 " Move to and from tag definition
 nnoremap <silent> ]t g<C-]>
