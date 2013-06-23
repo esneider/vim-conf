@@ -151,9 +151,6 @@ filetype plugin indent on
 " Use utf8
 set encoding=utf-8
 
-" When I close a tab, remove the buffer
-set nohidden
-
 " Automatically read a file when it is changed from the outside
 set autoread
 
@@ -175,34 +172,25 @@ set modelines=0
 " Disable fucking bell
 set vb t_vb=
 
-" Faster commands
-set ttimeout
-set ttimeoutlen=50
-
 " Fold text when markers {{{ and }}} are found
 set foldmethod=marker
 
 " Update after 1 second of no activity (check for external file change, etc)
 set updatetime=1000
 
-" Don't resize all remaining splits when opening/closing a split
-set noequalalways
-
 " Don't bother with swap files
 set noswapfile
 
 " Keep a persistent undo backup file
 if has('persistent_undo')
-    set undofile
-    set undodir=~/.vim/.undo//,~/tmp//,/tmp//
+    set undofile undodir=~/.vim/.undo//,~/tmp//,/tmp//
 endif
 
 " Ctags index directories
-set tags=.git/tags;,.svn/tags;,tags;
+set tags=.git/tags;$HOME,.svn/tags;$HOME,tags;$HOME
 
 " Ignore whitespace in diff mode and show 3 lines around each diff
 set diffopt+=iwhite
-set diffopt+=context:3
 
 " }}}
 
@@ -251,13 +239,10 @@ set autoindent
 set copyindent
 
 " Use spaces instead of tabs (and be smart on newlines)
-set expandtab
-set smarttab
+set expandtab smarttab
 
 " Tab equals 4 spaces
-set shiftwidth=4
-set softtabstop=4
-set tabstop=4
+set shiftwidth=4 softtabstop=4 tabstop=4
 
 " Make backspace work like it should
 set backspace=2
@@ -280,19 +265,20 @@ set shiftround
 " Allowe the cursor one beyond last character and everywhere in V-block mode
 set virtualedit=onemore,block
 
-" Put new vertical splits to the right of the current one
-set splitright
+" Faster commands
+set ttimeout ttimeoutlen=50
 
-" Put new horizontal splits below the current one
-set splitbelow
+" Don't resize all remaining splits when opening/closing a split
+set noequalalways
+
+" Put new vertical splits to the right/below of the current one
+set splitright splitbelow
 
 " Display as much as possibe of a window's last line
 set display+=lastline
 
 " Remove comment leaders when joining lines
-if v:version >= 703 && has("patch541")
-  set formatoptions+=j
-endif
+set formatoptions+=j
 
 " }}}
 
@@ -332,7 +318,7 @@ end
 
 " Force the tty to use 256 colors
 if !has("gui_running")
-  set t_Co=256
+    set t_Co=256
 endif
 
 " Dark background
@@ -342,8 +328,8 @@ set background=dark
 silent! colorscheme kellys
 
 " Highlight functions and namespaces
-highlight SLFunction  guifg=#afdfdf ctermfg=152
-highlight SLNamespace guifg=#a8a8a8 ctermfg=248
+highlight Function  guifg=#afdfdf ctermfg=152
+highlight Namespace guifg=#a8a8a8 ctermfg=248
 
 " Don't try to highlight lines longer than 500 characters
 set synmaxcol=500
@@ -485,7 +471,7 @@ nnoremap <silent> <Leader>h :FSHere<CR>
 nnoremap <Leader>a :Ack!<Space>""<Left>
 
 " Find in files the word under the cursor, with Ack plugin
-nnoremap <Leader>A :Ack!<Space>"<C-R><C-W>"<Left>
+nnoremap <Leader>A :Ack!<Space>"<C-R><C-W>"<CR>
 
 " Paste from the SO clipboard
 nnoremap <silent> <Leader>p "*p
