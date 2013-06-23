@@ -41,9 +41,6 @@ Bundle 'scrooloose/syntastic'
 " Show undo tree (,u)
 Bundle 'sjl/gundo.vim'
 
-" Run console commands (!command)
-Bundle 'sjl/clam.vim'
-
 " Show file tags list like variables, etc (,l)
 Bundle 'majutsushi/tagbar'
 
@@ -376,13 +373,9 @@ nnoremap Y y$
 nnoremap <silent> & :&&<CR>
 xnoremap <silent> & :&&<CR>
 
-" Run console command (Clam plugin)
-nnoremap ! :Clam<Space>
-vnoremap ! :ClamVisual<Space>
-
 " Toggle comments (tComment plugin)
-nmap // gcc<Esc>
-vmap // gc<Esc>
+nnoremap // :let w:tcommentPos = getpos(".")<CR>:set opfunc=tcomment#OperatorLine<CR>g@$
+vnoremap // :TCommentMaybeInline<CR>
 
 " Remain in visual mode after '<' or '>'
 vnoremap < <gv
@@ -528,6 +521,9 @@ let g:syntastic_mode_map = {'mode': 'passive'}
 
 " Powerline plugin configuration
 let g:Powerline_symbols = 'fancy'
+
+" tComment plugin configuration
+let g:tcommentMaps = 0
 
 " CtrlP plugin configuration
 let g:ctrlp_map = '<Leader>o'
