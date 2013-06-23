@@ -280,6 +280,9 @@ set formatoptions+=j
 " Use system clipboard as default register
 set clipboard=unnamed,unnamedplus
 
+" Instead of failing after missing !, ask what to do
+set confirm
+
 " }}}
 
 """"""""""""""
