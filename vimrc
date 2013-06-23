@@ -53,6 +53,9 @@ Bundle 'Lokaltog/vim-powerline'
 " Function and namespace highlighting
 Bundle 'esneider/simlight.vim'
 
+" Window and tab navigation (Alt-Arrow Alt-Shift-Arrow)
+Bundle 'esneider/waltz.vim'
+
 " Colorscheme
 Bundle 'vim-scripts/kellys'
 
@@ -347,49 +350,6 @@ set synmaxcol=500
 
 " }}}
 
-""""""""""""
-" Navigation {{{
-""""""""""""
-
-
-" Next tab (Ctrl-Shift-Right)
-nnoremap <silent> <C-S-Right> :tabnext<CR>
-inoremap <silent> <C-S-Right> <C-o>:tabnext<CR>
-
-" Previous tab (Ctrl-Shift-Left)
-nnoremap <silent> <C-S-Left> :tabprevious<CR>
-inoremap <silent> <C-S-Left> <C-o>:tabprevious<CR>
-
-" New tab (Ctrl-T)
-nnoremap <silent> <C-t> :tabnew<CR>
-inoremap <silent> <C-t> <C-o>:tabnew<CR>
-
-" Move through splits with Alt-{Up,Right,Down,Left}
-" For Mac
-nnoremap <silent> [A :wincmd k<CR>
-nnoremap <silent> [B :wincmd j<CR>
-nnoremap <silent> [D :wincmd h<CR>
-nnoremap <silent> [C :wincmd l<CR>
-nnoremap <silent> [A :wincmd k<CR>
-nnoremap <silent> [B :wincmd j<CR>
-nnoremap <silent> [D :wincmd h<CR>
-nnoremap <silent> [C :wincmd l<CR>
-" For Linux
-nnoremap <silent> <M-Up> :wincmd k<CR>
-nnoremap <silent> <M-Down> :wincmd j<CR>
-nnoremap <silent> <M-Left> :wincmd h<CR>
-nnoremap <silent> <M-Right> :wincmd l<CR>
-inoremap <silent> <M-Up> <C-o>:wincmd k<CR>
-inoremap <silent> <M-Down> <C-o>:wincmd j<CR>
-inoremap <silent> <M-Left> <C-o>:wincmd h<CR>
-inoremap <silent> <M-Right> <C-o>:wincmd l<CR>
-
-" Move to and from tag definition
-nnoremap <silent> ]t g<C-]>
-nnoremap <silent> [t <C-T>
-
-" }}}
-
 """"""""""""""
 " Key mappings {{{
 """"""""""""""
@@ -456,6 +416,14 @@ vnoremap <silent> # yq?p<CR>
 
 " Insert line and stay in normal mode
 nnoremap <silent> <CR> o<Esc>
+
+" New tab (Ctrl-T)
+nnoremap <silent> <C-t> :tabnew<CR>
+inoremap <silent> <C-t> <C-o>:tabnew<CR>
+
+" Move to and from tag definition with Ctrl-Shift-{Right,Left}
+nnoremap <silent> <C-S-Right> g<C-]>
+nnoremap <silent> <C-S-Left> <C-T>
 
 " }}}
 
