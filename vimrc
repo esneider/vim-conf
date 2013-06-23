@@ -277,6 +277,9 @@ set display+=lastline
 " Remove comment leaders when joining lines
 set formatoptions+=j
 
+" Use system clipboard as default register
+set clipboard=unnamed,unnamedplus
+
 " }}}
 
 """"""""""""""
@@ -465,12 +468,6 @@ nnoremap <Leader>a :Ack!<Space>""<Left>
 
 " Find in files the word under the cursor, with Ack plugin
 nnoremap <Leader>A :Ack!<Space>"<C-R><C-W>"<CR>
-
-" Paste from the SO clipboard
-nnoremap <silent> <Leader>p "*p
-
-" Yank to the SO clipboard
-vnoremap <silent> <Leader>y "*y
 
 " Toggle repo diff signs
 nnoremap <silent> <Leader>d :SignifyToggle<CR>
