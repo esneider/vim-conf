@@ -127,7 +127,7 @@ autocmd BufRead,BufNewFile Gemfile,Capfile,config.ru setfiletype ruby
 autocmd BufRead,BufNewFile *.md setfiletype markdown
 
 " Use 2 spaces for indent in ruby
-autocmd FileType ruby setlocal tabstop=2 softtabstop=2 shiftwidth=2
+autocmd FileType ruby setlocal tabstop=2 softtabstop=2 shiftwidth=2 iskeyword+=!,?
 
 " Use tabs in makefiles
 autocmd FileType make setlocal noexpandtab
@@ -247,7 +247,7 @@ set backspace=2
 " Enable mouse support in console
 set mouse=a
 
-" Don’t reset cursor to start of line when moving around.
+" Don’t reset cursor to start of line when moving around
 set nostartofline
 
 " Shift plus movement keys changes selection
@@ -283,6 +283,9 @@ set clipboard=unnamed,unnamedplus
 " Instead of failing after missing !, ask what to do
 set confirm
 
+" Ctrl-{A,X} work on dec, hex, and chars (not octal)
+set nrformats=alpha,hex
+
 " }}}
 
 """"""""""""""
@@ -304,6 +307,9 @@ set showcmd
 
 " Have 5 lines ahead of the cursor in screen whenever possible
 set scrolloff=5
+
+" Try to change the terminal title
+set title
 
 " Highlight matching parent
 highlight MatchParen ctermbg=4
@@ -395,7 +401,7 @@ inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<Tab>"
 vnoremap p "_dP
 vnoremap P "_dP
 
-" Make * and # work with visual selection.
+" Make * and # work with visual selection
 vnoremap <silent> * yq/p<CR>
 vnoremap <silent> # yq?p<CR>
 
@@ -409,6 +415,10 @@ inoremap <silent> <C-t> <C-o>:tabnew<CR>
 " Move to and from tag definition with Ctrl-Shift-{Right,Left}
 nnoremap <silent> <C-S-Right> g<C-]>
 nnoremap <silent> <C-S-Left> <C-T>
+
+" make ' jump to saved line & column rather than just line
+nnoremap ' `
+nnoremap ` '
 
 " }}}
 
