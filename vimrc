@@ -126,7 +126,7 @@ autocmd BufRead,BufNewFile Gemfile,Capfile,config.ru setfiletype ruby
 " Markdown filetype detection
 autocmd BufRead,BufNewFile *.md setfiletype markdown
 
-" Use 2 spaces for indent in ruby
+" Use 2 spaces for indent in ruby, and allow !, ? in keywords
 autocmd FileType ruby setlocal tabstop=2 softtabstop=2 shiftwidth=2 iskeyword+=!,?
 
 " Use tabs in makefiles
@@ -154,7 +154,7 @@ set autoread
 " Automatically cd into the file's directory
 set autochdir
 
-" Don't redraw while executing macros (good performance config)
+" Don't redraw while executing macros
 set lazyredraw
 
 " Entries of the commands history
@@ -259,7 +259,7 @@ set whichwrap+=<,>,[,],h,l
 " When at 3 spaces, and hit > ... go to 4, not 7
 set shiftround
 
-" Allowe the cursor one beyond last character and everywhere in V-block mode
+" Allow the cursor one beyond last character and everywhere in V-block mode
 set virtualedit=onemore,block
 
 " Faster commands
@@ -280,7 +280,7 @@ set formatoptions+=j
 " Use system clipboard as default register
 set clipboard=unnamed,unnamedplus
 
-" Instead of failing after missing !, ask what to do
+" Instead of failing after a missing !, ask what to do
 set confirm
 
 " Ctrl-{A,X} work on dec, hex, and chars (not octal)
@@ -302,7 +302,7 @@ set number
 " Show status line
 set laststatus=2
 
-" This shows what you are typing as a command
+" Show incomplete commands while you are typing them
 set showcmd
 
 " Have 5 lines ahead of the cursor in screen whenever possible
@@ -330,7 +330,7 @@ if !has("gui_running")
     set t_Co=256
 endif
 
-" Dark background
+" Use a dark background
 set background=dark
 
 " Set color scheme
@@ -351,7 +351,7 @@ set synmaxcol=500
 
 
 " Map backspace key to dismiss search highlightedness
-nnoremap <silent> <BS> :noh<CR>
+nnoremap <silent> <BS> :nohlsearch<CR>
 
 " Turn off Vim’s regex characters and make searches use normal regexes
 nnoremap / /\v
