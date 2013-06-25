@@ -103,12 +103,7 @@ autocmd BufRead,BufWrite * if ! &bin | silent! %s/\s\+$//ge | endif
 autocmd BufWinEnter * let w:m2=matchadd('CursorLine', '\%>80v.\+', -1)
 
 " Restore cursor position to where it was before closing
-autocmd BufReadPost *
-  \ if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g`\"" | endif
-
-" Setup syntax completion by highligh rules for unsupported filetypes
-autocmd Filetype *
-  \ if &omnifunc == "" | setlocal omnifunc=syntaxcomplete#Complete | endif
+autocmd BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g`\"" | endif
 
 " Check for file changes after 'updatetime' milliseconds of cursor hold
 autocmd CursorHold * checktime
@@ -221,6 +216,9 @@ set gdefault
 
 " Set flags for grep command
 set grepprg=grep\ -nH\ $*\ /dev/null
+
+" Syntax completion by highligh rules for unsupported filetypes
+set omnifunc=syntaxcomplete#Complete
 
 " }}}
 
