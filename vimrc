@@ -404,7 +404,7 @@ vnoremap <silent> * yq/p<CR>
 vnoremap <silent> # yq?p<CR>
 
 " Insert line and stay in normal mode
-nnoremap <silent> <CR> o<Esc>
+nnoremap <silent> <expr> <CR> &modifiable ? "o\<Esc>" : "\<CR>"
 
 " New tab (Ctrl-T)
 nnoremap <silent> <C-t> :tabnew<CR>
