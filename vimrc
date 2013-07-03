@@ -194,7 +194,7 @@ set diffopt+=iwhite
 " Comand line completion stuff
 set wildmenu
 set wildmode=list:longest,full
-set wildignore=.svn,.git,*.o,*~,*.swp,*.pyc,*.class
+set wildignore=.svn,.git,*.o,*~,*.swp,*.pyc,*.class,*.dSYM
 
 " Tab completion stuff
 set completeopt=longest,menuone
@@ -505,7 +505,7 @@ nnoremap <silent> <Leader>t :CtrlPTag<CR>
 " NERDTree plugin configuration
 let NERDTreeDirArrows = 1
 let NERDTreeWinSize = 25
-let NERDTreeIgnore = ['\.svn', '\.git', '\.o$', '\~$', '\.swp$', '\.pyc$', '\.class$']
+let NERDTreeIgnore = ['\.svn', '\.git', '\.o$', '\~$', '\.swp$', '\.pyc$', '\.class$', '\.dSYM$']
 
 " NERDTreeTabs plugin configuration
 let g:nerdtree_tabs_open_on_console_startup = 1
