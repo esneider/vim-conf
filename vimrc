@@ -357,8 +357,9 @@ vnoremap / /\v
 nnoremap ? ?\v
 vnoremap ? ?\v
 
-" Disable Ex mode
-noremap Q <Nop>
+" Disable Ex mode and use Q for formatting the current paragraph (or selection)
+vnoremap Q gq
+nnoremap Q gqap
 
 " Up and down are more logical with g
 nnoremap <silent> k gk
