@@ -460,7 +460,7 @@ nnoremap <silent> <Leader>u :GundoToggle<CR>
 nnoremap <silent> <Leader>s :w<CR>:SyntasticCheck<CR>
 
 " Open the Syntastic plugin errors list
-nnoremap <silent> <Leader>e :Errors<CR>
+nnoremap <silent> <Leader>e :lopen<CR>
 
 " Edit vimrc in a new tab
 nnoremap <silent> <Leader>v :tabnew<CR>:edit $MYVIMRC<CR>
