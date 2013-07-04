@@ -100,10 +100,10 @@ Bundle 'jimsei/winresizer'
 autocmd BufRead,BufWrite * if ! &bin | silent! %s/\s\+$//ge | endif
 
 " Highlight characters after column 80
-autocmd BufWinEnter * let w:m2=matchadd('CursorLine', '\%>80v.\+', -1)
+autocmd BufWinEnter * let w:m2 = matchadd('CursorLine', '\%81v\s*\zs\S\+', -1)
 
 " Restore cursor position to where it was before closing
-autocmd BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g`\"" | endif
+autocmd BufReadPost * if line("'\"") <= line("$") | exe "normal! g`\"" | endif
 
 " Check for file changes after 'updatetime' milliseconds of cursor hold
 autocmd CursorHold * checktime
