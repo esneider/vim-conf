@@ -341,6 +341,12 @@ highlight Namespace guifg=#a8a8a8 ctermfg=248
 " Don't try to highlight lines longer than 500 characters
 set synmaxcol=500
 
+" Enable text concealment (mainly for latex)
+set conceallevel=2
+
+" Highlight concealed text
+highlight clear Conceal
+
 " }}}
 
 """"""""""""""
@@ -547,6 +553,7 @@ let doxygen_javadoc_autobrief = 0
 
 " Tex syntax configuration
 let g:tex_flavor = 'latex'
+let g:tex_conceal = 'adgm'
 
 " PSearch plugin configuration
 let g:pse_max_height = 20
