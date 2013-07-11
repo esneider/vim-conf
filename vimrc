@@ -89,6 +89,9 @@ Bundle 'mhinz/vim-signify'
 " Window resizing (,w)
 Bundle 'jimsei/winresizer'
 
+" Automatic time tracking
+Bundle 'wakatime/vim-wakatime'
+
 " }}}
 
 """""""""""""""
@@ -409,9 +412,6 @@ vnoremap P "_dP
 " Make * and # work with visual selection
 vnoremap <silent> * yq/p<CR>
 vnoremap <silent> # yq?p<CR>
-
-" Insert line and stay in normal mode
-nnoremap <silent> <expr> <CR> &modifiable ? "o\<Esc>" : "\<CR>"
 
 " New tab (Ctrl-T)
 nnoremap <silent> <C-t> :tabnew<CR>
