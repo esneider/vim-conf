@@ -586,9 +586,13 @@ let g:neocomplcache_omni_patterns.ruby = '[^. *\t]\.\h\w*\|\h\w*::'
 let g:neocomplcache_omni_patterns.python = ''
 
 " Signify plugin configuration
-let g:signify_sign_color_inherit_from_linenr = 1
 let g:signify_update_on_bufenter = 0
+let g:signify_disable_by_default = 1
 let g:signify_vcs_list = ['git', 'svn']
+
+highlight SignifySignAdd    gui=bold guifg=#8dfa81 cterm=bold ctermfg=119
+highlight SignifySignDelete gui=bold guifg=#e47574 cterm=bold ctermfg=167
+highlight SignifySignChange gui=bold guifg=#fffb87 cterm=bold ctermfg=227
 
 " WinResizer plugin configuration
 let g:winresizer_keycode_left  = "\<Left>"
