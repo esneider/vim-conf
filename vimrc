@@ -41,7 +41,7 @@ Bundle 'scrooloose/syntastic'
 " Show undo tree (,u)
 Bundle 'sjl/gundo.vim'
 
-" Show file tags list like variables, etc (,l)
+" Show file tags list like variables, etc (,b)
 Bundle 'majutsushi/tagbar'
 
 " Pretty status bar
@@ -89,8 +89,8 @@ Bundle 'mhinz/vim-signify'
 " Window resizing (,w)
 Bundle 'jimsei/winresizer'
 
-" Automatic time tracking
-Bundle 'wakatime/vim-wakatime'
+" Location and quickfix toggle (,l ,q)
+Bundle 'milkypostman/vim-togglelist'
 
 " }}}
 
@@ -454,53 +454,56 @@ cnoremap <C-A> <Home>
 " Change mapleader
 let mapleader=","
 
-" Open the NERDTree Plugin
-nnoremap <silent> <Leader>n :NERDTreeTabsToggle<CR>
-
-" Open the Tagbar Plugin
-nnoremap <silent> <Leader>l :TagbarToggle<CR>
-
-" Open the Gundo Plugin
-nnoremap <silent> <Leader>u :GundoToggle<CR>
-
-" Check syntax with Syntastic plugin
-nnoremap <silent> <Leader>s :w<CR>:SyntasticCheck<CR>
-
-" Open the Syntastic plugin errors list
-nnoremap <silent> <Leader>e :lopen<CR>
-
-" Edit vimrc in a new tab
-nnoremap <silent> <Leader>v :tabnew<CR>:edit $MYVIMRC<CR>
-
-" Jump to next diff conflict marker
-nnoremap <silent> <Leader>c /^\(<\\|=\\|>\)\{7\}\([^=].\+\)\?$<CR>
-
-" Open the PSearch plugin
-nnoremap <silent> <Leader>f :PSearch<CR>
-
-" Switch between source and header file with FSwitch plugin
-nnoremap <silent> <Leader>h :FSHere<CR>
-
-" Find in files, with Ack plugin
+" Find in files, with [A]ck plugin
 nnoremap <Leader>a :Ack!<Space>""<Left>
 
-" Find in files the word under the cursor, with Ack plugin
+" Find in files the word under the cursor, with [A]ck plugin
 nnoremap <Leader>A :Ack!<Space>"<C-R><C-W>"<CR>
 
-" Toggle repo diff signs
+" Open the Tag[b]ar Plugin
+nnoremap <silent> <Leader>b :TagbarToggle<CR>
+
+" Jump to next diff [c]onflict marker
+nnoremap <silent> <Leader>c /^\(<\\|=\\|>\)\{7\}\([^=].\+\)\?$<CR>
+
+" Toggle repo [d]iff signs
 nnoremap <silent> <Leader>d :SignifyToggle<CR>
 
-" Open the CtrlP-Funky extension
+" Open the PSearch plugin ([f]ind)
+nnoremap <silent> <Leader>f :PSearch<CR>
+
+" Switch between source and [h]eader file with FSwitch plugin
+nnoremap <silent> <Leader>h :FSHere<CR>
+
+" <Leader>l Toggles the [l]ocation-list (togglelist plugin)
+
+" Open the CtrlP-Funky extension ([m]ethod)
 nnoremap <silent> <Leader>m :CtrlPFunky<CR>
 
-" Open the CtrlP-Funky extension with the word under the cursor
+" Open the CtrlP-Funky extension with the word under the cursor ([m]ethod)
 nnoremap <silent> <Leader>M :CtrlPFunky <C-R><C-W><CR>
 
-" Open the WinResizer plugin
-nnoremap <silent> <Leader>w :WinResizerStartResize<CR>
+" Open the [N]ERDTree Plugin
+nnoremap <silent> <Leader>n :NERDTreeTabsToggle<CR>
 
-" Open the CtrlP-Tag extension
+" <Leader>o [O]pens files (CtrlP plugin)
+
+" <Leader>q Toggles the [q]uickfix-list (togglelist plugin)
+
+" Check syntax with [S]yntastic plugin
+nnoremap <silent> <Leader>s :w<CR>:SyntasticCheck<CR>
+
+" Open the CtrlP-[T]ag extension
 nnoremap <silent> <Leader>t :CtrlPTag<CR>
+
+" Open the G[u]ndo Plugin
+nnoremap <silent> <Leader>u :GundoToggle<CR>
+
+" Edit [v]imrc in a new tab
+nnoremap <silent> <Leader>v :tabnew<CR>:edit $MYVIMRC<CR>
+
+" Open the [W]inResizer plugin
+nnoremap <silent> <Leader>w :WinResizerStartResize<CR>
 
 " }}}
 
@@ -532,6 +535,7 @@ let g:gundo_right = 1
 let g:syntastic_loc_list_height = 5
 let g:syntastic_error_symbol = '✗'
 let g:syntastic_warning_symbol = '⚠'
+let g:syntastic_always_populate_loc_list = 1
 let g:syntastic_mode_map = {'mode': 'passive'}
 
 " Powerline plugin configuration
