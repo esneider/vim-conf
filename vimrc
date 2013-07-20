@@ -589,6 +589,8 @@ let g:neocomplcache_omni_patterns.python = ''
 let g:signify_update_on_bufenter = 0
 let g:signify_disable_by_default = 1
 let g:signify_vcs_list = ['git', 'svn']
+let g:signify_sign_change = '~'
+let g:signify_sign_delete = '-'
 
 highlight SignifySignAdd    gui=bold guifg=#8dfa81 cterm=bold ctermfg=119
 highlight SignifySignDelete gui=bold guifg=#e47574 cterm=bold ctermfg=167
