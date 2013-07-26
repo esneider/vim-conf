@@ -92,6 +92,12 @@ Bundle 'jimsei/winresizer'
 " Location and quickfix toggle (,l ,q)
 Bundle 'milkypostman/vim-togglelist'
 
+" Clang completion for C and C++
+Bundle 'Rip-Rip/clang_complete'
+
+" Python goodies
+Bundle 'klen/python-mode'
+
 " }}}
 
 """""""""""""""
@@ -576,14 +582,20 @@ let g:neocomplcache_enable_underbar_completion = 1
 let g:neocomplcache_enable_wildcard = 0
 let g:neocomplcache_enable_insert_char_pre = 1
 let g:neocomplcache_min_syntax_length = 3
-let g:neocomplcache_max_list = 7
-let g:neocomplcache_omni_patterns = {}
-let g:neocomplcache_omni_patterns.php  = '[^. \t]->\h\w*\|\h\w*::'
-let g:neocomplcache_omni_patterns.perl = '\h\w*->\h\w*\|\h\w*::'
-let g:neocomplcache_omni_patterns.c    = '[^.[:digit:] *\t]\%(\.\|->\)'
-let g:neocomplcache_omni_patterns.cpp  = '[^.[:digit:] *\t]\%(\.\|->\)\|\h\w*::'
-let g:neocomplcache_omni_patterns.ruby = '[^. *\t]\.\h\w*\|\h\w*::'
-let g:neocomplcache_omni_patterns.python = ''
+let g:neocomplcache_max_list = 10
+let g:neocomplcache_force_omni_patterns = {}
+let g:neocomplcache_force_omni_patterns.php  = '[^. \t]->\h\w*\|\h\w*::'
+let g:neocomplcache_force_omni_patterns.perl = '\h\w*->\h\w*\|\h\w*::'
+let g:neocomplcache_force_omni_patterns.c    = '[^.[:digit:] *\t]\%(\.\|->\)'
+let g:neocomplcache_force_omni_patterns.cpp  = '[^.[:digit:] *\t]\%(\.\|->\)\|\h\w*::'
+let g:neocomplcache_force_omni_patterns.ruby = '[^. *\t]\.\h\w*\|\h\w*::'
+let g:neocomplcache_force_omni_patterns.python = ''
+let g:neocomplcache_force_overwrite_completefunc = 1
+
+let g:clang_complete_auto = 0
+let g:clang_auto_select = 0
+let g:clang_use_library = 1
+
 
 " Signify plugin configuration
 let g:signify_update_on_bufenter = 0
