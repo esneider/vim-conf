@@ -117,6 +117,9 @@ autocmd BufReadPost * if line("'\"") <= line("$") | exe "normal! g`\"" | endif
 " Check for file changes after 'updatetime' milliseconds of cursor hold
 autocmd CursorHold * checktime
 
+" Focus NERDTree when opening vim with a folder
+autocmd VimEnter * if isdirectory(expand('<amatch>')) | NERDTreeFocus | endif
+
 " }}}
 
 """""""""""""""""""
@@ -522,9 +525,16 @@ nnoremap <silent> <Leader>w :WinResizerStartResize<CR>
 let NERDTreeDirArrows = 1
 let NERDTreeWinSize = 25
 let NERDTreeIgnore = ['\.svn', '\.git', '\.o$', '\~$', '\.swp$', '\.pyc$', '\.class$', '\.dSYM$']
+let NERDTreeHijackNetrw = 0
 
 " NERDTreeTabs plugin configuration
 let g:nerdtree_tabs_open_on_console_startup = 1
+
+" Disable netrw plugin
+let g:loaded_netrw = 1
+let g:loaded_netrwPlugin = 1
+let g:loaded_netrwFileHandlers = 1
+let g:loaded_netrwSettings = 1
 
 " Taglist plugin configuration
 let g:tagbar_compact = 1
