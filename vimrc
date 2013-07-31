@@ -117,7 +117,7 @@ autocmd BufReadPost * if line("'\"") <= line("$") | exe "normal! g`\"" | endif
 " Check for file changes after 'updatetime' milliseconds of cursor hold
 autocmd CursorHold * checktime
 
-" Focus NERDTree when opening vim with a folder
+" Focus NERDTree when opening vim in a folder
 autocmd VimEnter * if isdirectory(expand('<amatch>')) | NERDTreeFocus | endif
 
 " }}}
@@ -139,8 +139,8 @@ autocmd FileType ruby setlocal tabstop=2 softtabstop=2 shiftwidth=2 iskeyword+=!
 " Use tabs in makefiles
 autocmd FileType make setlocal noexpandtab
 
-" Spell check in commits
-autocmd FileType gitcommit,svn setlocal spell
+" Spell check in commits, markdown and text files
+autocmd FileType gitcommit,svn,asciidoc,markdown setlocal spell
 
 " }}}
 
