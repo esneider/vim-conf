@@ -497,6 +497,9 @@ nnoremap <silent> <Leader>n :NERDTreeTabsToggle<CR>
 
 " <Leader>o [O]pens files (CtrlP plugin)
 
+" Toggle s[p]ell chequing
+nnoremap <silent> <Leader>p :setlocal spell!<CR>
+
 " <Leader>q Toggles the [q]uickfix-list (togglelist plugin)
 
 " Check syntax with [S]yntastic plugin
@@ -602,10 +605,10 @@ let g:neocomplcache_force_omni_patterns.ruby = '[^. *\t]\.\h\w*\|\h\w*::'
 let g:neocomplcache_force_omni_patterns.python = ''
 let g:neocomplcache_force_overwrite_completefunc = 1
 
+" Clang_complete plugin configuration
 let g:clang_complete_auto = 0
 let g:clang_auto_select = 0
 let g:clang_use_library = 1
-
 
 " Signify plugin configuration
 let g:signify_update_on_bufenter = 0
