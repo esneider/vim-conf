@@ -3,7 +3,7 @@
 """""""""""""""""
 
 
-" Necesary for lots of cool vim things
+" Necessary for lots of cool vim things
 set nocompatible
 
 " Required for vundle
@@ -23,7 +23,7 @@ Bundle 'gmarik/vundle'
 " Add surround modifier to vim (s)
 Bundle 'tpope/vim-surround'
 
-" Suport repeat of surround actions
+" Support repeat of surround actions
 Bundle 'tpope/vim-repeat'
 
 " % matches complex opening/closing entities
@@ -41,7 +41,7 @@ Bundle 'scrooloose/syntastic'
 " Show undo tree (,u)
 Bundle 'sjl/gundo.vim'
 
-" Show file tags list like variables, etc (,b)
+" Show file tags list like variables, etc. (,b)
 Bundle 'majutsushi/tagbar'
 
 " Pretty status bar
@@ -179,7 +179,7 @@ set vb t_vb=
 " Fold text when markers {{{ and }}} are found
 set foldmethod=marker
 
-" Update after 1 second of no activity (check for external file change, etc)
+" Update after 1 second of no activity (check for external file change, etc.)
 set updatetime=1000
 
 " Don't bother with swap files
@@ -203,7 +203,7 @@ set diffopt+=iwhite
 """"""""""""""""""""""""""""
 
 
-" Comand line completion stuff
+" Command line completion stuff
 set wildmenu
 set wildmode=list:longest,full
 set wildignore=.svn,.git,*.o,*~,*.swp,*.pyc,*.class,*.dSYM
@@ -229,7 +229,7 @@ set gdefault
 " Set flags for grep command
 set grepprg=grep\ -nH\ $*\ /dev/null
 
-" Syntax completion by highligh rules for unsupported filetypes
+" Syntax completion by highlight rules for unsupported filetypes
 set omnifunc=syntaxcomplete#Complete
 
 " }}}
@@ -239,10 +239,10 @@ set omnifunc=syntaxcomplete#Complete
 """"""""""""""
 
 
-" Enable autoindenting on new lines
+" Enable auto indenting on new lines
 set autoindent
 
-" Copy the indent structure when autoindenting
+" Copy the indent structure when auto indenting
 set copyindent
 
 " Use spaces instead of tabs (and be smart on newlines)
@@ -281,10 +281,10 @@ set noequalalways
 " Put new vertical splits to the right/below of the current one
 set splitright splitbelow
 
-" Display as much as possibe of a window's last line
+" Display as much as possible of a window's last line
 set display+=lastline
 
-" Remove comment leaders when joining lines
+" Handle comments when joining lines
 if v:version > 703 || (v:version == 703 && has('patch541'))
     set formatoptions+=j
 endif
@@ -368,7 +368,7 @@ highlight clear Conceal
 """"""""""""""
 
 
-" Map backspace key to dismiss search highlightedness
+" Map backspace key to dismiss search highlighting
 nnoremap <silent> <BS> :nohlsearch<CR>
 
 " Turn off Vim’s regex characters and make searches use normal regexes
@@ -412,7 +412,7 @@ vnoremap // :TCommentMaybeInline<CR>
 vnoremap < <gv
 vnoremap > >gv
 
-" Autocomplete next/prev with <Tab>/<S-Tab>
+" Auto complete next/prev with <Tab>/<S-Tab>
 inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
 inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<Tab>"
 
@@ -499,7 +499,7 @@ nnoremap <silent> <Leader>n :NERDTreeTabsToggle<CR>
 
 " <Leader>o [O]pens files (CtrlP plugin)
 
-" Toggle s[p]ell chequing
+" Toggle s[p]ell checking
 nnoremap <silent> <Leader>p :setlocal spell!<CR>
 
 " <Leader>q Toggles the [q]uickfix-list (togglelist plugin)
