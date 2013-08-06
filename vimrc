@@ -285,7 +285,9 @@ set splitright splitbelow
 set display+=lastline
 
 " Remove comment leaders when joining lines
-set formatoptions+=j
+if v:version > 702 || (v:version == 702 && has('patch31'))
+    set formatoptions+=j
+endif
 
 " Use system clipboard as default register
 set clipboard=unnamed,unnamedplus
