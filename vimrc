@@ -285,7 +285,7 @@ set splitright splitbelow
 set display+=lastline
 
 " Remove comment leaders when joining lines
-if v:version > 702 || (v:version == 702 && has('patch31'))
+if v:version > 703 || (v:version == 703 && has('patch541'))
     set formatoptions+=j
 endif
 
