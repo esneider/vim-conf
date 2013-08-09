@@ -69,7 +69,7 @@ fi
 
 # Check for internet connection (for github)
 
-progress "Checking internet conection"
+progress "Checking internet connection"
 
 if ! run_silent "ping -w 5000 -c 1 github.com" &&
    ! run_silent "ping -W 5000 -c 1 github.com"
@@ -94,7 +94,7 @@ then
     run_silent "mv ~/.vimrc.bak ~/.vimrc"
     run_silent "mv ~/.vim.bak ~/.vim"
 
-    error "you may not have internet connection, or github may be down, try later"
+    error "you don't have an internet connection or github may be down, try later"
 fi
 
 # Install
@@ -134,7 +134,7 @@ elif exists "wget" && wget -nv -O "${EXTRAS_PATH}/ack.pl" "${ACK_URL}"
 then
     chmod 0755 "${EXTRAS_PATH}/ack.pl"
 else
-    warn "can't get ack, proceding anyway"
+    warn "can't get ack, proceeding anyway"
 fi
 
 # Install extras
@@ -143,18 +143,18 @@ progress "Installing fonts"
 
 if ! git clone "${FONTS_URL}" "${EXTRAS_PATH}/fonts" 2> /dev/null
 then
-    warn "can't get fonts, proceding anyway"
+    warn "can't get fonts, proceeding anyway"
 fi
 
 progress "Installing automatic git ctags"
 
 if ! git clone "${GITCTAGS_URL}" "${EXTRAS_PATH}/gitctags" 2> /dev/null
 then
-    warn "can't get git ctags, proceding anyway"
+    warn "can't get git ctags, proceeding anyway"
 
 elif ! run_silent "${EXTRAS_PATH}/gitctags/setup.sh"
 then
-    warn "error installing git ctags, proceding anyway"
+    warn "error installing git ctags, proceeding anyway"
 fi
 
 # Check plugin dependencies
