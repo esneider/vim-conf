@@ -1,6 +1,6 @@
-"""""""""""""""""
-" Vundle commands {{{
-"""""""""""""""""
+"""""""""
+" Plugins {{{
+"""""""""
 
 
 " Necessary for lots of cool vim things
@@ -348,18 +348,27 @@ set background=dark
 " Set color scheme
 silent! colorscheme kellys
 
-" Highlight functions and namespaces
-highlight Function  guifg=#afdfdf ctermfg=152
-highlight Namespace guifg=#a8a8a8 ctermfg=248
-
 " Don't try to highlight lines longer than 500 characters
 set synmaxcol=500
 
 " Enable text concealment (mainly for latex)
 set conceallevel=2
 
-" Highlight concealed text
-highlight clear Conceal
+" }}}
+
+""""""""""""""
+" Highlighting {{{
+""""""""""""""
+
+
+" Highlight functions and namespaces (simlight plugin)
+highlight Function  guifg=#afdfdf ctermfg=152
+highlight Namespace guifg=#a8a8a8 ctermfg=248
+
+" Highlight gutter diff signs (signify plugin)
+highlight SignifySignAdd    gui=bold guifg=#8dfa81 cterm=bold ctermfg=119
+highlight SignifySignDelete gui=bold guifg=#e47574 cterm=bold ctermfg=167
+highlight SignifySignChange gui=bold guifg=#fffb87 cterm=bold ctermfg=227
 
 " }}}
 
@@ -521,9 +530,9 @@ nnoremap <silent> <Leader>w :WinResizerStartResize<CR>
 
 " }}}
 
-""""""""""""""""
-" Plugins config {{{
-""""""""""""""""
+"""""""""""""""
+" Plugin config {{{
+"""""""""""""""
 
 
 " NERDTree plugin configuration
@@ -617,10 +626,6 @@ let g:signify_update_on_bufenter = 0
 let g:signify_disable_by_default = 1
 let g:signify_vcs_list = ['git', 'svn']
 let g:signify_sign_change = '~'
-
-highlight SignifySignAdd    gui=bold guifg=#8dfa81 cterm=bold ctermfg=119
-highlight SignifySignDelete gui=bold guifg=#e47574 cterm=bold ctermfg=167
-highlight SignifySignChange gui=bold guifg=#fffb87 cterm=bold ctermfg=227
 
 " WinResizer plugin configuration
 let g:winresizer_keycode_left  = "\<Left>"
