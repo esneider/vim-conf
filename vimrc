@@ -53,8 +53,8 @@ Bundle 'esneider/simlight.vim'
 " Window and tab navigation (Alt-Arrow Alt-Shift-Arrow)
 Bundle 'esneider/waltz.vim'
 
-" Colorscheme
-Bundle 'vim-scripts/kellys'
+" Colorschemes
+Bundle 'flazz/vim-colorschemes'
 
 " Fuzzy file finder (,o)
 Bundle 'kien/ctrlp.vim'
