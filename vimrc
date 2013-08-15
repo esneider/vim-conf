@@ -323,9 +323,6 @@ set scrolloff=5
 " Try to change the terminal title
 set title
 
-" Highlight matching parent
-highlight MatchParen ctermbg=4
-
 " Highlight diff conflict markers
 match ErrorMsg '^\(<\|=\|>\)\{7\}\([^=].\+\)\?$'
 
