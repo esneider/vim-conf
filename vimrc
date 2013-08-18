@@ -108,8 +108,8 @@ Bundle 'klen/python-mode'
 " Remove any trailing whitespace
 autocmd BufRead,BufWrite * if ! &bin | silent! %s/\s\+$//ge | endif
 
-" Highlight characters after column 80
-autocmd BufWinEnter * let w:m2 = matchadd('CursorLine', '\%81v\s*\zs\S\+', -1)
+" Highlight first word after column 79
+autocmd BufWinEnter * let w:m2 = matchadd('CursorLine', '\%80v\s*\zs\S\+', -1)
 
 " Restore cursor position to where it was before closing
 autocmd BufReadPost * if line("'\"") <= line("$") | exe "normal! g`\"" | endif
@@ -362,10 +362,21 @@ set conceallevel=2
 highlight Function  guifg=#afdfdf ctermfg=152
 highlight Namespace guifg=#a8a8a8 ctermfg=248
 
+" Color notifications
+highlight NotifyGreen  gui=bold guifg=#8dfa81 cterm=bold ctermfg=119
+highlight NotifyRed    gui=bold guifg=#e47574 cterm=bold ctermfg=167
+highlight NotifyYellow gui=bold guifg=#fffb87 cterm=bold ctermfg=227
+
 " Highlight gutter diff signs (signify plugin)
-highlight SignifySignAdd    gui=bold guifg=#8dfa81 cterm=bold ctermfg=119
-highlight SignifySignDelete gui=bold guifg=#e47574 cterm=bold ctermfg=167
-highlight SignifySignChange gui=bold guifg=#fffb87 cterm=bold ctermfg=227
+highlight link SignifySignAdd    NotifyGreen
+highlight link SignifySignDelete NotifyRed
+highlight link SignifySignChange NotifyYellow
+
+" Highlight gutter compilation errors (syntastic plugin)
+highlight link SyntasticErrorSign        NotifyRed
+highlight link SyntasticWarningSign      NotifyYellow
+highlight link SyntasticStyleErrorSign   NotifyRed
+highlight link SyntasticStyleWarningSign NotifyYellow
 
 " }}}
 
