@@ -98,6 +98,9 @@ Bundle 'Rip-Rip/clang_complete'
 " Python goodies
 Bundle 'klen/python-mode'
 
+" Latex compilation
+Bundle 'TeX-PDF'
+
 " }}}
 
 """""""""""""""
@@ -536,6 +539,9 @@ nnoremap <silent> <Leader>v :tabnew<CR>:edit $MYVIMRC<CR>
 " Open the [W]inResizer plugin
 nnoremap <silent> <Leader>w :WinResizerStartResize<CR>
 
+" Build and view a late[x] file
+nnoremap <silent> <Leader>x :BuildAndViewTexPdf<CR>:redraw!<CR>
+
 " }}}
 
 """""""""""""""
@@ -596,6 +602,9 @@ let doxygen_javadoc_autobrief = 0
 " Tex syntax configuration
 let g:tex_flavor = 'latex'
 let g:tex_conceal = 'adgm'
+
+" TeX-PDF plugin configuration
+let g:tex_pdf_map_keys = 0
 
 " PSearch plugin configuration
 let g:pse_max_height = 20
