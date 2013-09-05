@@ -26,7 +26,7 @@ Bundle 'tpope/vim-surround'
 " Support repeat of surround actions
 Bundle 'tpope/vim-repeat'
 
-" Git utils (,g + [b]lame [c]ommit [e]dit [g]ithub [m]ove [r]emove [s]tatus)
+" Git utils (,g + [c]ommit [g]ithub [m]ove [r]emove [s]tatus)
 Bundle 'tpope/vim-fugitive'
 
 " % matches complex opening/closing entities
@@ -65,7 +65,7 @@ Bundle 'kien/ctrlp.vim'
 " Fuzzy function/method finder (,m ,M)
 Bundle 'tacahiroy/ctrlp-funky'
 
-" More interactive find (,f)
+" More interactive find (,f ,F)
 Bundle 'gcmt/psearch.vim'
 
 " Switch between source and header file (,h)
@@ -485,10 +485,10 @@ cnoremap <C-A> <Home>
 " Change mapleader
 let mapleader=","
 
-" Find in files, with [A]ck plugin
+" Find in files, with the [A]ck plugin
 nnoremap <Leader>a :Ack!<Space>""<Left>
 
-" Find in files the word under the cursor, with [A]ck plugin
+" Find in files the word under the cursor, with the [A]ck plugin
 nnoremap <Leader>A :Ack!<Space>"<C-R><C-W>"<CR>
 
 " Open the Tag[b]ar Plugin
@@ -500,34 +500,31 @@ nnoremap <silent> <Leader>c /^\(<\\|=\\|>\)\{7\}\([^=].\+\)\?$<CR>
 " Toggle repo [d]iff signs
 nnoremap <silent> <Leader>d :SignifyToggle<CR>
 
-" Open the PSearch plugin ([f]ind)
+" [F]ind in current file
 nnoremap <silent> <Leader>f :PSearch<CR>
 
-" [G]it [b]lame using the fugitive plugin
-nnoremap <silent> <Leader>gb :Gblame<CR>
+" [F]ind in current file the word under the cursor
+nnoremap <silent> <Leader>F :PSearchw<CR>
 
-" [G]it [c]ommit using the fugitive plugin
-nnoremap <silent> <Leader>gc :Gcommit<CR>
+" [G]it [c]ommit
+nnoremap <silent> <Leader>gc :Gcommit -a<CR>
 
-" [G]it [e]dit using the fugitive plugin
-nnoremap <silent> <Leader>ge :Gedit<CR>
-
-" Open [G]it file in [g]ithub using the fugitive plugin
+" Open [G]it-tracked file in [g]ithub
 nnoremap <silent> <Leader>gg :Gbrowse<CR>
 
-" [G]it [m]ove using the fugitive plugin
+" [G]it [m]ove
 nnoremap <Leader>gm :Gmove<Space>
 
-" [G]it [r]emove using the fugitive plugin
+" [G]it [r]emove
 nnoremap <silent> <Leader>gr :Gremove<CR>
 
-" [G]it [s]tatus using the fugitive plugin
+" [G]it [s]tatus
 nnoremap <silent> <Leader>gs :Gstatus<CR>
 
-" Switch between source and [h]eader file with FSwitch plugin
+" Switch between source and [h]eader file
 nnoremap <silent> <Leader>h :FSHere<CR>
 
-" <Leader>l Toggles the [l]ocation-list (togglelist plugin)
+" <Leader>l Toggles the [l]ocation-list
 
 " Open the CtrlP-Funky extension ([m]ethod)
 nnoremap <silent> <Leader>m :CtrlPFunky<CR>
@@ -538,14 +535,14 @@ nnoremap <silent> <Leader>M :CtrlPFunky <C-R><C-W><CR>
 " Open the [N]ERDTree Plugin
 nnoremap <silent> <Leader>n :NERDTreeTabsToggle<CR>
 
-" <Leader>o [O]pens files (CtrlP plugin)
+" <Leader>o [O]pens files
 
 " Toggle s[p]ell checking
 nnoremap <silent> <Leader>p :setlocal spell!<CR>
 
-" <Leader>q Toggles the [q]uickfix-list (togglelist plugin)
+" <Leader>q Toggles the [q]uickfix-list
 
-" Check syntax with [S]yntastic plugin
+" Check [s]yntax
 nnoremap <silent> <Leader>s :w<CR>:SyntasticCheck<CR>
 
 " Open the CtrlP-[T]ag extension
