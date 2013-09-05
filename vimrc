@@ -10,9 +10,6 @@ set nocompatible
 filetype on
 filetype off
 
-" Avoid SSL certificate problems
-let $GIT_SSL_NO_VERIFY = 'true'
-
 " Call vundle
 set rtp+=~/.vim/bundle/vundle/
 call vundle#rc()
@@ -26,7 +23,7 @@ Bundle 'tpope/vim-surround'
 " Support repeat of surround actions
 Bundle 'tpope/vim-repeat'
 
-" Git utils (,g + [c]ommit [g]ithub [m]ove [r]emove [s]tatus)
+" Git utils (,g + [c]ommit git[h]ub [m]ove [r]emove [s]tatus)
 Bundle 'tpope/vim-fugitive'
 
 " % matches complex opening/closing entities
@@ -509,8 +506,8 @@ nnoremap <silent> <Leader>F :PSearchw<CR>
 " [G]it [c]ommit
 nnoremap <silent> <Leader>gc :Gcommit -a<CR>
 
-" Open [G]it-tracked file in [g]ithub
-nnoremap <silent> <Leader>gg :Gbrowse<CR>
+" Open file in [g]it[h]ub
+nnoremap <silent> <Leader>gh :Gbrowse<CR>
 
 " [G]it [m]ove
 nnoremap <Leader>gm :Gmove<Space>
@@ -657,6 +654,7 @@ let g:clang_auto_select = 0
 let g:clang_use_library = 1
 
 " Signify plugin configuration
+let g:signify_leader_mappings = 0
 let g:signify_update_on_bufenter = 0
 let g:signify_disable_by_default = 1
 let g:signify_vcs_list = ['git', 'svn']
