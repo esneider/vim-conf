@@ -26,6 +26,9 @@ Bundle 'tpope/vim-surround'
 " Support repeat of surround actions
 Bundle 'tpope/vim-repeat'
 
+" Git utils (,g + [b]lame [c]ommit [e]dit [g]ithub [m]ove [r]emove [s]tatus)
+Bundle 'tpope/vim-fugitive'
+
 " % matches complex opening/closing entities
 Bundle 'tsaleh/vim-matchit'
 
@@ -502,6 +505,27 @@ nnoremap <silent> <Leader>d :SignifyToggle<CR>
 
 " Open the PSearch plugin ([f]ind)
 nnoremap <silent> <Leader>f :PSearch<CR>
+
+" [G]it [b]lame using the fugitive plugin
+nnoremap <silent> <Leader>gb :Gblame<CR>
+
+" [G]it [c]ommit using the fugitive plugin
+nnoremap <silent> <Leader>gc :Gcommit<CR>
+
+" [G]it [e]dit using the fugitive plugin
+nnoremap <silent> <Leader>ge :Gedit<CR>
+
+" Open [G]it file in [g]ithub using the fugitive plugin
+nnoremap <silent> <Leader>gg :Gbrowse<CR>
+
+" [G]it [m]ove using the fugitive plugin
+nnoremap <Leader>gm :Gmove<Space>
+
+" [G]it [r]emove using the fugitive plugin
+nnoremap <silent> <Leader>gr :Gremove<CR>
+
+" [G]it [s]tatus using the fugitive plugin
+nnoremap <silent> <Leader>gs :Gstatus<CR>
 
 " Switch between source and [h]eader file with FSwitch plugin
 nnoremap <silent> <Leader>h :FSHere<CR>
