@@ -101,7 +101,7 @@ Bundle 'Rip-Rip/clang_complete'
 " Python goodies
 Bundle 'klen/python-mode'
 
-" Latex compilation
+" Latex compilation (,x)
 Bundle 'TeX-PDF'
 
 " }}}
@@ -199,7 +199,7 @@ endif
 " Ctags index directories
 set tags=.git/tags;$HOME,.svn/tags;$HOME,tags;$HOME
 
-" Ignore whitespace in diff mode and show 3 lines around each diff
+" Ignore whitespace in diff mode
 set diffopt+=iwhite
 
 " }}}
@@ -245,11 +245,8 @@ set omnifunc=syntaxcomplete#Complete
 """"""""""""""
 
 
-" Enable auto indenting on new lines
-set autoindent
-
-" Copy the indent structure when auto indenting
-set copyindent
+" Enable auto indenting on new lines (and be smart on newlines)
+set autoindent smartindent copyindent
 
 " Use spaces instead of tabs (and be smart on newlines)
 set expandtab smarttab
