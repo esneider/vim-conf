@@ -506,6 +506,9 @@ nnoremap <silent> <Leader>F :PSearchw<CR>
 " [G]it [c]ommit
 nnoremap <silent> <Leader>gc :Gcommit -a<CR>
 
+" [G]it command
+nnoremap <Leader>gg :Git<Space>
+
 " Open file in [g]it[h]ub
 nnoremap <silent> <Leader>gh :Gbrowse<CR>
 
@@ -654,7 +657,6 @@ let g:clang_auto_select = 0
 let g:clang_use_library = 1
 
 " Signify plugin configuration
-let g:signify_leader_mappings = 0
 let g:signify_update_on_bufenter = 0
 let g:signify_disable_by_default = 1
 let g:signify_vcs_list = ['git', 'svn']
