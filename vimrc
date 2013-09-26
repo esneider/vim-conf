@@ -101,6 +101,9 @@ Bundle 'klen/python-mode'
 " Latex compilation (,x)
 Bundle 'TeX-PDF'
 
+" HTML5 syntax
+Bundle 'othree/html5.vim'
+
 " }}}
 
 """""""""""""""
