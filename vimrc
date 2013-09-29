@@ -329,9 +329,6 @@ set scrolloff=5
 " Try to change the terminal title
 set title
 
-" Highlight diff conflict markers
-match ErrorMsg '^\(<\|=\|>\)\{7\}\([^=].\+\)\?$'
-
 " Highlight the line that the cursor is on
 set cursorline
 
@@ -383,6 +380,9 @@ highlight link SyntasticErrorSign        NotifyRed
 highlight link SyntasticWarningSign      NotifyYellow
 highlight link SyntasticStyleErrorSign   NotifyRed
 highlight link SyntasticStyleWarningSign NotifyYellow
+
+" Highlight diff conflict markers
+match Todo '^\(<\|=\|>\)\{7\}\([^=].\+\)\?$'
 
 " }}}
 
