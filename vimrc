@@ -436,8 +436,9 @@ vnoremap < <gv
 vnoremap > >gv
 
 " Auto complete next/prev with <Tab>/<S-Tab>
-inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
+inoremap <expr> <Tab>   pumvisible() ? "\<C-n>" : "\<Tab>"
 inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
+inoremap <expr> `       pumvisible() ? "\<C-e>" : "`"
 
 " Don't yank (to the default register) when pasting in visual mode
 vnoremap p "_dP
