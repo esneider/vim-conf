@@ -504,6 +504,9 @@ nnoremap <silent> <Leader>c /^\(<\\|=\\|>\)\{7\}\([^=].\+\)\?$<CR>
 " Toggle repo [d]iff signs
 nnoremap <silent> <Leader>d :SignifyToggle<CR>
 
+" Toggle the file [e]xplorer
+nnoremap <silent> <Leader>e :NERDTreeTabsToggle<CR>
+
 " [F]ind in current file
 nnoremap <silent> <Leader>f :PSearch<CR>
 
@@ -538,9 +541,6 @@ nnoremap <silent> <Leader>m :CtrlPFunky<CR>
 
 " Open the CtrlP-Funky extension with the word under the cursor ([m]ethod)
 nnoremap <silent> <Leader>M :CtrlPFunky <C-R><C-W><CR>
-
-" Open the [N]ERDTree Plugin
-nnoremap <silent> <Leader>n :NERDTreeTabsToggle<CR>
 
 " <Leader>o [O]pens files
 
