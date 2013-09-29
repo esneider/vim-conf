@@ -287,6 +287,9 @@ set splitright splitbelow
 " Display as much as possible of a window's last line
 set display+=lastline
 
+" Use only one space after '.' when joining lines, instead of two
+set nojoinspaces
+
 " Handle comments when joining lines
 if v:version > 703 || (v:version == 703 && has('patch541'))
     set formatoptions+=j
