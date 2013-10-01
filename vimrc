@@ -17,26 +17,14 @@ call vundle#rc()
 " Manage plugins (github repos)
 Bundle 'gmarik/vundle'
 
-" Add surround modifier to vim (s)
-Bundle 'tpope/vim-surround'
+" Components
+  """"""""""
 
-" Support repeat of surround actions
-Bundle 'tpope/vim-repeat'
-
-" Git utils (,g + [c]ommit git[h]ub [m]ove [r]emove [s]tatus)
-Bundle 'tpope/vim-fugitive'
-
-" % matches complex opening/closing entities
-Bundle 'tsaleh/vim-matchit'
-
-" Toggle comments (//)
-Bundle 'tomtom/tcomment_vim'
-
-" File browser (,n)
+" File explorer (,e)
 Bundle 'scrooloose/nerdtree'
 
-" Syntax checker (,s)
-Bundle 'scrooloose/syntastic'
+" Make NERDTree more awesome
+Bundle 'jistr/vim-nerdtree-tabs'
 
 " Show undo tree (,u)
 Bundle 'sjl/gundo.vim'
@@ -47,32 +35,29 @@ Bundle 'majutsushi/tagbar'
 " Pretty status bar
 Bundle 'bling/vim-airline'
 
-" Function and namespace highlighting
-Bundle 'esneider/simlight.vim'
-
-" Window and tab navigation (Alt-Arrow Alt-Shift-Arrow)
-Bundle 'esneider/waltz.vim'
-
-" Colorschemes
-Bundle 'flazz/vim-colorschemes'
-
 " Fuzzy file finder (,o)
 Bundle 'kien/ctrlp.vim'
 
 " Fuzzy function/method finder (,m ,M)
 Bundle 'tacahiroy/ctrlp-funky'
 
-" More interactive find (,f ,F)
+" Find in file with preview (,f ,F)
 Bundle 'gcmt/psearch.vim'
 
-" Switch between source and header file (,h)
-Bundle 'derekwyatt/vim-fswitch'
+" Commands
+  """"""""
 
-" Make NERDTree more awesome
-Bundle 'jistr/vim-nerdtree-tabs'
+" Add surround modifier to vim (s)
+Bundle 'tpope/vim-surround'
 
-" Ack search (,a ,A)
-Bundle 'mileszs/ack.vim'
+" Support repeat of surround actions
+Bundle 'tpope/vim-repeat'
+
+" % matches complex opening/closing entities
+Bundle 'tsaleh/vim-matchit'
+
+" Toggle comments (//)
+Bundle 'tomtom/tcomment_vim'
 
 " Automatic completion (select with tab)
 Bundle 'Shougo/neocomplcache'
@@ -83,26 +68,56 @@ Bundle 'terryma/vim-expand-region'
 " Multiple cursors (next: Ctrl-P, prev: Ctrl-N, skip: Ctrl-X)
 Bundle 'terryma/vim-multiple-cursors'
 
-" Show repo diff signs (,d)
-Bundle 'mhinz/vim-signify'
-
 " Window resizing (,w)
 Bundle 'jimsei/winresizer'
+
+" Window and tab navigation (Alt-Arrow Alt-Shift-Arrow)
+Bundle 'esneider/waltz.vim'
 
 " Location and quickfix toggle (,l ,q)
 Bundle 'milkypostman/vim-togglelist'
 
+" External tools
+  """"""""""""""
+
+" Syntax checker (,s)
+Bundle 'scrooloose/syntastic'
+
+" Ack search (,a ,A)
+Bundle 'mileszs/ack.vim'
+
+" Git utils (,g + [c]ommit git[h]ub [m]ove [r]emove [s]tatus)
+Bundle 'tpope/vim-fugitive'
+
+" Show repo diff signs (,d)
+Bundle 'mhinz/vim-signify'
+
+" Language specific
+  """""""""""""""""
+
 " Clang completion for C and C++
 Bundle 'Rip-Rip/clang_complete'
+
+" Switch between source and header file (,h)
+Bundle 'derekwyatt/vim-fswitch'
 
 " Python goodies
 Bundle 'klen/python-mode'
 
+" HTML5 syntax
+Bundle 'othree/html5.vim'
+
 " Latex compilation (,x)
 Bundle 'TeX-PDF'
 
-" HTML5 syntax
-Bundle 'othree/html5.vim'
+" Colors
+  """"""
+
+" Colorschemes
+Bundle 'flazz/vim-colorschemes'
+
+" Function and namespace highlighting
+Bundle 'esneider/simlight.vim'
 
 " }}}
 
