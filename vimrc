@@ -134,7 +134,7 @@ autocmd BufWinEnter * let w:m2 = matchadd('CursorLine', '\%80v\s*\zs\S\+', -1)
 autocmd BufReadPost * if line("'\"") <= line("$") | exe "normal! g`\"" | endif
 
 " Check for file changes after 'updatetime' milliseconds of cursor hold
-autocmd CursorHold * checktime
+autocmd CursorHold * silent! checktime
 
 " Focus NERDTree when opening vim in a folder
 autocmd VimEnter * if isdirectory(expand('<amatch>')) | NERDTreeFocus | endif
