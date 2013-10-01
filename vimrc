@@ -2,7 +2,6 @@
 " Plugins {{{
 """""""""
 
-
 " Necessary for lots of cool vim things
 set nocompatible
 
@@ -125,7 +124,6 @@ Bundle 'esneider/simlight.vim'
 " Auto commands {{{
 """""""""""""""
 
-
 " Remove any trailing whitespace
 autocmd BufRead,BufWrite * if ! &bin | silent! %s/\s\+$//ge | endif
 
@@ -147,7 +145,6 @@ autocmd VimEnter * if isdirectory(expand('<amatch>')) | NERDTreeFocus | endif
 " Filetype commands {{{
 """""""""""""""""""
 
-
 " Ruby filetype detection
 autocmd BufRead,BufNewFile Gemfile,Capfile,config.ru setfiletype ruby
 
@@ -168,7 +165,6 @@ autocmd FileType gitcommit,svn,asciidoc,markdown setlocal spell
 """"""""""""""""
 " General config {{{
 """"""""""""""""
-
 
 " Enable file type specific behaviour
 filetype plugin indent on
@@ -223,7 +219,6 @@ set diffopt+=iwhite
 " Complete and search config {{{
 """"""""""""""""""""""""""""
 
-
 " Command line completion stuff
 set wildmenu
 set wildmode=list:longest,full
@@ -258,7 +253,6 @@ set omnifunc=syntaxcomplete#Complete
 """"""""""""""
 " Input config {{{
 """"""""""""""
-
 
 " Enable auto indenting on new lines (and be smart on newlines)
 set autoindent smartindent copyindent
@@ -325,7 +319,6 @@ set nrformats=alpha,hex
 " Style config {{{
 """"""""""""""
 
-
 " Enable syntax highlighting
 syntax enable
 
@@ -375,7 +368,6 @@ set conceallevel=2
 " Highlighting {{{
 """"""""""""""
 
-
 " Highlight functions and namespaces (simlight plugin)
 highlight Function  guifg=#afdfdf ctermfg=152
 highlight Namespace guifg=#a8a8a8 ctermfg=248
@@ -404,7 +396,6 @@ match Todo '^\(<\|=\|>\)\{7\}\([^=].\+\)\?$'
 """"""""""""""
 " Key mappings {{{
 """"""""""""""
-
 
 " Map backspace key to dismiss search highlighting
 nnoremap <silent> <BS> :nohlsearch<CR>
@@ -481,7 +472,6 @@ nnoremap ` '
 " Command mappings {{{
 """"""""""""""""""
 
-
 " Some typo corrections
 command! -bang WQ wq<bang>
 command! -bang Wq wq<bang>
@@ -499,7 +489,6 @@ cnoremap <C-A> <Home>
 """""""""""""""""
 " Leader mappings {{{
 """""""""""""""""
-
 
 " Change mapleader
 let mapleader=","
@@ -587,7 +576,6 @@ nnoremap <silent> <Leader>x :BuildAndViewTexPdf<CR>:redraw!<CR>
 """""""""""""""
 " Plugin config {{{
 """""""""""""""
-
 
 " NERDTree plugin configuration
 let NERDTreeDirArrows = 1
