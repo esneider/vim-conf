@@ -27,7 +27,7 @@ Bundle 'scrooloose/nerdtree'
 Bundle 'jistr/vim-nerdtree-tabs'
 
 " Show undo tree (,u)
-Bundle 'sjl/gundo.vim'
+Bundle 'mbbill/undotree'
 
 " Show file tags list like variables, etc. (,b)
 Bundle 'majutsushi/tagbar'
@@ -570,8 +570,8 @@ nnoremap <silent> <Leader>s :w<CR>:SyntasticCheck<CR>
 " Open the CtrlP-[T]ag extension
 nnoremap <silent> <Leader>t :CtrlPTag<CR>
 
-" Open the G[u]ndo Plugin
-nnoremap <silent> <Leader>u :GundoToggle<CR>
+" Open the [U]ndotree Plugin
+nnoremap <silent> <Leader>u :UndotreeToggle<CR>
 
 " Edit [v]imrc in a new tab
 nnoremap <silent> <Leader>v :tabnew<CR>:edit $MYVIMRC<CR>
