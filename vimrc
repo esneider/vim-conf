@@ -585,8 +585,7 @@ nnoremap <silent> <Leader>u :GundoToggle<CR>
 " Edit [v]imrc in a new tab
 nnoremap <silent> <Leader>v :tabnew<CR>:edit $MYVIMRC<CR>
 
-" Open the [W]inResizer plugin
-nnoremap <silent> <Leader>w :WinResizerStartResize<CR>
+" <Leader>w Opens the [W]inResizer plugin
 
 " Build and view a late[x] file
 nnoremap <silent> <Leader>x :BuildAndViewTexPdf<CR>:redraw!<CR>
@@ -693,6 +692,7 @@ let g:neocomplcache_force_overwrite_completefunc = 1
 let g:clang_complete_auto = 0
 let g:clang_auto_select = 0
 let g:clang_use_library = 1
+let g:clang_jumpto_back_key = '<Plug>'
 
 " Signify plugin configuration
 let g:signify_update_on_bufenter = 0
@@ -701,6 +701,7 @@ let g:signify_vcs_list = ['git', 'svn']
 let g:signify_sign_change = '~'
 
 " WinResizer plugin configuration
+let g:winresizer_start_key = '<Leader>w'
 let g:winresizer_keycode_left  = "\<Left>"
 let g:winresizer_keycode_down  = "\<Down>"
 let g:winresizer_keycode_up    = "\<Up>"
