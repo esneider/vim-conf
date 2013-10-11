@@ -101,7 +101,7 @@ Bundle 'Rip-Rip/clang_complete'
 Bundle 'derekwyatt/vim-fswitch'
 
 " Python goodies
-Bundle 'klen/python-mode'
+" Bundle 'klen/python-mode'
 
 " HTML5 syntax
 Bundle 'othree/html5.vim'
