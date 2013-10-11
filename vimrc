@@ -413,8 +413,8 @@ nnoremap Q gqap
 " Up and down are more logical with g
 nnoremap <silent> k gk
 nnoremap <silent> j gj
-inoremap <silent> <Up> <C-o>gk
-inoremap <silent> <Down> <C-o>gj
+inoremap <silent> <Up> <C-\><C-o>gk
+inoremap <silent> <Down> <C-\><C-o>gj
 
 " Toggle folds with space
 nnoremap <Space> za
@@ -456,7 +456,7 @@ vnoremap <silent> # yq?p<CR>
 
 " New tab (Ctrl-T)
 nnoremap <silent> <C-t> :tabnew<CR>
-inoremap <silent> <C-t> <C-o>:tabnew<CR>
+inoremap <silent> <C-t> <C-\><C-o>:tabnew<CR>
 
 " Move to and from tag definition with Ctrl-Shift-{Right,Left}
 nnoremap <silent> <C-S-Right> g<C-]>
@@ -464,19 +464,19 @@ nnoremap <silent> <C-S-Left> <C-T>
 
 " Move through windows with Alt-{Up,Right,Down,Left}
 nnoremap <silent> <Plug><A-Up> :wincmd k<CR>
-inoremap <silent> <Plug><A-Up> <C-o>:wincmd k<CR>
+inoremap <silent> <Plug><A-Up> <C-\><C-o>:wincmd k<CR>
 nnoremap <silent> <Plug><A-Down> :wincmd j<CR>
-inoremap <silent> <Plug><A-Down> <C-o>:wincmd j<CR>
+inoremap <silent> <Plug><A-Down> <C-\><C-o>:wincmd j<CR>
 nnoremap <silent> <Plug><A-Left> :wincmd h<CR>
-inoremap <silent> <Plug><A-Left> <C-o>:wincmd h<CR>
+inoremap <silent> <Plug><A-Left> <C-\><C-o>:wincmd h<CR>
 nnoremap <silent> <Plug><A-Right> :wincmd l<CR>
-inoremap <silent> <Plug><A-Right> <C-o>:wincmd l<CR>
+inoremap <silent> <Plug><A-Right> <C-\><C-o>:wincmd l<CR>
 
 " Move through tabs with Alt-Shift-{Right,Left}
 nnoremap <silent> <Plug><A-S-Right> :tabnext<CR>
-inoremap <silent> <Plug><A-S-Right> <C-o>:tabnext<CR>
+inoremap <silent> <Plug><A-S-Right> <C-\><C-o>:tabnext<CR>
 nnoremap <silent> <Plug><A-S-Left> :tabprevious<CR>
-inoremap <silent> <Plug><A-S-Left> <C-o>:tabprevious<CR>
+inoremap <silent> <Plug><A-S-Left> <C-\><C-o>:tabprevious<CR>
 
 " make ' jump to saved line & column rather than just line
 nnoremap ' `
