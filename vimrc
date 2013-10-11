@@ -478,9 +478,13 @@ inoremap <silent> <Plug><A-S-Right> <C-\><C-o>:tabnext<CR>
 nnoremap <silent> <Plug><A-S-Left> :tabprevious<CR>
 inoremap <silent> <Plug><A-S-Left> <C-\><C-o>:tabprevious<CR>
 
-" make ' jump to saved line & column rather than just line
+" Make ' jump to saved line & column rather than just line
 nnoremap ' `
 nnoremap ` '
+
+" disable the MiddleMouse button
+nnoremap <MiddleMouse> <Nop>
+inoremap <MiddleMouse> <Nop>
 
 " }}}
 
