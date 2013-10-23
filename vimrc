@@ -25,6 +25,7 @@ Bundle 'scrooloose/nerdtree'
 " Make NERDTree more awesome
 Bundle 'jistr/vim-nerdtree-tabs'
 
+
 " Show undo tree (,u)
 Bundle 'sjl/gundo.vim'
 
@@ -39,6 +40,9 @@ Bundle 'kien/ctrlp.vim'
 
 " Fuzzy function/method finder (,m ,M)
 Bundle 'tacahiroy/ctrlp-funky'
+
+" Vim recipe finder (,r)
+" Bundle 'esneider/ctrlp-how.vim'
 
 " Find in file with preview (,f ,F)
 Bundle 'gcmt/psearch.vim'
@@ -572,6 +576,8 @@ nnoremap <silent> <Leader>M :CtrlPFunky <C-R><C-W><CR>
 nnoremap <silent> <Leader>p :setlocal spell!<CR>
 
 " <Leader>q Toggles the [q]uickfix-list
+
+nnoremap <silent> <Leader>r :CtrlPHow<CR>
 
 " Check [s]yntax
 nnoremap <silent> <Leader>s :w<CR>:SyntasticCheck<CR>
