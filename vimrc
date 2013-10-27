@@ -25,7 +25,6 @@ Bundle 'scrooloose/nerdtree'
 " Make NERDTree more awesome
 Bundle 'jistr/vim-nerdtree-tabs'
 
-
 " Show undo tree (,u)
 Bundle 'sjl/gundo.vim'
 
@@ -42,7 +41,7 @@ Bundle 'kien/ctrlp.vim'
 Bundle 'tacahiroy/ctrlp-funky'
 
 " Vim recipe finder (,r)
-" Bundle 'esneider/ctrlp-how.vim'
+Bundle 'esneider/ctrlp-recipes.vim'
 
 " Find in file with preview (,f ,F)
 Bundle 'gcmt/psearch.vim'
@@ -577,7 +576,7 @@ nnoremap <silent> <Leader>p :setlocal spell!<CR>
 
 " <Leader>q Toggles the [q]uickfix-list
 
-nnoremap <silent> <Leader>r :CtrlPHow<CR>
+nnoremap <silent> <Leader>r :CtrlPRecipes<CR>
 
 " Check [s]yntax
 nnoremap <silent> <Leader>s :w<CR>:SyntasticCheck<CR>
@@ -714,4 +713,3 @@ let g:winresizer_keycode_up    = "\<Up>"
 let g:winresizer_keycode_right = "\<Right>"
 
 " }}}
-
