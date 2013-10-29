@@ -380,6 +380,9 @@ highlight NotifyGreen  gui=bold guifg=#8dfa81 cterm=bold ctermfg=119
 highlight NotifyRed    gui=bold guifg=#e47574 cterm=bold ctermfg=167
 highlight NotifyYellow gui=bold guifg=#fffb87 cterm=bold ctermfg=227
 
+" Hide tildes (~) in place of line numbers after EOF
+highlight NonText ctermfg=bg guifg=bg
+
 " Highlight gutter diff signs (signify plugin)
 highlight link SignifySignAdd    NotifyGreen
 highlight link SignifySignDelete NotifyRed
