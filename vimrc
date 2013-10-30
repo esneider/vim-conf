@@ -112,6 +112,9 @@ Bundle 'othree/html5.vim'
 " Latex compilation (,x)
 Bundle 'TeX-PDF'
 
+" CoffeeScript stuff
+Bundle 'kchmck/vim-coffee-script'
+
 " Colors
   """"""
 
@@ -153,6 +156,9 @@ autocmd BufRead,BufNewFile Gemfile,Capfile,config.ru setfiletype ruby
 
 " Markdown filetype detection
 autocmd BufRead,BufNewFile *.md setfiletype markdown
+
+" Markdown filetype detection
+autocmd BufRead,BufNewFile *.json setfiletype javascript
 
 " Use 2 spaces for indent in ruby, and allow !, ? in keywords
 autocmd FileType ruby setlocal tabstop=2 softtabstop=2 shiftwidth=2 iskeyword+=!,?
