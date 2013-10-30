@@ -722,3 +722,30 @@ let g:winresizer_keycode_up    = "\<Up>"
 let g:winresizer_keycode_right = "\<Right>"
 
 " }}}
+
+"""""""""""
+" Temporary {{{
+"""""""""""
+
+let g:colorscheme_paths = [
+\ 'busierbee', 'bvemu', 'candyman', 'devbox-dark-256', 'hornet', 'jellybeans',
+\ 'kellys', 'kolor', 'molokai', 'mustang', 'obsidian', 'smyck', 'symfony',
+\ 'up', 'wombat256', 'wombat256mod', 'xoria256'
+\ ]
+
+let g:colorscheme_name = match(g:colorscheme_paths, g:colors_name)
+
+function! Colors(num)
+    let g:colorscheme_name = (g:colorscheme_name + a:num) % len(g:colorscheme_paths)
+    set t_Co=256
+    set background=dark
+    execute 'silent! colorscheme ' . g:colorscheme_paths[g:colorscheme_name]
+    silent! highlight NonText ctermfg=bg ctermbg=bg guifg=bg
+    silent! highlight CursorLine term=NONE cterm=NONE ctermfg=NONE guifg=NONE
+endf
+
+nnoremap <silent> <Leader>, :call Colors(+1)<CR>
+nnoremap <silent> <Leader>. :call Colors(-1)<CR>
+nnoremap <silent> <Leader>/ :call remove(g:colorscheme_paths, g:colorscheme_name)<CR>:call Colors(0)<CR>
+
+" }}}
