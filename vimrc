@@ -387,7 +387,7 @@ highlight NotifyRed    gui=bold guifg=#e47574 cterm=bold ctermfg=167
 highlight NotifyYellow gui=bold guifg=#fffb87 cterm=bold ctermfg=227
 
 " Hide tildes (~) in place of line numbers after EOF
-highlight NonText ctermfg=bg guifg=bg
+silent! highlight NonText ctermfg=bg guifg=bg
 
 " Highlight gutter diff signs (signify plugin)
 highlight link SignifySignAdd    NotifyGreen
@@ -733,7 +733,7 @@ let g:colorscheme_paths = [
 \ 'up', 'wombat256', 'wombat256mod', 'xoria256'
 \ ]
 
-let g:colorscheme_name = match(g:colorscheme_paths, g:colors_name)
+let g:colorscheme_name = match(g:colorscheme_paths, 'kellys')
 
 function! Colors(num)
     let g:colorscheme_name = (g:colorscheme_name + a:num) % len(g:colorscheme_paths)
