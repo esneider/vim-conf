@@ -41,7 +41,7 @@ Bundle 'kien/ctrlp.vim'
 Bundle 'tacahiroy/ctrlp-funky'
 
 " Vim recipe finder (,r)
-Bundle 'esneider/ctrlp-recipes.vim'
+Bundle 'esneider/recipes.vim'
 
 " Find in file with preview (,f ,F)
 Bundle 'gcmt/psearch.vim'
@@ -551,6 +551,9 @@ nnoremap <silent> <Leader>F :PSearchw<CR>
 
 " [G]it [c]ommit
 nnoremap <silent> <Leader>gc :Gcommit -a<CR>
+
+" [G]it [d]iff
+nnoremap <silent> <Leader>gd :Git diff --color<CR>
 
 " [G]it command
 nnoremap <Leader>gg :Git<Space>
