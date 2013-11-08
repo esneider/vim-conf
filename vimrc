@@ -555,6 +555,9 @@ nnoremap <silent> <Leader>gc :Gcommit -a<CR>
 " [G]it [d]iff
 nnoremap <silent> <Leader>gd :Git diff --color<CR>
 
+" [G]it [d]iff staged files
+nnoremap <silent> <Leader>gD :Git diff --color --cached<CR>
+
 " [G]it command
 nnoremap <Leader>gg :Git<Space>
 
