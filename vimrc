@@ -248,7 +248,7 @@ set incsearch
 " Highlight things that we find with the search
 set hlsearch
 
-" search/replace globally (on a line) by default
+" Search/replace globally (on a line) by default
 set gdefault
 
 " Set flags for grep command
@@ -466,6 +466,9 @@ vnoremap P "_dP
 vnoremap <silent> * yq/p<CR>
 vnoremap <silent> # yq?p<CR>
 
+" Repeat last action for each line in the visual selection
+vnoremap . :normal .<CR>
+
 " New tab (Ctrl-T)
 nnoremap <silent> <C-t> :tabnew<CR>
 inoremap <silent> <C-t> <C-\><C-o>:tabnew<CR>
@@ -494,7 +497,7 @@ inoremap <silent> <Plug><A-S-Left> <C-\><C-o>:tabprevious<CR>
 nnoremap ' `
 nnoremap ` '
 
-" disable the MiddleMouse button
+" Disable the MiddleMouse button
 nnoremap <MiddleMouse> <Nop>
 inoremap <MiddleMouse> <Nop>
 
@@ -591,6 +594,7 @@ nnoremap <silent> <Leader>p :setlocal spell!<CR>
 
 " <Leader>q Toggles the [q]uickfix-list
 
+" Open the [r]ecipe browser
 nnoremap <silent> <Leader>r :CtrlPRecipes<CR>
 
 " Check [s]yntax
