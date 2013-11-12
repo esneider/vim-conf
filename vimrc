@@ -570,6 +570,9 @@ nnoremap <silent> <Leader>gh :Gbrowse<CR>
 " [G]it [m]ove
 nnoremap <Leader>gm :Gmove<Space>
 
+" [G]it [p]ush
+nnoremap <Leader>gp :Git push<CR>
+
 " [G]it [r]emove
 nnoremap <silent> <Leader>gr :Gremove<CR>
 
