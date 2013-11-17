@@ -628,6 +628,7 @@ let NERDTreeDirArrows = 1
 let NERDTreeWinSize = 25
 let NERDTreeIgnore = ['\.svn', '\.git', '\.o$', '\~$', '\.swp$', '\.pyc$', '\.class$', '\.dSYM$']
 let NERDTreeHijackNetrw = 0
+let g:NERDTreeMapCWD = 'ccd'
 
 " NERDTreeTabs plugin configuration
 let g:nerdtree_tabs_open_on_console_startup = 1
