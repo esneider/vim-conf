@@ -531,7 +531,7 @@ cnoremap <C-A> <Home>
 let mapleader=","
 
 " Open last file
-nnoremap <Leader><Leader> <C-^>
+nnoremap <silent> <Leader><Leader> <C-^>
 
 " Open the Tag[b]ar Plugin
 nnoremap <silent> <Leader>b :TagbarToggle<CR>
@@ -549,7 +549,7 @@ nnoremap <silent> <Leader>e :NERDTreeTabsToggle<CR>
 nnoremap <Leader>f :Ack!<Space>""<Left>
 
 " [F]ind in files the word under the cursor
-nnoremap <Leader>F :Ack!<Space>"<C-R><C-W>"<CR>
+nnoremap <silent> <Leader>F :Ack!<Space>"<C-R><C-W>"<CR>
 
 " [G]it [c]ommit
 nnoremap <silent> <Leader>gc :Gcommit -a<CR>
@@ -576,7 +576,7 @@ nnoremap <silent> <Leader>gL :Git log --oneline --decorate --graph --color -p<CR
 nnoremap <Leader>gm :Gmove<Space>
 
 " [G]it [p]ush
-nnoremap <Leader>gp :Git push<CR>
+nnoremap <silent> <Leader>gp :Git push<CR>
 
 " [G]it [r]emove
 nnoremap <silent> <Leader>gr :Gremove<CR>
