@@ -530,10 +530,10 @@ let mapleader=","
 nnoremap <silent> <Leader><Leader> <C-^>
 
 " Toggle comments of current line
-nnoremap <Leader>/ :let w:tcommentPos = getpos(".")<CR>:set opfunc=tcomment#OperatorLine<CR>g@$
+nnoremap <silent> <Leader>/ :let w:tcommentPos = getpos(".")<CR>:set opfunc=tcomment#OperatorLine<CR>g@$
 
 " Toggle comments of selection
-vnoremap <Leader>/ :TCommentMaybeInline<CR>
+vnoremap <silent> <Leader>/ :TCommentMaybeInline<CR>
 
 " Open the Tag[b]ar Plugin
 nnoremap <silent> <Leader>b :TagbarToggle<CR>
