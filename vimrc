@@ -447,10 +447,6 @@ nnoremap Y y$
 nnoremap <silent> & :&&<CR>
 xnoremap <silent> & :&&<CR>
 
-" Toggle comments (tComment plugin)
-nnoremap // :let w:tcommentPos = getpos(".")<CR>:set opfunc=tcomment#OperatorLine<CR>g@$
-vnoremap // :TCommentMaybeInline<CR>
-
 " Remain in visual mode after '<' or '>'
 vnoremap < <gv
 vnoremap > >gv
@@ -532,6 +528,12 @@ let mapleader=","
 
 " Open last file
 nnoremap <silent> <Leader><Leader> <C-^>
+
+" Toggle comments of current line
+nnoremap <Leader>/ :let w:tcommentPos = getpos(".")<CR>:set opfunc=tcomment#OperatorLine<CR>g@$
+
+" Toggle comments of selection
+vnoremap <Leader>/ :TCommentMaybeInline<CR>
 
 " Open the Tag[b]ar Plugin
 nnoremap <silent> <Leader>b :TagbarToggle<CR>
@@ -687,7 +689,6 @@ let g:ctrlp_map = '<Leader>o'
 let g:ctrlp_max_height = 15
 let g:ctrlp_switch_buffer = 'et'
 let g:ctrlp_clear_cache_on_exit = 0
-let g:ctrlp_extensions = ['tag', 'funky']
 
 " Doxygen syntax configuration (javadoc highlighting for C, C++, C# files)
 let g:load_doxygen_syntax = 1
