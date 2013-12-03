@@ -566,6 +566,12 @@ nnoremap <Leader>gg :Git<Space>
 " Open file in [g]it[h]ub
 nnoremap <silent> <Leader>gh :Gbrowse<CR>
 
+" [G]it [l]og
+nnoremap <silent> <Leader>gl :Git log --oneline --decorate --graph --color<CR>
+
+" [G]it [l]og with diffs
+nnoremap <silent> <Leader>gL :Git log --oneline --decorate --graph --color -p<CR>
+
 " [G]it [m]ove
 nnoremap <Leader>gm :Gmove<Space>
 
