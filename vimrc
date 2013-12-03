@@ -421,8 +421,8 @@ nnoremap ? ?\v
 vnoremap ? ?\v
 
 " Disable Ex mode and use Q for formatting the current paragraph (or selection)
-vnoremap Q gq
-nnoremap Q gqap
+vnoremap <silent> Q gq
+nnoremap <silent> Q gqap
 
 " Up and down are more logical with g
 nnoremap <silent> k gk
@@ -431,25 +431,25 @@ inoremap <silent> <Up> <C-\><C-o>gk
 inoremap <silent> <Down> <C-\><C-o>gj
 
 " Toggle folds with space
-nnoremap <Space> za
+nnoremap <silent> <Space> za
 
 " Center on the matching line when moving through search results
-noremap N Nzz
-noremap n nzz
+noremap <silent> N Nzz
+noremap <silent> n nzz
 
 " Remap jj to escape in insert mode
 inoremap jj <Esc>
 
 " Make Y consistent with C and D
-nnoremap Y y$
+nnoremap <silent> Y y$
 
 " Repeat the last substitution
 nnoremap <silent> & :&&<CR>
 xnoremap <silent> & :&&<CR>
 
 " Remain in visual mode after '<' or '>'
-vnoremap < <gv
-vnoremap > >gv
+vnoremap <silent> < <gv
+vnoremap <silent> > >gv
 
 " Auto complete next/prev with <Tab>/<S-Tab>
 inoremap <expr> <Tab>   pumvisible() ? "\<C-n>" : "\<Tab>"
@@ -457,15 +457,15 @@ inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
 inoremap <expr> `       pumvisible() ? "\<C-e>" : "`"
 
 " Don't yank (to the default register) when pasting in visual mode
-vnoremap p "_dP
-vnoremap P "_dP
+vnoremap <silent> p "_dP
+vnoremap <silent> P "_dP
 
 " Make * and # work with visual selection
 vnoremap <silent> * yq/p<CR>
 vnoremap <silent> # yq?p<CR>
 
 " Repeat last action for each line in the visual selection
-vnoremap . :normal .<CR>
+vnoremap <silent> . :normal .<CR>
 
 " New tab (Ctrl-T)
 nnoremap <silent> <C-t> :tabnew<CR>
