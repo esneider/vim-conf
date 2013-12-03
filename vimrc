@@ -587,6 +587,12 @@ nnoremap <silent> <Leader>gs :Gstatus<CR>
 " Switch between source and [h]eader file
 nnoremap <silent> <Leader>h :FSHere<CR>
 
+" Switch to next [k]olorscheme
+nnoremap <silent> <Leader>k :call Kolors(+1)<CR>
+
+" Switch to previous [k]olorscheme
+nnoremap <silent> <Leader>K :call Kolors(-1)<CR>
+
 " <Leader>l Toggles the [l]ocation-list
 
 " Open the CtrlP-Funky extension ([m]ethod)
@@ -737,28 +743,22 @@ let g:winresizer_keycode_right = "\<Right>"
 " }}}
 
 """""""""""
-" Temporary {{{
+" Functions {{{
 """""""""""
 
-let g:colorscheme_paths = [
-\ 'busierbee', 'bvemu', 'candyman', 'devbox-dark-256', 'hornet', 'jellybeans',
-\ 'kellys', 'kolor', 'molokai', 'mustang', 'obsidian', 'smyck', 'symfony',
-\ 'up', 'wombat256', 'wombat256mod', 'xoria256'
+let g:kolors_paths = [
+\ 'jellybeans', 'kellys', 'molokai', 'mustang', 'smyck', 'symfony',
+\ 'wombat256mod', 'xoria256'
 \ ]
 
-let g:colorscheme_name = match(g:colorscheme_paths, 'kellys')
-
-function! Colors(num)
-    let g:colorscheme_name = (g:colorscheme_name + a:num) % len(g:colorscheme_paths)
+function! Kolors(num)
+    let pos = get(g:, 'kolors_pos', match(g:kolors_paths, g:colors_name))
+    let g:kolors_pos = (pos + a:num) % len(g:kolors_paths)
     set t_Co=256
     set background=dark
-    execute 'silent! colorscheme ' . g:colorscheme_paths[g:colorscheme_name]
+    execute 'colorscheme ' . g:kolors_paths[g:kolors_pos]
     silent! highlight NonText ctermfg=bg ctermbg=bg guifg=bg
     silent! highlight CursorLine term=NONE cterm=NONE ctermfg=NONE guifg=NONE
 endf
-
-nnoremap <silent> <Leader>, :call Colors(+1)<CR>
-nnoremap <silent> <Leader>. :call Colors(-1)<CR>
-nnoremap <silent> <Leader>/ :call remove(g:colorscheme_paths, g:colorscheme_name)<CR>:call Colors(0)<CR>
 
 " }}}
