@@ -43,9 +43,6 @@ Bundle 'tacahiroy/ctrlp-funky'
 " Vim recipe finder (,r)
 Bundle 'esneider/recipes.vim'
 
-" Find in file with preview (,f ,F)
-Bundle 'gcmt/psearch.vim'
-
 " Commands
   """"""""
 
@@ -533,11 +530,8 @@ cnoremap <C-A> <Home>
 " Change mapleader
 let mapleader=","
 
-" Find in files, with the [A]ck plugin
-nnoremap <Leader>a :Ack!<Space>""<Left>
-
-" Find in files the word under the cursor, with the [A]ck plugin
-nnoremap <Leader>A :Ack!<Space>"<C-R><C-W>"<CR>
+" Open last file
+nnoremap <Leader><Leader> <C-^>
 
 " Open the Tag[b]ar Plugin
 nnoremap <silent> <Leader>b :TagbarToggle<CR>
@@ -551,11 +545,11 @@ nnoremap <silent> <Leader>d :SignifyToggle<CR>
 " Toggle the file [e]xplorer
 nnoremap <silent> <Leader>e :NERDTreeTabsToggle<CR>
 
-" [F]ind in current file
-nnoremap <silent> <Leader>f :PSearch<CR>
+" [F]ind in files
+nnoremap <Leader>f :Ack!<Space>""<Left>
 
-" [F]ind in current file the word under the cursor
-nnoremap <silent> <Leader>F :PSearchw<CR>
+" [F]ind in files the word under the cursor
+nnoremap <Leader>F :Ack!<Space>"<C-R><C-W>"<CR>
 
 " [G]it [c]ommit
 nnoremap <silent> <Leader>gc :Gcommit -a<CR>
@@ -693,12 +687,6 @@ let g:tex_conceal = 'adgm'
 
 " TeX-PDF plugin configuration
 let g:tex_pdf_map_keys = 0
-
-" PSearch plugin configuration
-let g:pse_max_height = 20
-
-" SwapWindows function
-let g:windowToSwap = -1
 
 " Ack plugin configuration
 let g:ackprg = "~/.vim/.extra/ack.pl -H --nocolor --nogroup --column"
