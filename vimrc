@@ -389,7 +389,8 @@ highlight NotifyRed    gui=bold guifg=#e47574 cterm=bold ctermfg=167
 highlight NotifyYellow gui=bold guifg=#fffb87 cterm=bold ctermfg=227
 
 " Hide tildes (~) in place of line numbers after EOF
-silent! highlight NonText ctermfg=bg guifg=bg
+silent! highlight NonText guifg=bg guibg=bg
+silent! highlight NonText ctermfg=bg ctermbg=bg
 
 " Highlight gutter diff signs (signify plugin)
 highlight link SignifySignAdd    NotifyGreen
@@ -748,18 +749,19 @@ let g:winresizer_keycode_right = "\<Right>"
 """""""""""
 
 let g:kolors_paths = [
-\ 'jellybeans', 'kellys', 'molokai', 'mustang', 'smyck', 'symfony',
-\ 'wombat256mod', 'xoria256'
+\ 'jellybeans', 'kellys', 'molokai', 'mustang', 'smyck', 'wombat256mod', 'xoria256'
 \ ]
 
 function! Kolors(num)
-    let pos = get(g:, 'kolors_pos', match(g:kolors_paths, g:colors_name))
-    let g:kolors_pos = (pos + a:num) % len(g:kolors_paths)
-    set t_Co=256
-    set background=dark
+
+    let kolors_pos = get(g:, 'kolors_pos', match(g:kolors_paths, g:colors_name))
+    let g:kolors_pos = (kolors_pos + a:num) % len(g:kolors_paths)
+
     execute 'colorscheme ' . g:kolors_paths[g:kolors_pos]
-    silent! highlight NonText ctermfg=bg ctermbg=bg guifg=bg
-    silent! highlight CursorLine term=NONE cterm=NONE ctermfg=NONE guifg=NONE
+
+    silent! highlight NonText guifg=bg guibg=bg
+    silent! highlight NonText ctermfg=bg ctermbg=bg
+    silent! highlight CursorLine term=NONE cterm=NONE
 endf
 
 " }}}
