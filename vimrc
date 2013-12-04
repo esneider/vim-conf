@@ -41,21 +41,21 @@ Bundle 'kien/ctrlp.vim'
 Bundle 'tacahiroy/ctrlp-funky'
 
 " Vim recipe finder (,r)
-Bundle 'esneider/recipes.vim'
+Bundle 'esneider/vim-recipes'
 
 " Commands
   """"""""
 
-" Add surround modifier to vim (s)
+" Add surround modifier to vim (s noun)
 Bundle 'tpope/vim-surround'
 
-" Support repeat of surround actions
+" Support repeating surround actions
 Bundle 'tpope/vim-repeat'
 
 " % matches complex opening/closing entities
 Bundle 'tsaleh/vim-matchit'
 
-" Toggle comments (//)
+" Toggle comments (,/)
 Bundle 'tomtom/tcomment_vim'
 
 " Automatic completion (select with tab)
@@ -64,7 +64,7 @@ Bundle 'Shougo/neocomplcache'
 " Select regions in visual mode (+ and _)
 Bundle 'terryma/vim-expand-region'
 
-" Multiple cursors (next: Ctrl-P, prev: Ctrl-N, skip: Ctrl-X)
+" Multiple cursors (next: Ctrl-N, prev: Ctrl-P, skip: Ctrl-X)
 Bundle 'terryma/vim-multiple-cursors'
 
 " Window resizing (,w)
@@ -82,10 +82,10 @@ Bundle 'milkypostman/vim-togglelist'
 " Syntax checker (,s)
 Bundle 'scrooloose/syntastic'
 
-" Ack search (,a ,A)
+" Ack search (,f ,F)
 Bundle 'mileszs/ack.vim'
 
-" Git utils (,g + [c]ommit git[h]ub [m]ove [r]emove [s]tatus)
+" Git utils (,g + [c]ommit [d]iff git[h]ub [l]og [m]ove [r]emove [s]tatus)
 Bundle 'tpope/vim-fugitive'
 
 " Show repo diff signs (,d)
@@ -115,7 +115,7 @@ Bundle 'kchmck/vim-coffee-script'
 " Colors
   """"""
 
-" Colorschemes
+" Lots of colorschemes
 Bundle 'flazz/vim-colorschemes'
 
 " Function and namespace highlighting
