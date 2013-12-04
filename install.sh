@@ -6,7 +6,7 @@ EXTRAS_PATH="${HOME}/.vim/.extra"
 
 VUNDLE_URL="https://github.com/gmarik/vundle.git"
 
-ACK_URL="http://beyondgrep.com/ack-2.04-single-file"
+ACK_URL="http://beyondgrep.com/ack-2.10-single-file"
 
 FONTS_URL="https://github.com/Lokaltog/powerline-fonts.git"
 
