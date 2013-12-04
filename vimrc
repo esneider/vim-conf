@@ -31,9 +31,6 @@ Bundle 'sjl/gundo.vim'
 " Show file tags list like variables, etc. (,b)
 Bundle 'majutsushi/tagbar'
 
-" Pretty status bar
-Bundle 'bling/vim-airline'
-
 " Fuzzy file finder (,o)
 Bundle 'kien/ctrlp.vim'
 
@@ -112,8 +109,11 @@ Bundle 'TeX-PDF'
 " CoffeeScript stuff
 Bundle 'kchmck/vim-coffee-script'
 
-" Colors
-  """"""
+" Style
+  """""
+
+" Pretty status bar
+Bundle 'bling/vim-airline'
 
 " Lots of colorschemes
 Bundle 'flazz/vim-colorschemes'
@@ -154,10 +154,10 @@ autocmd BufRead,BufNewFile Gemfile,Capfile,config.ru setfiletype ruby
 " Markdown filetype detection
 autocmd BufRead,BufNewFile *.md setfiletype markdown
 
-" Markdown filetype detection
+" Json filetype detection
 autocmd BufRead,BufNewFile *.json setfiletype javascript
 
-" Use 2 spaces for indent in ruby, and allow !, ? in keywords
+" Use 2 spaces for indent in ruby, and allow ! and ? in keywords
 autocmd FileType ruby setlocal tabstop=2 softtabstop=2 shiftwidth=2 iskeyword+=!,?
 
 " Use tabs in makefiles
