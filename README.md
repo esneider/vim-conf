@@ -16,4 +16,5 @@ git clone https://github.com/esneider/vim-conf.git
 * curl / wget
 * perl
 * libclang
-* jshint, etc: syntastic syntax chequers
+* jshint, etc: [syntastic](https://github.com/scrooloose/syntastic) syntax
+  checkers
