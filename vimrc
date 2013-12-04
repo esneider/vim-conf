@@ -85,7 +85,7 @@ Bundle 'scrooloose/syntastic'
 " Ack search (,f ,F)
 Bundle 'mileszs/ack.vim'
 
-" Git utils (,g + [c]ommit [d]iff git[h]ub [l]og [m]ove [r]emove [s]tatus)
+" Git utils (,g + [c]ommit [d]iff git[h]ub [l]og [m]ove [p]ush [r]emove [s]tatus)
 Bundle 'tpope/vim-fugitive'
 
 " Show repo diff signs (,d)
@@ -275,7 +275,7 @@ set backspace=2
 " Enable mouse support in console
 set mouse=a
 
-" Don’t reset cursor to start of line when moving around
+" Don't reset cursor to start of line when moving around
 set nostartofline
 
 " Shift plus movement keys changes selection
@@ -404,7 +404,7 @@ highlight link SyntasticStyleErrorSign   NotifyRed
 highlight link SyntasticStyleWarningSign NotifyYellow
 
 " Highlight diff conflict markers
-match Todo '^\(<\|=\|>\)\{7\}\([^=].\+\)\?$'
+match Todo '\v^(\<|\=|\>){7}([^=].+)?$'
 
 " }}}
 
@@ -415,7 +415,7 @@ match Todo '^\(<\|=\|>\)\{7\}\([^=].\+\)\?$'
 " Map backspace key to dismiss search highlighting
 nnoremap <silent> <BS> :nohlsearch<CR>
 
-" Turn off Vim’s regex characters and make searches use normal regexes
+" Turn off Vim's regex characters and make searches use normal regexes
 nnoremap / /\v
 vnoremap / /\v
 nnoremap ? ?\v
@@ -500,6 +500,14 @@ nnoremap ` '
 nnoremap <MiddleMouse> <Nop>
 inoremap <MiddleMouse> <Nop>
 
+" Jump to next/previous diff conflict marker
+nnoremap <silent> ]c /\v^(\<|\=|\>){7}([^=].+)?$<CR>
+nnoremap <silent> [c ?\v^(\<|\=|\>){7}([^=].+)?$<CR>
+
+" Jump to next/previous diff marker (signify plugin)
+nnoremap <silent> ]d <plug>(signify-next-jump)
+nnoremap <silent> [d <plug>(signify-prev-jump)
+
 " }}}
 
 """"""""""""""""""
@@ -539,9 +547,6 @@ vnoremap <silent> <Leader>/ :TCommentMaybeInline<CR>
 " Open the Tag[b]ar Plugin
 nnoremap <silent> <Leader>b :TagbarToggle<CR>
 
-" Jump to next diff [c]onflict marker
-nnoremap <silent> <Leader>c /^\(<\\|=\\|>\)\{7\}\([^=].\+\)\?$<CR>
-
 " Toggle repo [d]iff signs
 nnoremap <silent> <Leader>d :SignifyToggle<CR>
 
@@ -563,9 +568,6 @@ nnoremap <silent> <Leader>gd :Git diff --color<CR>
 " [G]it [d]iff staged files
 nnoremap <silent> <Leader>gD :Git diff --color --cached<CR>
 
-" [G]it command
-nnoremap <Leader>gg :Git<Space>
-
 " Open file in [g]it[h]ub
 nnoremap <silent> <Leader>gh :Gbrowse<CR>
 
@@ -580,6 +582,9 @@ nnoremap <Leader>gm :Gmove<Space>
 
 " [G]it [p]ush
 nnoremap <silent> <Leader>gp :Git push<CR>
+
+" [G]it [p]ull
+nnoremap <silent> <Leader>gP :Git pull --rebase<CR>
 
 " [G]it [r]emove
 nnoremap <silent> <Leader>gr :Gremove<CR>
@@ -748,16 +753,13 @@ let g:winresizer_keycode_right = "\<Right>"
 " Functions {{{
 """""""""""
 
-let g:kolors_paths = [
-\ 'jellybeans', 'kellys', 'molokai', 'mustang', 'smyck', 'wombat256mod', 'xoria256'
-\ ]
-
 function! Kolors(num)
 
-    let kolors_pos = get(g:, 'kolors_pos', match(g:kolors_paths, g:colors_name))
-    let g:kolors_pos = (kolors_pos + a:num) % len(g:kolors_paths)
+    let opt = [
+    \   'jellybeans', 'kellys', 'molokai', 'mustang', 'smyck', 'wombat256mod', 'xoria256'
+    \ ]
 
-    execute 'colorscheme ' . g:kolors_paths[g:kolors_pos]
+    execute 'colorscheme ' . opt[(match(opt, g:colors_name) + a:num) % len(opt)]
 
     silent! highlight NonText guifg=bg guibg=bg
     silent! highlight NonText ctermfg=bg ctermbg=bg

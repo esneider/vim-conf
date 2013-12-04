@@ -15,4 +15,5 @@ git clone https://github.com/esneider/vim-conf.git
 * exuberant ctags
 * curl / wget
 * perl
-
+* libclang
+* jshint, etc: syntastic syntax chequers
