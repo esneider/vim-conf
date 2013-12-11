@@ -347,18 +347,17 @@ set title
 set cursorline
 
 if has("gui_running")
-
-    " Set font for MacVim
-    if has("gui_macvim")
-        set guifont=Menlo:h14
-    end
-
     " Remove toolbar and scrollbars in gvim
     set guioptions-=rLt
 else
     " Force the tty to use 256 colors
     set t_Co=256
 endif
+
+if has("gui_macvim")
+    " Set font for MacVim
+    set guifont=Menlo:h14
+end
 
 " Use a dark background
 set background=dark
@@ -550,6 +549,9 @@ vnoremap <silent> <Leader>/ :TCommentMaybeInline<CR>
 " Open the Tag[b]ar Plugin
 nnoremap <silent> <Leader>b :TagbarToggle<CR>
 
+" Toggle spell [c]hecking
+nnoremap <silent> <Leader>c :setlocal spell!<CR>
+
 " Toggle repo [d]iff signs
 nnoremap <silent> <Leader>d :SignifyToggle<CR>
 
@@ -608,8 +610,8 @@ nnoremap <silent> <Leader>M :CtrlPFunky <C-R><C-W><CR>
 
 " <Leader>o [O]pens files
 
-" Toggle s[p]ell checking
-nnoremap <silent> <Leader>p :setlocal spell!<CR>
+" Close the [p]review window
+nnoremap <silent> <Leader>p :pclose<CR>
 
 " <Leader>q Toggles the [q]uickfix-list
 
