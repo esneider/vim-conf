@@ -348,7 +348,7 @@ set cursorline
 
 " Remove toolbar in gvim
 if has("gui_running")
-    set guioptions-=T
+    set guioptions-=rLt
 end
 
 " Set font for MacVim
@@ -508,6 +508,10 @@ nnoremap <silent> [c ?\v^(\<\|\=\|\>){7}([^=].+)\?$<CR>
 nnoremap <silent> ]d <plug>(signify-next-jump)
 nnoremap <silent> [d <plug>(signify-prev-jump)
 
+" Switch to next/previous colorscheme
+nnoremap <silent> ]k :call Kolors(+1)<CR>
+nnoremap <silent> [k :call Kolors(-1)<CR>
+
 " }}}
 
 """"""""""""""""""
@@ -594,12 +598,6 @@ nnoremap <silent> <Leader>gs :Gstatus<CR>
 
 " Switch between source and [h]eader file
 nnoremap <silent> <Leader>h :FSHere<CR>
-
-" Switch to next [k]olorscheme
-nnoremap <silent> <Leader>k :call Kolors(+1)<CR>
-
-" Switch to previous [k]olorscheme
-nnoremap <silent> <Leader>K :call Kolors(-1)<CR>
 
 " <Leader>l Toggles the [l]ocation-list
 
