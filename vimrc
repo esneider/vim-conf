@@ -98,7 +98,7 @@ Bundle 'Rip-Rip/clang_complete'
 Bundle 'derekwyatt/vim-fswitch'
 
 " Python goodies
-" Bundle 'klen/python-mode'
+Bundle 'klen/python-mode'
 
 " HTML5 syntax
 Bundle 'othree/html5.vim'
@@ -630,7 +630,7 @@ nnoremap <silent> <Leader>v :tabnew<CR>:edit $MYVIMRC<CR>
 
 " <Leader>w Opens the [W]inResizer plugin
 
-" Build and view a late[x] file
+" E[x]ecute latex (TeX-PDF plugin) or python (python-mode plugin) file
 nnoremap <silent> <Leader>x :BuildAndViewTexPdf<CR>:redraw!<CR>
 
 " }}}
@@ -717,12 +717,12 @@ let g:neocomplcache_enable_insert_char_pre = 1
 let g:neocomplcache_min_syntax_length = 3
 let g:neocomplcache_max_list = 10
 let g:neocomplcache_force_omni_patterns = {}
-let g:neocomplcache_force_omni_patterns.php  = '[^. \t]->\h\w*\|\h\w*::'
-let g:neocomplcache_force_omni_patterns.perl = '\h\w*->\h\w*\|\h\w*::'
-let g:neocomplcache_force_omni_patterns.c    = '[^.[:digit:] *\t]\%(\.\|->\)'
-let g:neocomplcache_force_omni_patterns.cpp  = '[^.[:digit:] *\t]\%(\.\|->\)\|\h\w*::'
-let g:neocomplcache_force_omni_patterns.ruby = '[^. *\t]\.\h\w*\|\h\w*::'
-let g:neocomplcache_force_omni_patterns.python = ''
+let g:neocomplcache_force_omni_patterns.php    = '[^. \t]->\h\w*\|\h\w*::'
+let g:neocomplcache_force_omni_patterns.perl   = '\h\w*->\h\w*\|\h\w*::'
+let g:neocomplcache_force_omni_patterns.c      = '[^.[:digit:] *\t]\%(\.\|->\)'
+let g:neocomplcache_force_omni_patterns.cpp    = '[^.[:digit:] *\t]\%(\.\|->\)\|\h\w*::'
+let g:neocomplcache_force_omni_patterns.ruby   = '[^. *\t]\.\h\w*\|\h\w*::'
+let g:neocomplcache_force_omni_patterns.python = '[^. \t]\.\w*'
 let g:neocomplcache_force_overwrite_completefunc = 1
 
 " Clang_complete plugin configuration
@@ -743,6 +743,15 @@ let g:winresizer_keycode_left  = "\<Left>"
 let g:winresizer_keycode_down  = "\<Down>"
 let g:winresizer_keycode_up    = "\<Up>"
 let g:winresizer_keycode_right = "\<Right>"
+
+" Python-mode plugin configuration
+let g:pymode_trim_whitespaces = 0
+let g:pymode_options = 0
+let g:pymode_folding = 0
+let g:pymode_run_bind = '<leader>x'
+let g:pymode_breakpoint = 0
+let g:pymode_lint = 0
+let g:pymode_rope = 0
 
 " }}}
 
