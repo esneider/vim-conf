@@ -142,6 +142,9 @@ autocmd CursorHold * silent! checktime
 " Focus NERDTree when opening vim in a folder
 autocmd VimEnter * if isdirectory(expand('<amatch>')) | NERDTreeFocus | endif
 
+" Automatically cd into the current file's directory
+autocmd BufEnter * silent! cd %:p:h
+
 " }}}
 
 """""""""""""""""""
@@ -180,9 +183,6 @@ set encoding=utf-8
 
 " Automatically read a file when it is changed from the outside
 set autoread
-
-" Automatically cd into the file's directory
-set autochdir
 
 " Don't redraw while executing macros
 set lazyredraw
@@ -646,7 +646,7 @@ let NERDTreeDirArrows = 1
 let NERDTreeWinSize = 25
 let NERDTreeIgnore = ['\.svn', '\.git', '\.o$', '\~$', '\.swp$', '\.pyc$', '\.class$', '\.dSYM$']
 let NERDTreeHijackNetrw = 0
-let g:NERDTreeMapCWD = 'ccd'
+let g:NERDTreeMapCWD = 'cc'
 
 " NERDTreeTabs plugin configuration
 let g:nerdtree_tabs_open_on_console_startup = 1
