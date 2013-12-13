@@ -546,11 +546,8 @@ nnoremap <silent> <Leader>/ :let w:tcommentPos = getpos(".")<CR>:set opfunc=tcom
 " Toggle comments of selection
 vnoremap <silent> <Leader>/ :TCommentMaybeInline<CR>
 
-" Open the Tag[b]ar Plugin
-nnoremap <silent> <Leader>b :TagbarToggle<CR>
-
-" Toggle spell [c]hecking
-nnoremap <silent> <Leader>c :setlocal spell!<CR>
+" [C]heck syntax
+nnoremap <silent> <Leader>c :w<CR>:SyntasticCheck<CR>
 
 " Toggle repo [d]iff signs
 nnoremap <silent> <Leader>d :SignifyToggle<CR>
@@ -618,11 +615,14 @@ nnoremap <silent> <Leader>p :pclose<CR>
 " Open the [r]ecipe browser
 nnoremap <silent> <Leader>r :CtrlPRecipes<CR>
 
-" Check [s]yntax
-nnoremap <silent> <Leader>s :w<CR>:SyntasticCheck<CR>
+" Toggle [s]pell checking
+nnoremap <silent> <Leader>s :setlocal spell!<CR>
 
 " Open the CtrlP-[T]ag extension
 nnoremap <silent> <Leader>t :CtrlPTag<CR>
+
+" Open the [T]agbar Plugin
+nnoremap <silent> <Leader>T :TagbarToggle<CR>
 
 " Open the G[u]ndo Plugin
 nnoremap <silent> <Leader>u :GundoToggle<CR>
