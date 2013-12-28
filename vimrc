@@ -346,16 +346,14 @@ set title
 " Highlight the line that the cursor is on
 set cursorline
 
-if has("gui_running")
-    " Remove toolbar and scrollbars in gvim
-    set guioptions-=rLt
-else
-    " Force the tty to use 256 colors
-    set t_Co=256
-endif
+" Console Vim: Force 256 colors
+set t_Co=256
 
+" Gvim: No toolbar, no scrollbars, no nothing
+set guioptions=
+
+" MacVim: Set font
 if has("gui_macvim")
-    " Set font for MacVim
     set guifont=Menlo:h14
 end
 
