@@ -501,8 +501,8 @@ nnoremap <silent> ]c /\v^(\<\|\=\|\>){7}([^=].+)?$<CR>
 nnoremap <silent> [c ?\v^(\<\|\=\|\>){7}([^=].+)\?$<CR>
 
 " Jump to next/previous diff marker (signify plugin)
-nnoremap <silent> ]d <plug>(signify-next-jump)
-nnoremap <silent> [d <plug>(signify-prev-jump)
+nmap <silent> ]d <plug>(signify-next-hunk)
+nmap <silent> [d <plug>(signify-prev-hunk)
 
 " Switch to next/previous colorscheme
 nnoremap <silent> ]k :call Kolors(+1)<CR>
@@ -674,14 +674,7 @@ let g:syntastic_always_populate_loc_list = 1
 let g:syntastic_mode_map = {'mode': 'passive'}
 
 " Airline plugin configuration
-let g:airline_symbols = {}
-let g:airline_left_sep = '⮀'
-let g:airline_left_alt_sep = '⮁'
-let g:airline_right_sep = '⮂'
-let g:airline_right_alt_sep = '⮃'
-let g:airline_symbols.branch = '⭠'
-let g:airline_symbols.readonly = '⭤'
-let g:airline_symbols.linenr = '⭡'
+let g:airline_powerline_fonts = 1
 let g:airline_theme = 'powerlineish'
 
 " tComment plugin configuration
