@@ -97,17 +97,11 @@ Bundle 'Rip-Rip/clang_complete'
 " Switch between source and header file (,h)
 Bundle 'derekwyatt/vim-fswitch'
 
-" Python goodies
-Bundle 'klen/python-mode'
-
 " HTML5 syntax
 Bundle 'othree/html5.vim'
 
 " Latex compilation (,x)
 Bundle 'TeX-PDF'
-
-" CoffeeScript stuff
-Bundle 'kchmck/vim-coffee-script'
 
 " Style
   """""
@@ -482,12 +476,6 @@ inoremap <silent> <Plug><A-Left> <C-\><C-o>:wincmd h<CR>
 nnoremap <silent> <Plug><A-Right> :wincmd l<CR>
 inoremap <silent> <Plug><A-Right> <C-\><C-o>:wincmd l<CR>
 
-" Move through tabs with Alt-Shift-{Right,Left}
-nnoremap <silent> <Plug><A-S-Right> :tabnext<CR>
-inoremap <silent> <Plug><A-S-Right> <C-\><C-o>:tabnext<CR>
-nnoremap <silent> <Plug><A-S-Left> :tabprevious<CR>
-inoremap <silent> <Plug><A-S-Left> <C-\><C-o>:tabprevious<CR>
-
 " Make ' jump to saved line & column rather than just line
 nnoremap ' `
 nnoremap ` '
@@ -507,6 +495,10 @@ nmap <silent> [d <plug>(signify-prev-hunk)
 " Switch to next/previous colorscheme
 nnoremap <silent> ]k :call Kolors(+1)<CR>
 nnoremap <silent> [k :call Kolors(-1)<CR>
+
+" Switch to next/previous tab
+nnoremap <silent> ]t :tabnext<CR>
+nnoremap <silent> [t :tabprevious<CR>
 
 " }}}
 
@@ -630,7 +622,7 @@ nnoremap <silent> <Leader>v :tabnew<CR>:edit $MYVIMRC<CR>
 
 " <Leader>w Opens the [W]inResizer plugin
 
-" E[x]ecute latex (TeX-PDF plugin) or python (python-mode plugin) file
+" E[x]ecute latex (TeX-PDF plugin)
 nnoremap <silent> <Leader>x :BuildAndViewTexPdf<CR>:redraw!<CR>
 
 " }}}
@@ -736,15 +728,6 @@ let g:winresizer_keycode_left  = "\<Left>"
 let g:winresizer_keycode_down  = "\<Down>"
 let g:winresizer_keycode_up    = "\<Up>"
 let g:winresizer_keycode_right = "\<Right>"
-
-" Python-mode plugin configuration
-let g:pymode_trim_whitespaces = 0
-let g:pymode_options = 0
-let g:pymode_folding = 0
-let g:pymode_run_bind = '<leader>x'
-let g:pymode_breakpoint = 0
-let g:pymode_lint = 0
-let g:pymode_rope = 0
 
 " }}}
 
