@@ -73,6 +73,9 @@ Bundle 'esneider/waltz.vim'
 " Location and quickfix toggle (,l ,q)
 Bundle 'milkypostman/vim-togglelist'
 
+" Show N out of M in searches
+Bundle 'vim-scripts/IndexedSearch'
+
 " External tools
   """"""""""""""
 
