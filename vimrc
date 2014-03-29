@@ -693,7 +693,9 @@ let g:tex_conceal = 'adgm'
 let g:tex_pdf_map_keys = 0
 
 " Ack plugin configuration
-let g:ackprg = "~/.vim/.extra/ack.pl -H --nocolor --nogroup --column"
+
+let ackprg = executable('ag') ? 'ag' : '~/.vim/.extra/ack.pl -H'
+let g:ackprg = ackprg . ' --nocolor --nogroup --column'
 
 " NeoComplCache plugin configuration
 let g:neocomplcache_enable_at_startup = 1
