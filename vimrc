@@ -548,11 +548,11 @@ nnoremap <silent> <Leader>d :SignifyToggle<CR>
 " Toggle the file [e]xplorer
 nnoremap <silent> <Leader>e :NERDTreeTabsToggle<CR>
 
-" [F]ind in files
-nnoremap <Leader>f :Ack!<Space>""<Left>
-
 " [F]ind in files the word under the cursor
-nnoremap <silent> <Leader>F :Ack!<Space>"<C-R><C-W>"<CR>
+nnoremap <silent> <Leader>f :Ack!<Space>"<C-R><C-W>"<CR>
+
+" [F]ind in files
+nnoremap <Leader>F :Ack!<Space>""<Left>
 
 " [G]it [c]ommit
 nnoremap <silent> <Leader>gc :Gcommit -a<CR>
@@ -592,11 +592,8 @@ nnoremap <silent> <Leader>h :FSHere<CR>
 
 " <Leader>l Toggles the [l]ocation-list
 
-" Open the CtrlP-Funky extension ([m]ethod)
-nnoremap <silent> <Leader>m :CtrlPFunky<CR>
-
 " Open the CtrlP-Funky extension with the word under the cursor ([m]ethod)
-nnoremap <silent> <Leader>M :CtrlPFunky <C-R><C-W><CR>
+nnoremap <silent> <Leader>m :CtrlPFunky <C-R><C-W><CR>
 
 " <Leader>o [O]pens files
 
@@ -611,11 +608,8 @@ nnoremap <silent> <Leader>r :CtrlPRecipes<CR>
 " Toggle [s]pell checking
 nnoremap <silent> <Leader>s :setlocal spell!<CR>
 
-" Open the CtrlP-[T]ag extension
-nnoremap <silent> <Leader>t :CtrlPTag<CR>
-
 " Open the [T]agbar Plugin
-nnoremap <silent> <Leader>T :TagbarToggle<CR>
+nnoremap <silent> <Leader>t :TagbarToggle<CR>
 
 " Open the G[u]ndo Plugin
 nnoremap <silent> <Leader>u :GundoToggle<CR>
