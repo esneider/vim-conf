@@ -68,7 +68,7 @@ Bundle 'terryma/vim-multiple-cursors'
 Bundle 'jimsei/winresizer'
 
 " Enable Alt key mappings
-Bundle 'esneider/waltz.vim'
+Bundle 'esneider/vim-waltz'
 
 " Location and quickfix toggle (,l ,q)
 Bundle 'milkypostman/vim-togglelist'
@@ -470,14 +470,14 @@ nnoremap <silent> <C-S-Right> g<C-]>
 nnoremap <silent> <C-S-Left> <C-T>
 
 " Move through windows with Alt-{Up,Right,Down,Left}
-nnoremap <silent> <Plug><A-Up> :wincmd k<CR>
-inoremap <silent> <Plug><A-Up> <C-\><C-o>:wincmd k<CR>
-nnoremap <silent> <Plug><A-Down> :wincmd j<CR>
-inoremap <silent> <Plug><A-Down> <C-\><C-o>:wincmd j<CR>
-nnoremap <silent> <Plug><A-Left> :wincmd h<CR>
-inoremap <silent> <Plug><A-Left> <C-\><C-o>:wincmd h<CR>
-nnoremap <silent> <Plug><A-Right> :wincmd l<CR>
-inoremap <silent> <Plug><A-Right> <C-\><C-o>:wincmd l<CR>
+nnoremap <silent> <A-Up> :wincmd k<CR>
+inoremap <silent> <A-Up> <C-\><C-o>:wincmd k<CR>
+nnoremap <silent> <A-Down> :wincmd j<CR>
+inoremap <silent> <A-Down> <C-\><C-o>:wincmd j<CR>
+nnoremap <silent> <A-Left> :wincmd h<CR>
+inoremap <silent> <A-Left> <C-\><C-o>:wincmd h<CR>
+nnoremap <silent> <A-Right> :wincmd l<CR>
+inoremap <silent> <A-Right> <C-\><C-o>:wincmd l<CR>
 
 " Make ' jump to saved line & column rather than just line
 nnoremap ' `
