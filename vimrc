@@ -50,7 +50,7 @@ Bundle 'tpope/vim-surround'
 Bundle 'tpope/vim-repeat'
 
 " % matches complex opening/closing entities
-Bundle 'tsaleh/vim-matchit'
+" Bundle 'tsaleh/vim-matchit'
 
 " Toggle comments (,/)
 Bundle 'tomtom/tcomment_vim'
@@ -116,7 +116,7 @@ Bundle 'bling/vim-airline'
 Bundle 'flazz/vim-colorschemes'
 
 " Function and namespace highlighting
-Bundle 'esneider/simlight.vim'
+Bundle 'esneider/vim-simlight'
 
 " }}}
 
@@ -373,8 +373,8 @@ set conceallevel=2
 """"""""""""""
 
 " Highlight functions and namespaces (simlight plugin)
-highlight Function  guifg=#afdfdf ctermfg=152
-highlight Namespace guifg=#a8a8a8 ctermfg=248
+highlight SLBeforeLParen      guifg=#afdfdf ctermfg=152
+highlight SLBeforeDoubleColon guifg=#a8a8a8 ctermfg=248
 
 " Color notifications
 highlight NotifyGreen  gui=bold guifg=#8dfa81 cterm=bold ctermfg=119
