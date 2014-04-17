@@ -373,8 +373,8 @@ set conceallevel=2
 """"""""""""""
 
 " Highlight functions and namespaces (simlight plugin)
-highlight SLBeforeLParen      guifg=#afdfdf ctermfg=152
-highlight SLBeforeDoubleColon guifg=#a8a8a8 ctermfg=248
+highlight BeforeLParen      guifg=#afdfdf ctermfg=152
+highlight BeforeDoubleColon guifg=#a8a8a8 ctermfg=248
 
 " Color notifications
 highlight NotifyGreen  gui=bold guifg=#8dfa81 cterm=bold ctermfg=119
