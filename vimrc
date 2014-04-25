@@ -131,7 +131,7 @@ autocmd BufRead,BufWrite * if ! &bin | silent! %s/\s\+$//ge | endif
 autocmd BufWinEnter * let w:m2 = matchadd('CursorLine', '\%80v\s*\zs\S\+', -1)
 
 " Restore cursor position to where it was before closing
-autocmd BufReadPost * if line("'\"") <= line("$") | exe "normal! g`\"" | endif
+autocmd BufReadPost * silent! execute "normal! g'\""
 
 " Check for file changes after 'updatetime' milliseconds of cursor hold
 autocmd CursorHold * silent! checktime
@@ -586,6 +586,9 @@ nnoremap <silent> <Leader>gr :Gremove<CR>
 
 " [G]it [s]tatus
 nnoremap <silent> <Leader>gs :Gstatus<CR>
+
+" [G]it c[t]ags
+nnoremap <silent> <Leader>gt :Git ctags<CR>
 
 " Switch between source and [h]eader file
 nnoremap <silent> <Leader>h :FSHere<CR>
