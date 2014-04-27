@@ -49,9 +49,6 @@ Bundle 'tpope/vim-surround'
 " Support repeating surround actions
 Bundle 'tpope/vim-repeat'
 
-" % matches complex opening/closing entities
-" Bundle 'tsaleh/vim-matchit'
-
 " Toggle comments (,/)
 Bundle 'tomtom/tcomment_vim'
 
@@ -734,6 +731,9 @@ let g:winresizer_keycode_left  = "\<Left>"
 let g:winresizer_keycode_down  = "\<Down>"
 let g:winresizer_keycode_up    = "\<Up>"
 let g:winresizer_keycode_right = "\<Right>"
+
+" % matches complex opening/closing entities
+runtime macros/matchit.vim
 
 " }}}
 
