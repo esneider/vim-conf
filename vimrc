@@ -434,6 +434,10 @@ noremap <silent> n nzz
 " Remap jj to escape in insert mode
 inoremap jj <Esc>
 
+" Usual Home and End shortcuts
+inoremap <C-A> <Home>
+inoremap <C-E> <End>
+
 " Make Y consistent with C and D
 nnoremap <silent> Y y$
 
