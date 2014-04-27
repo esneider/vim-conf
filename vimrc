@@ -73,6 +73,9 @@ Bundle 'milkypostman/vim-togglelist'
 " Show N out of M in searches
 Bundle 'vim-scripts/IndexedSearch'
 
+" Cycle through the clipboard history after pasting
+Bundle 'maxbrunsfeld/vim-yankstack'
+
 " External tools
   """"""""""""""
 
@@ -402,6 +405,9 @@ match Todo '\v^(\<|\=|\>){7}([^=].+)?$'
 " Key mappings {{{
 """"""""""""""
 
+" This should be before any mapping using y or p
+call yankstack#setup()
+
 " Map backspace key to dismiss search highlighting
 nnoremap <silent> <BS> :nohlsearch<CR>
 
@@ -601,8 +607,11 @@ nnoremap <silent> <Leader>m :CtrlPFunky <C-R><C-W><CR>
 
 " <Leader>o [O]pens files
 
-" Close the [p]review window
-nnoremap <silent> <Leader>p :pclose<CR>
+" After [p]asting, cycle backwards through the clipboard history
+nmap <silent> <Leader>p <Plug>yankstack_substitute_older_paste
+
+" After [p]asting, cycle forwards through the clipboard history
+nmap <silent> <Leader>P <Plug>yankstack_substitute_newer_paste
 
 " <Leader>q Toggles the [q]uickfix-list
 
@@ -734,6 +743,9 @@ let g:winresizer_keycode_right = "\<Right>"
 
 " % matches complex opening/closing entities
 runtime macros/matchit.vim
+
+" yankstack plugin configuration
+let g:yankstack_map_keys = 0
 
 " }}}
 
