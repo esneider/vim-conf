@@ -131,7 +131,7 @@ autocmd BufRead,BufWrite * if ! &bin | silent! %s/\s\+$//ge | endif
 autocmd BufWinEnter * let w:m2 = matchadd('CursorLine', '\%80v\s*\zs\S\+', -1)
 
 " Restore cursor position to where it was before closing
-autocmd BufReadPost * silent! execute "normal! g'\""
+autocmd BufReadPost * silent! execute 'normal! g`"'
 
 " Check for file changes after 'updatetime' milliseconds of cursor hold
 autocmd CursorHold * silent! checktime
@@ -350,7 +350,7 @@ set t_Co=256
 set guioptions=
 
 " MacVim: Set font
-if has("gui_macvim")
+if has('gui_macvim')
     set guifont=Menlo:h14
 end
 
@@ -532,13 +532,13 @@ cnoremap <C-A> <Home>
 """""""""""""""""
 
 " Change mapleader
-let mapleader=","
+let mapleader=','
 
 " Open last file
 nnoremap <silent> <Leader><Leader> <C-^>
 
 " Toggle comments of current line
-nnoremap <silent> <Leader>/ :let w:tcommentPos = getpos(".")<CR>:set opfunc=tcomment#OperatorLine<CR>g@$
+nnoremap <silent> <Leader>/ :let w:tcommentPos = getpos('.')<CR>:set opfunc=tcomment#OperatorLine<CR>g@$
 
 " Toggle comments of selection
 vnoremap <silent> <Leader>/ :TCommentMaybeInline<CR>
