@@ -406,7 +406,7 @@ match Todo '\v^(\<|\=|\>){7}([^=].+)?$'
 """"""""""""""
 
 " This should be before any mapping using y or p
-call yankstack#setup()
+silent! call yankstack#setup()
 
 " Map backspace key to dismiss search highlighting
 nnoremap <silent> <BS> :nohlsearch<CR>

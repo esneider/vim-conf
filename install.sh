@@ -178,6 +178,6 @@ then
     note "You should install vim with python support (+python) to use the ctrl-p plugin"
 fi
 
-note "You may want to install and set your terminal to use one of the fonts in \
-      '${EXTRAS_PATH}/fonts' to have a pretty status line"
+note "You may want to install and set your terminal to use one of the fonts in"`
+    `"'${EXTRAS_PATH}/fonts' to have a pretty status line"
 
