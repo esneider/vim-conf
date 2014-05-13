@@ -124,6 +124,10 @@ Bundle 'esneider/vim-simlight'
 " Auto commands {{{
 """""""""""""""
 
+" Wrap all the following autocmds in an augroup
+augroup vimrc
+autocmd!
+
 " Remove any trailing whitespace
 autocmd BufRead,BufWrite * if ! &bin | silent! %s/\s\+$//ge | endif
 
@@ -165,6 +169,9 @@ autocmd FileType make setlocal noexpandtab
 
 " Spell check in commits, markdown and text files
 autocmd FileType gitcommit,svn,asciidoc,markdown setlocal spell
+
+" All autocmds should be before this
+augroup END
 
 " }}}
 
