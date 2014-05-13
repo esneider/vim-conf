@@ -40,7 +40,7 @@ function progress {
 }
 
 function note {
-    echo "${1}" | fmt -sw 74 | sed "s/^/      /"
+    echo "${@}" | fmt -sw 74 | sed "s/^/      /"
     echo
 }
 
@@ -157,27 +157,52 @@ then
     warn "error installing git ctags, proceeding anyway"
 fi
 
+# Install some syntax checkers, fail silently
+
+if exists "npm"
+then
+    progress "Installing some syntax checkers"
+
+    if ! run_silent "npm list -g jshint"
+    then
+        run_silent "npm install -g jshint"
+    fi
+
+    if ! run_silent "npm list -g csslint"
+    then
+        run_silent "npm install -g csslint"
+    fi
+fi
+
 # Check plugin dependencies
 
 echo "Done!!!"
 echo
 echo "NOTES:"
 
-if ! exists "ctags" || ! version_has "ctags" "exuberant"
-then
-    note "You should install 'exuberant ctags' to use the tagbar plugin"
-fi
-
-if ! exists "perl"
-then
-    note "You should install 'perl' to use the ack plugin"
-fi
-
 if ! version_has "vim" "+python"
 then
-    note "You should install vim with python support (+python) to use the ctrl-p plugin"
+    note "You should install vim with python support (+python)"
 fi
 
-note "You may want to install and set your terminal to use one of the fonts in"`
-    `"'${EXTRAS_PATH}/fonts' to have a pretty status line"
+if ! exists "ctags" || ! version_has "ctags" "exuberant"
+then
+    note "You should install 'exuberant ctags' to use tags in vim (you want"\
+         "this, believe me)"
+fi
+
+if ! exists "perl" || ! exists "ag"
+then
+    note "You should install 'perl' or 'ag' to use the ack plugin (ag is way"\
+         "faster)"
+fi
+
+if exists "gcc"
+then
+    note "If you are going to use C or C++, you should install 'libclang', for"\
+         "awesome autocompletion"
+fi
+
+note "You may want to install and set your terminal to use one of the fonts in"\
+     "'${EXTRAS_PATH}/fonts' to have a pretty status line"
 
