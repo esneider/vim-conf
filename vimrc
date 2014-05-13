@@ -708,8 +708,8 @@ let g:tex_pdf_map_keys = 0
 
 " Ack plugin configuration
 
-let ackprg = executable('ag') ? 'ag' : '~/.vim/.extra/ack.pl -H'
-let g:ackprg = ackprg . ' --nocolor --nogroup --column'
+let g:ackprg = executable('ag') ? 'ag' : '~/.vim/.extra/ack.pl -H'
+let g:ackprg .= ' --nocolor --nogroup --column'
 
 " NeoComplCache plugin configuration
 let g:neocomplcache_enable_at_startup = 1
