@@ -380,8 +380,8 @@ set conceallevel=2
 """"""""""""""
 
 " Highlight functions and namespaces (simlight plugin)
-highlight BeforeLParen      guifg=#afdfdf ctermfg=152
-highlight BeforeDoubleColon guifg=#a8a8a8 ctermfg=248
+highlight Function  guifg=#afdfdf ctermfg=152
+highlight Namespace guifg=#a8a8a8 ctermfg=248
 
 " Color notifications
 highlight NotifyGreen  gui=bold guifg=#8dfa81 cterm=bold ctermfg=119
@@ -389,7 +389,7 @@ highlight NotifyRed    gui=bold guifg=#e47574 cterm=bold ctermfg=167
 highlight NotifyYellow gui=bold guifg=#fffb87 cterm=bold ctermfg=227
 
 " Hide tildes (~) in place of line numbers after EOF
-silent! highlight NonText guifg=bg guibg=bg
+silent! highlight NonText   guifg=bg   guibg=bg
 silent! highlight NonText ctermfg=bg ctermbg=bg
 
 " Highlight gutter diff signs (signify plugin)
