@@ -118,6 +118,14 @@ Bundle 'flazz/vim-colorschemes'
 " Function and namespace highlighting
 Bundle 'esneider/vim-simlight'
 
+" Initialization
+  """"""""""""""
+
+" yankstack plugin configuration: should be before initialization
+let g:yankstack_map_keys = 0
+" yankstack plugin initialization: should be before any mapping using y or p
+silent! call yankstack#setup()
+
 " }}}
 
 """""""""""""""
@@ -411,9 +419,6 @@ match Todo '\v^(\<|\=|\>){7}([^=].+)?$'
 """"""""""""""
 " Key mappings {{{
 """"""""""""""
-
-" This should be before any mapping using y or p
-silent! call yankstack#setup()
 
 " Map backspace key to dismiss search highlighting
 nnoremap <silent> <BS> :nohlsearch<CR>
@@ -750,9 +755,6 @@ let g:winresizer_keycode_right = "\<Right>"
 
 " % matches complex opening/closing entities
 runtime macros/matchit.vim
-
-" yankstack plugin configuration
-let g:yankstack_map_keys = 0
 
 " }}}
 
