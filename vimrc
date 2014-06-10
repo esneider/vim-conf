@@ -518,6 +518,10 @@ nmap <silent> [d <plug>(signify-prev-hunk)
 nnoremap <silent> ]k :call Kolors(+1)<CR>
 nnoremap <silent> [k :call Kolors(-1)<CR>
 
+" After [p]asting, cycle forwards/backwards through the clipboard history
+nmap <silent> ]p <Plug>yankstack_substitute_newer_paste
+nmap <silent> [p <Plug>yankstack_substitute_older_paste
+
 " Switch to next/previous tab
 nnoremap <silent> ]t :tabnext<CR>
 nnoremap <silent> [t :tabprevious<CR>
@@ -618,12 +622,6 @@ nnoremap <silent> <Leader>h :FSHere<CR>
 nnoremap <silent> <Leader>m :CtrlPFunky <C-R><C-W><CR>
 
 " <Leader>o [O]pens files
-
-" After [p]asting, cycle backwards through the clipboard history
-nmap <silent> <Leader>p <Plug>yankstack_substitute_older_paste
-
-" After [p]asting, cycle forwards through the clipboard history
-nmap <silent> <Leader>P <Plug>yankstack_substitute_newer_paste
 
 " <Leader>q Toggles the [q]uickfix-list
 
