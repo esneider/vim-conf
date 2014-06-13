@@ -91,6 +91,9 @@ Bundle 'tpope/vim-fugitive'
 " Show repo diff signs (,d)
 Bundle 'mhinz/vim-signify'
 
+" Show documentation (mac only, use zeal for linux)
+Bundle 'rizzatti/dash.vim'
+
 " Language specific
   """""""""""""""""
 
@@ -615,6 +618,9 @@ nnoremap <silent> <Leader>gt :Git ctags<CR>
 
 " Switch between source and [h]eader file
 nnoremap <silent> <Leader>h :FSHere<CR>
+
+" Extend K with Dash.app
+nmap <silent> <Leader>k <Plug>DashSearch
 
 " <Leader>l Toggles the [l]ocation-list
 
