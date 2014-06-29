@@ -16,8 +16,8 @@ call vundle#rc()
 " Manage plugins (github repos)
 Plugin 'gmarik/vundle'
 
-" Components
-  """"""""""
+" Interface enhancements
+  """"""""""""""""""""""
 
 " File explorer (,e)
 Plugin 'scrooloose/nerdtree'
@@ -76,8 +76,11 @@ Plugin 'vim-scripts/IndexedSearch'
 " Cycle through the clipboard history after pasting
 Plugin 'maxbrunsfeld/vim-yankstack'
 
-" External tools
-  """"""""""""""
+" Show indentation line guides (,i)
+Plugin 'Yggdroot/indentLine'
+
+" External tool integrations
+  """"""""""""""""""""""""""
 
 " Syntax checker (,s)
 Plugin 'scrooloose/syntastic'
@@ -94,8 +97,8 @@ Plugin 'mhinz/vim-signify'
 " Show documentation (mac only, use zeal for linux)
 Plugin 'rizzatti/dash.vim'
 
-" Language specific
-  """""""""""""""""
+" Language specific enhancements
+  """"""""""""""""""""""""""""""
 
 " Clang completion for C and C++
 Plugin 'Rip-Rip/clang_complete'
@@ -109,8 +112,8 @@ Plugin 'othree/html5.vim'
 " Latex compilation (,x)
 Plugin 'TeX-PDF'
 
-" Style
-  """""
+" Display enhancements
+  """"""""""""""""""""
 
 " Pretty status bar
 Plugin 'bling/vim-airline'
@@ -121,8 +124,8 @@ Plugin 'flazz/vim-colorschemes'
 " Function and namespace highlighting
 Plugin 'esneider/vim-simlight'
 
-" Initialization
-  """"""""""""""
+" Plugin initialization
+  """""""""""""""""""""
 
 " yankstack plugin configuration: should be before initialization
 let g:yankstack_map_keys = 0
@@ -619,6 +622,9 @@ nnoremap <silent> <Leader>gt :Git ctags<CR>
 " Switch between source and [h]eader file
 nnoremap <silent> <Leader>h :FSHere<CR>
 
+" Toggle [i]ndentation line guides
+nnoremap <silent> <Leader>i :IndentLinesToggle<CR>
+
 " Extend K with Dash.app
 nmap <silent> <Leader>k <Plug>DashSearch
 
@@ -756,6 +762,9 @@ let g:winresizer_keycode_left  = "\<Left>"
 let g:winresizer_keycode_down  = "\<Down>"
 let g:winresizer_keycode_up    = "\<Up>"
 let g:winresizer_keycode_right = "\<Right>"
+
+" IndentLine  plugin configuration
+let g:indentLine_enabled = 0
 
 " % matches complex opening/closing entities
 runtime macros/matchit.vim
