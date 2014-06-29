@@ -542,7 +542,7 @@ command! -bang W w<bang>
 command! -bang Q q<bang>
 
 " Save file with sudo
-cnoremap w!! w !sudo tee % > /dev/null
+cnoreabbrev w!! w !sudo tee % > /dev/null
 
 " Ctrl-A to go to the start of line
 cnoremap <C-A> <Home>
@@ -660,7 +660,7 @@ nnoremap <silent> <Leader>x :BuildAndViewTexPdf<CR>:redraw!<CR>
 " NERDTree plugin configuration
 let NERDTreeDirArrows = 1
 let NERDTreeWinSize = 25
-let NERDTreeIgnore = ['\.svn', '\.git', '\.o$', '\~$', '\.swp$', '\.pyc$', '\.class$', '\.dSYM$']
+let NERDTreeIgnore = ['\.svn$', '\.git$', '\.o$', '\~$', '\.swp$', '\.pyc$', '\.class$', '\.dSYM$']
 let NERDTreeHijackNetrw = 0
 let g:NERDTreeMapCWD = 'cc'
 
