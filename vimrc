@@ -14,112 +14,112 @@ set rtp+=~/.vim/bundle/vundle/
 call vundle#rc()
 
 " Manage plugins (github repos)
-Bundle 'gmarik/vundle'
+Plugin 'gmarik/vundle'
 
 " Components
   """"""""""
 
 " File explorer (,e)
-Bundle 'scrooloose/nerdtree'
+Plugin 'scrooloose/nerdtree'
 
 " Make NERDTree more awesome
-Bundle 'jistr/vim-nerdtree-tabs'
+Plugin 'jistr/vim-nerdtree-tabs'
 
 " Show undo tree (,u)
-Bundle 'sjl/gundo.vim'
+Plugin 'sjl/gundo.vim'
 
 " Show file tags list like variables, etc. (,b)
-Bundle 'majutsushi/tagbar'
+Plugin 'majutsushi/tagbar'
 
 " Fuzzy file finder (,o)
-Bundle 'kien/ctrlp.vim'
+Plugin 'kien/ctrlp.vim'
 
 " Fuzzy function/method finder (,m ,M)
-Bundle 'tacahiroy/ctrlp-funky'
+Plugin 'tacahiroy/ctrlp-funky'
 
 " Vim recipe finder (,r)
-Bundle 'esneider/vim-recipes'
+Plugin 'esneider/vim-recipes'
 
 " Commands
   """"""""
 
 " Add surround modifier to vim (s noun)
-Bundle 'tpope/vim-surround'
+Plugin 'tpope/vim-surround'
 
 " Support repeating surround actions
-Bundle 'tpope/vim-repeat'
+Plugin 'tpope/vim-repeat'
 
 " Toggle comments (,/)
-Bundle 'tomtom/tcomment_vim'
+Plugin 'tomtom/tcomment_vim'
 
 " Automatic completion (select with tab)
-Bundle 'Shougo/neocomplcache'
+Plugin 'Shougo/neocomplcache'
 
 " Select regions in visual mode (+ and _)
-Bundle 'terryma/vim-expand-region'
+Plugin 'terryma/vim-expand-region'
 
 " Multiple cursors (next: Ctrl-N, prev: Ctrl-P, skip: Ctrl-X)
-Bundle 'terryma/vim-multiple-cursors'
+Plugin 'terryma/vim-multiple-cursors'
 
 " Window resizing (,w)
-Bundle 'jimsei/winresizer'
+Plugin 'jimsei/winresizer'
 
 " Enable Alt key mappings
-Bundle 'esneider/vim-waltz'
+Plugin 'esneider/vim-waltz'
 
 " Location and quickfix toggle (,l ,q)
-Bundle 'milkypostman/vim-togglelist'
+Plugin 'milkypostman/vim-togglelist'
 
 " Show N out of M in searches
-Bundle 'vim-scripts/IndexedSearch'
+Plugin 'vim-scripts/IndexedSearch'
 
 " Cycle through the clipboard history after pasting
-Bundle 'maxbrunsfeld/vim-yankstack'
+Plugin 'maxbrunsfeld/vim-yankstack'
 
 " External tools
   """"""""""""""
 
 " Syntax checker (,s)
-Bundle 'scrooloose/syntastic'
+Plugin 'scrooloose/syntastic'
 
 " Ack search (,f ,F)
-Bundle 'mileszs/ack.vim'
+Plugin 'mileszs/ack.vim'
 
 " Git utils (,g + [c]ommit [d]iff git[h]ub [l]og [m]ove [p]ush [r]emove [s]tatus)
-Bundle 'tpope/vim-fugitive'
+Plugin 'tpope/vim-fugitive'
 
 " Show repo diff signs (,d)
-Bundle 'mhinz/vim-signify'
+Plugin 'mhinz/vim-signify'
 
 " Show documentation (mac only, use zeal for linux)
-Bundle 'rizzatti/dash.vim'
+Plugin 'rizzatti/dash.vim'
 
 " Language specific
   """""""""""""""""
 
 " Clang completion for C and C++
-Bundle 'Rip-Rip/clang_complete'
+Plugin 'Rip-Rip/clang_complete'
 
 " Switch between source and header file (,h)
-Bundle 'derekwyatt/vim-fswitch'
+Plugin 'derekwyatt/vim-fswitch'
 
 " HTML5 syntax
-Bundle 'othree/html5.vim'
+Plugin 'othree/html5.vim'
 
 " Latex compilation (,x)
-Bundle 'TeX-PDF'
+Plugin 'TeX-PDF'
 
 " Style
   """""
 
 " Pretty status bar
-Bundle 'bling/vim-airline'
+Plugin 'bling/vim-airline'
 
 " Lots of colorschemes
-Bundle 'flazz/vim-colorschemes'
+Plugin 'flazz/vim-colorschemes'
 
 " Function and namespace highlighting
-Bundle 'esneider/vim-simlight'
+Plugin 'esneider/vim-simlight'
 
 " Initialization
   """"""""""""""

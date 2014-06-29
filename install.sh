@@ -114,7 +114,7 @@ mkdir ~/.vim/.undo
 
 progress "Installing plugins"
 
-vim +BundleInstall +qall
+vim +PluginInstall +qall
 
 # Install ack
 
