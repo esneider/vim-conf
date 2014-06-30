@@ -359,7 +359,7 @@ set showcmd
 set scrolloff=5
 
 " Try to change the terminal title
-set title
+set icon title
 
 " Highlight the line that the cursor is on
 set cursorline
