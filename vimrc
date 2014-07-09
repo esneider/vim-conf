@@ -109,6 +109,9 @@ Plugin 'derekwyatt/vim-fswitch'
 " HTML5 syntax
 Plugin 'othree/html5.vim'
 
+" Better indentation and highlighting for JavaScript
+Plugin 'pangloss/vim-javascript'
+
 " Latex compilation (,x)
 Plugin 'TeX-PDF'
 
@@ -339,9 +342,9 @@ set nrformats=alpha,hex
 
 " }}}
 
-""""""""""""""
-" Style config {{{
-""""""""""""""
+""""""""""""""""
+" Display config {{{
+""""""""""""""""
 
 " Enable syntax highlighting
 syntax enable
