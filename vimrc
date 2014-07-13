@@ -64,9 +64,6 @@ Plugin 'terryma/vim-multiple-cursors'
 " Window resizing (,w)
 Plugin 'jimsei/winresizer'
 
-" Enable Alt key mappings
-Plugin 'esneider/vim-waltz'
-
 " Location and quickfix toggle (,l ,q)
 Plugin 'milkypostman/vim-togglelist'
 
@@ -148,8 +145,8 @@ autocmd!
 " Remove any trailing whitespace
 autocmd BufRead,BufWrite * if ! &bin | silent! %s/\s\+$//ge | endif
 
-" Highlight first word after column 79
-autocmd BufWinEnter * let w:m2 = matchadd('CursorLine', '\%80v\s*\zs\S\+', -1)
+" Highlight first word after column 80
+autocmd BufWinEnter * let w:m2 = matchadd('CursorLine', '\%81v\s*\zs\S\+', -1)
 
 " Restore cursor position to where it was before closing
 autocmd BufReadPost * silent! execute 'normal! g`"'
@@ -489,23 +486,32 @@ vnoremap <silent> # yq?p<CR>
 " Repeat last action for each line in the visual selection
 vnoremap <silent> . :normal .<CR>
 
+" Select last paste in visual mode
+nnoremap <expr> gb '`[' . strpart(getregtype(), 0, 1) . '`]'
+
 " New tab (Ctrl-T)
 nnoremap <silent> <C-t> :tabnew<CR>
 inoremap <silent> <C-t> <C-\><C-o>:tabnew<CR>
 
-" Move to and from tag definition with Ctrl-Shift-{Right,Left}
-nnoremap <silent> <C-S-Right> g<C-]>
-nnoremap <silent> <C-S-Left> <C-T>
+" Move to next/previous tab
+nnoremap <silent> <C-S-l> :tabnext<CR>
+inoremap <silent> <C-S-l> <C-\><C-o>:tabnext<CR>
+nnoremap <silent> <C-S-h> :tabprevious<CR>
+inoremap <silent> <C-S-h> <C-\><C-o>:tabprevious<CR>
 
-" Move through windows with Alt-{Up,Right,Down,Left}
-nnoremap <silent> <A-Up> :wincmd k<CR>
-inoremap <silent> <A-Up> <C-\><C-o>:wincmd k<CR>
-nnoremap <silent> <A-Down> :wincmd j<CR>
-inoremap <silent> <A-Down> <C-\><C-o>:wincmd j<CR>
-nnoremap <silent> <A-Left> :wincmd h<CR>
-inoremap <silent> <A-Left> <C-\><C-o>:wincmd h<CR>
-nnoremap <silent> <A-Right> :wincmd l<CR>
-inoremap <silent> <A-Right> <C-\><C-o>:wincmd l<CR>
+" Move to a tag definition and back with Ctrl-Shift-{Right,Left}
+nnoremap <silent> <C-S-j> g<C-]>
+nnoremap <silent> <C-S-k> <C-t>
+
+" Move through windows with Ctrl-{hjkl}
+nnoremap <silent> <C-h> :wincmd h<CR>
+inoremap <silent> <C-h> <C-\><C-o>:wincmd h<CR>
+nnoremap <silent> <C-j> :wincmd j<CR>
+inoremap <silent> <C-j> <C-\><C-o>:wincmd j<CR>
+nnoremap <silent> <C-k> :wincmd k<CR>
+inoremap <silent> <C-k> <C-\><C-o>:wincmd k<CR>
+nnoremap <silent> <C-l> :wincmd l<CR>
+inoremap <silent> <C-l> <C-\><C-o>:wincmd l<CR>
 
 " Make ' jump to saved line & column rather than just line
 nnoremap ' `
@@ -761,10 +767,6 @@ let g:signify_sign_change = '~'
 
 " WinResizer plugin configuration
 let g:winresizer_start_key = '<Leader>w'
-let g:winresizer_keycode_left  = "\<Left>"
-let g:winresizer_keycode_down  = "\<Down>"
-let g:winresizer_keycode_up    = "\<Up>"
-let g:winresizer_keycode_right = "\<Right>"
 
 " IndentLine  plugin configuration
 let g:indentLine_enabled = 0
@@ -781,7 +783,7 @@ runtime macros/matchit.vim
 function! Kolors(num)
 
     let opt = [
-    \   'jellybeans', 'kellys', 'molokai', 'mustang', 'smyck', 'wombat256mod', 'xoria256'
+    \   'jellybeans', 'kellys', 'molokai', 'mustang', 'wombat256mod', 'xoria256'
     \ ]
 
     execute 'colorscheme ' . opt[(match(opt, g:colors_name) + a:num) % len(opt)]

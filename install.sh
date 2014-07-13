@@ -105,7 +105,6 @@ function setup_mac {
 
     brew_install git
     brew_install wget
-    brew_install python
     brew_install node
     brew_install ctags
     brew_install ag
