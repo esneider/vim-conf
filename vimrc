@@ -480,8 +480,8 @@ vnoremap <silent> p "_dP
 vnoremap <silent> P "_dP
 
 " Make * and # work with visual selection
-vnoremap <silent> * yq/p<CR>
-vnoremap <silent> # yq?p<CR>
+vnoremap <silent> * yq/i\V<Esc>p<CR>
+vnoremap <silent> # yq?i\V<Esc>p<CR>
 
 " Repeat last action for each line in the visual selection
 vnoremap <silent> . :normal .<CR>
