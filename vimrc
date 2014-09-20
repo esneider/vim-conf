@@ -16,8 +16,8 @@ call vundle#rc()
 " Manage plugins (github repos)
 Plugin 'gmarik/vundle'
 
-" Interface enhancements
-  """"""""""""""""""""""
+" Components
+  """"""""""
 
 " File explorer (,e)
 Plugin 'scrooloose/nerdtree'
@@ -28,13 +28,13 @@ Plugin 'jistr/vim-nerdtree-tabs'
 " Show undo tree (,u)
 Plugin 'sjl/gundo.vim'
 
-" Show file tags list like variables, etc. (,b)
+" Show tags list (vars, funcs, etc) (,t)
 Plugin 'majutsushi/tagbar'
 
 " Fuzzy file finder (,o)
 Plugin 'kien/ctrlp.vim'
 
-" Fuzzy function/method finder (,m ,M)
+" Fuzzy function/method finder (,m)
 Plugin 'tacahiroy/ctrlp-funky'
 
 " Vim recipe finder (,r)
@@ -53,7 +53,7 @@ Plugin 'tpope/vim-repeat'
 Plugin 'tomtom/tcomment_vim'
 
 " Automatic completion (select with tab)
-Plugin 'Shougo/neocomplcache'
+Plugin 'Valloric/YouCompleteMe'
 
 " Select regions in visual mode (+ and _)
 Plugin 'terryma/vim-expand-region'
@@ -64,25 +64,22 @@ Plugin 'terryma/vim-multiple-cursors'
 " Window resizing (,w)
 Plugin 'jimsei/winresizer'
 
-" Location and quickfix toggle (,l ,q)
+" Location and quickfix window toggle (,l and ,q)
 Plugin 'milkypostman/vim-togglelist'
 
 " Show N out of M in searches
 Plugin 'vim-scripts/IndexedSearch'
 
-" Cycle through the clipboard history after pasting
+" Cycle through the clipboard history after pasting (]p and [p)
 Plugin 'maxbrunsfeld/vim-yankstack'
 
-" Show indentation line guides (,i)
-Plugin 'Yggdroot/indentLine'
+" External tools
+  """"""""""""""
 
-" External tool integrations
-  """"""""""""""""""""""""""
-
-" Syntax checker (,s)
+" Syntax checker (,c)
 Plugin 'scrooloose/syntastic'
 
-" Ack search (,f ,F)
+" Ack search (,f and ,F)
 Plugin 'mileszs/ack.vim'
 
 " Git utils (,g + [c]ommit [d]iff git[h]ub [l]og [m]ove [p]ush [r]emove [s]tatus)
@@ -91,14 +88,11 @@ Plugin 'tpope/vim-fugitive'
 " Show repo diff signs (,d)
 Plugin 'mhinz/vim-signify'
 
-" Show documentation (mac only, use zeal for linux)
+" Show documentation (mac only) (,k)
 Plugin 'rizzatti/dash.vim'
 
-" Language specific enhancements
-  """"""""""""""""""""""""""""""
-
-" Clang completion for C and C++
-Plugin 'Rip-Rip/clang_complete'
+" Language specific
+  """""""""""""""""
 
 " Switch between source and header file (,h)
 Plugin 'derekwyatt/vim-fswitch'
@@ -109,11 +103,17 @@ Plugin 'othree/html5.vim'
 " Better indentation and highlighting for JavaScript
 Plugin 'pangloss/vim-javascript'
 
+" Automatic completion for JavaScript
+Plugin 'marijnh/tern_for_vim'
+
 " Latex compilation (,x)
 Plugin 'TeX-PDF'
 
-" Display enhancements
-  """"""""""""""""""""
+" Markdown compilation
+Plugin 'suan/vim-instant-markdown'
+
+" Look and feel
+  """""""""""""
 
 " Pretty status bar
 Plugin 'bling/vim-airline'
@@ -127,9 +127,10 @@ Plugin 'esneider/vim-simlight'
 " Plugin initialization
   """""""""""""""""""""
 
-" yankstack plugin configuration: should be before initialization
+" yankstack plugin configuration: must be before initialization
 let g:yankstack_map_keys = 0
-" yankstack plugin initialization: should be before any mapping using y or p
+
+" yankstack plugin initialization: must be before any mapping using y or p
 silent! call yankstack#setup()
 
 " }}}
@@ -138,11 +139,11 @@ silent! call yankstack#setup()
 " Auto commands {{{
 """""""""""""""
 
-" Wrap all the following autocmds in an augroup
+" Group all autocmds
 augroup vimrc
 autocmd!
 
-" Remove any trailing whitespace
+" Remove trailing whitespace before saving
 autocmd BufRead,BufWrite * if ! &bin | silent! %s/\s\+$//ge | endif
 
 " Highlight first word after column 80
@@ -175,13 +176,13 @@ autocmd BufRead,BufNewFile *.md setfiletype markdown
 " Json filetype detection
 autocmd BufRead,BufNewFile *.json setfiletype javascript
 
-" Use 2 spaces for indent in ruby, and allow ! and ? in keywords
+" Use 2 spaces for indentation in ruby, and allow ! and ? in keywords
 autocmd FileType ruby setlocal tabstop=2 softtabstop=2 shiftwidth=2 iskeyword+=!,?
 
 " Use tabs in makefiles
 autocmd FileType make setlocal noexpandtab
 
-" Spell check in commits, markdown and text files
+" Enable spell checking in commit, markdown and text files
 autocmd FileType gitcommit,svn,asciidoc,markdown setlocal spell
 
 " All autocmds should be before this
@@ -361,25 +362,25 @@ set scrolloff=5
 " Try to change the terminal title
 set icon title
 
+" Show wrapped-line indicator
+set showbreak=↪
+
 " Highlight the line that the cursor is on
 set cursorline
 
-" Console Vim: Force 256 colors
+" Force 256 colors in terminal
 set t_Co=256
 
-" Gvim: No toolbar, no scrollbars, no nothing
+" Disable everything in gvim
 set guioptions=
 
-" MacVim: Set font
+" Set font in MacVim
 if has('gui_macvim')
     set guifont=Menlo:h14
 end
 
 " Use a dark background
 set background=dark
-
-" Set color scheme
-silent! colorscheme kellys
 
 " Don't try to highlight lines longer than 500 characters
 set synmaxcol=500
@@ -392,6 +393,9 @@ set conceallevel=2
 """"""""""""""
 " Highlighting {{{
 """"""""""""""
+
+" Set color scheme
+silent! colorscheme kellys
 
 " Highlight functions and namespaces (simlight plugin)
 highlight Function  guifg=#afdfdf ctermfg=152
@@ -429,7 +433,11 @@ match Todo '\v^(\<|\=|\>){7}([^=].+)?$'
 " Map backspace key to dismiss search highlighting
 nnoremap <silent> <BS> :nohlsearch<CR>
 
+" Map tab key to jump to matching entity: (), [], {}, etc
+nnoremap <silent> <Tab> %
+
 " Turn off Vim's regex characters and make searches use normal regexes
+" FIXME: the IndexedSearch plugin overrides these mappings
 nnoremap / /\v
 vnoremap / /\v
 nnoremap ? ?\v
@@ -462,7 +470,7 @@ inoremap <C-E> <End>
 " Make Y consistent with C and D
 nnoremap <silent> Y y$
 
-" Repeat the last substitution
+" Repeat the last substitution, using the same flags
 nnoremap <silent> & :&&<CR>
 xnoremap <silent> & :&&<CR>
 
@@ -470,12 +478,7 @@ xnoremap <silent> & :&&<CR>
 vnoremap <silent> < <gv
 vnoremap <silent> > >gv
 
-" Auto complete next/prev with <Tab>/<S-Tab>
-inoremap <expr> <Tab>   pumvisible() ? "\<C-n>" : "\<Tab>"
-inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
-inoremap <expr> `       pumvisible() ? "\<C-e>" : "`"
-
-" Don't yank (to the default register) when pasting in visual mode
+" Don't yank when pasting in visual mode
 vnoremap <silent> p "_dP
 vnoremap <silent> P "_dP
 
@@ -489,21 +492,19 @@ vnoremap <silent> . :normal .<CR>
 " Select last paste in visual mode
 nnoremap <expr> gb '`[' . strpart(getregtype(), 0, 1) . '`]'
 
-" New tab (Ctrl-T)
+" Open new tab with ctrl-t
 nnoremap <silent> <C-t> :tabnew<CR>
 inoremap <silent> <C-t> <C-\><C-o>:tabnew<CR>
 
-" Move to next/previous tab
-nnoremap <silent> <C-S-l> :tabnext<CR>
-inoremap <silent> <C-S-l> <C-\><C-o>:tabnext<CR>
-nnoremap <silent> <C-S-h> :tabprevious<CR>
-inoremap <silent> <C-S-h> <C-\><C-o>:tabprevious<CR>
+" Move to next/previous tab with right/left arrows
+nnoremap <silent> <Left> :tabprevious<CR>
+nnoremap <silent> <Right> :tabnext<CR>
 
-" Move to a tag definition and back with Ctrl-Shift-{Right,Left}
-nnoremap <silent> <C-S-j> g<C-]>
-nnoremap <silent> <C-S-k> <C-t>
+" Move to tag definition and back with down/up arrows
+nnoremap <silent> <Up> <C-t>
+nnoremap <silent> <Down> g<C-]>
 
-" Move through windows with Ctrl-{hjkl}
+" Move through splits with Ctrl-{hjkl}
 nnoremap <silent> <C-h> :wincmd h<CR>
 inoremap <silent> <C-h> <C-\><C-o>:wincmd h<CR>
 nnoremap <silent> <C-j> :wincmd j<CR>
@@ -533,7 +534,7 @@ nmap <silent> [d <plug>(signify-prev-hunk)
 nnoremap <silent> ]k :call Kolors(+1)<CR>
 nnoremap <silent> [k :call Kolors(-1)<CR>
 
-" After [p]asting, cycle forwards/backwards through the clipboard history
+" After pasting, cycle forwards/backwards through the clipboard history
 nmap <silent> ]p <Plug>yankstack_substitute_newer_paste
 nmap <silent> [p <Plug>yankstack_substitute_older_paste
 
@@ -572,7 +573,7 @@ let mapleader=','
 nnoremap <silent> <Leader><Leader> <C-^>
 
 " Toggle comments of current line
-nnoremap <silent> <Leader>/ :let w:tcommentPos = getpos('.')<CR>:set opfunc=tcomment#OperatorLine<CR>g@$
+nnoremap <silent> <Leader>/ :let w:tcommentPos=getpos('.')<CR>:set opfunc=tcomment#OperatorLine<CR>g@$
 
 " Toggle comments of selection
 vnoremap <silent> <Leader>/ :TCommentMaybeInline<CR>
@@ -631,9 +632,6 @@ nnoremap <silent> <Leader>gt :Git ctags<CR>
 " Switch between source and [h]eader file
 nnoremap <silent> <Leader>h :FSHere<CR>
 
-" Toggle [i]ndentation line guides
-nnoremap <silent> <Leader>i :IndentLinesToggle<CR>
-
 " Extend K with Dash.app
 nmap <silent> <Leader>k <Plug>DashSearch
 
@@ -663,7 +661,7 @@ nnoremap <silent> <Leader>v :tabnew<CR>:edit $MYVIMRC<CR>
 
 " <Leader>w Opens the [W]inResizer plugin
 
-" E[x]ecute latex (TeX-PDF plugin)
+" Execute late[x] (TeX-PDF plugin)
 nnoremap <silent> <Leader>x :BuildAndViewTexPdf<CR>:redraw!<CR>
 
 " }}}
@@ -676,17 +674,10 @@ nnoremap <silent> <Leader>x :BuildAndViewTexPdf<CR>:redraw!<CR>
 let NERDTreeDirArrows = 1
 let NERDTreeWinSize = 25
 let NERDTreeIgnore = ['\.svn$', '\.git$', '\.o$', '\~$', '\.swp$', '\.pyc$', '\.class$', '\.dSYM$']
-let NERDTreeHijackNetrw = 0
 let g:NERDTreeMapCWD = 'cc'
 
 " NERDTreeTabs plugin configuration
 let g:nerdtree_tabs_open_on_console_startup = 1
-
-" Disable netrw plugin
-let g:loaded_netrw = 1
-let g:loaded_netrwPlugin = 1
-let g:loaded_netrwFileHandlers = 1
-let g:loaded_netrwSettings = 1
 
 " Taglist plugin configuration
 let g:tagbar_compact = 1
@@ -705,6 +696,16 @@ let g:syntastic_error_symbol = '✗'
 let g:syntastic_warning_symbol = '⚠'
 let g:syntastic_always_populate_loc_list = 1
 let g:syntastic_mode_map = {'mode': 'passive'}
+
+" YouCompleteMe plugin configuration
+let g:ycm_error_symbol = '✗'
+let g:ycm_warning_symbol = '⚠'
+let g:ycm_allow_changing_updatetime = 0
+let g:ycm_complete_in_comments = 1
+let g:ycm_collect_identifiers_from_comments_and_strings = 1
+let g:ycm_key_detailed_diagnostics = ''
+let g:ycm_key_list_select_completion = ['<Tab>']
+let g:ycm_key_list_previous_completion = ['<S-Tab>']
 
 " Airline plugin configuration
 let g:airline_powerline_fonts = 1
@@ -731,33 +732,8 @@ let g:tex_conceal = 'adgm'
 let g:tex_pdf_map_keys = 0
 
 " Ack plugin configuration
-
 let g:ackprg = executable('ag') ? 'ag' : '~/.vim/.extra/ack.pl -H'
 let g:ackprg .= ' --nocolor --nogroup --column'
-
-" NeoComplCache plugin configuration
-let g:neocomplcache_enable_at_startup = 1
-let g:neocomplcache_enable_smart_case = 1
-let g:neocomplcache_enable_camel_case_completion = 1
-let g:neocomplcache_enable_underbar_completion = 1
-let g:neocomplcache_enable_wildcard = 0
-let g:neocomplcache_enable_insert_char_pre = 1
-let g:neocomplcache_min_syntax_length = 3
-let g:neocomplcache_max_list = 10
-let g:neocomplcache_force_omni_patterns = {}
-let g:neocomplcache_force_omni_patterns.php    = '[^. \t]->\h\w*\|\h\w*::'
-let g:neocomplcache_force_omni_patterns.perl   = '\h\w*->\h\w*\|\h\w*::'
-let g:neocomplcache_force_omni_patterns.c      = '[^.[:digit:] *\t]\%(\.\|->\)'
-let g:neocomplcache_force_omni_patterns.cpp    = '[^.[:digit:] *\t]\%(\.\|->\)\|\h\w*::'
-let g:neocomplcache_force_omni_patterns.ruby   = '[^. *\t]\.\h\w*\|\h\w*::'
-let g:neocomplcache_force_omni_patterns.python = '[^. \t]\.\w*'
-let g:neocomplcache_force_overwrite_completefunc = 1
-
-" Clang_complete plugin configuration
-let g:clang_complete_auto = 0
-let g:clang_auto_select = 0
-let g:clang_use_library = 1
-let g:clang_jumpto_back_key = '<Plug>'
 
 " Signify plugin configuration
 let g:signify_update_on_bufenter = 0
@@ -767,9 +743,6 @@ let g:signify_sign_change = '~'
 
 " WinResizer plugin configuration
 let g:winresizer_start_key = '<Leader>w'
-
-" IndentLine  plugin configuration
-let g:indentLine_enabled = 0
 
 " % matches complex opening/closing entities
 runtime macros/matchit.vim
@@ -791,6 +764,11 @@ function! Kolors(num)
     silent! highlight NonText guifg=bg guibg=bg
     silent! highlight NonText ctermfg=bg ctermbg=bg
     silent! highlight CursorLine term=NONE cterm=NONE
+
+    if g:colors_name ==# 'kellys'
+        highlight Function  guifg=#afdfdf ctermfg=152
+        highlight Namespace guifg=#a8a8a8 ctermfg=248
+    endif
 endf
 
 " }}}
