@@ -176,6 +176,9 @@ autocmd BufRead,BufNewFile *.md setfiletype markdown
 " Json filetype detection
 autocmd BufRead,BufNewFile *.json setfiletype javascript
 
+" Use NASM as the default assembly syntax
+autocmd BufRead,BufNewFile *.asm setfiletype nasm
+
 " Use 2 spaces for indentation in ruby, and allow ! and ? in keywords
 autocmd FileType ruby setlocal tabstop=2 softtabstop=2 shiftwidth=2 iskeyword+=!,?
 
