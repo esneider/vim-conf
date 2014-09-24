@@ -366,7 +366,8 @@ set scrolloff=5
 set icon title
 
 " Show wrapped-line indicator
-set showbreak=↪
+" FIXME: is NonText
+" set showbreak=↪
 
 " Highlight the line that the cursor is on
 set cursorline
