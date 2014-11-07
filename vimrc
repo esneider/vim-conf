@@ -91,6 +91,9 @@ Plugin 'mhinz/vim-signify'
 " Show documentation (mac only) (,k)
 Plugin 'rizzatti/dash.vim'
 
+" Warn after 20 writes without commiting
+Plugin 'esneider/YUNOcommit.vim'
+
 " Language specific
   """""""""""""""""
 
@@ -187,6 +190,9 @@ autocmd FileType make setlocal noexpandtab
 
 " Enable spell checking in commit, markdown and text files
 autocmd FileType gitcommit,svn,asciidoc,markdown setlocal spell
+
+" Use vim help for K in vimscript
+autocmd FileType vim setlocal keywordprg=:help
 
 " All autocmds should be before this
 augroup END
@@ -369,6 +375,11 @@ set icon title
 " FIXME: is NonText
 " set showbreak=↪
 
+" Indent wrapped lines correctly
+if v:version > 704 || (v:version == 704  && has('patch338'))
+    set breakindent
+endif
+
 " Highlight the line that the cursor is on
 set cursorline
 
@@ -546,6 +557,13 @@ nmap <silent> [p <Plug>yankstack_substitute_older_paste
 nnoremap <silent> ]t :tabnext<CR>
 nnoremap <silent> [t :tabprevious<CR>
 
+" Move selection one line down/up
+vnoremap J :m '>+1<CR>gv=gv
+vnoremap K :m '<-2<CR>gv=gv
+
+" Use Ctrl-J to split a line
+nnoremap <NL> i<CR><ESC>
+
 " }}}
 
 """"""""""""""""""
@@ -700,6 +718,7 @@ let g:syntastic_error_symbol = '✗'
 let g:syntastic_warning_symbol = '⚠'
 let g:syntastic_always_populate_loc_list = 1
 let g:syntastic_mode_map = {'mode': 'passive'}
+let g:syntastic_javascript_jshint_args = '--config .jshintrc'
 
 " YouCompleteMe plugin configuration
 let g:ycm_error_symbol = '✗'
