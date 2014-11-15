@@ -5,10 +5,6 @@
 " Necessary for lots of cool vim things
 set nocompatible
 
-" Required for vundle
-filetype on
-filetype off
-
 " Call vundle
 set rtp+=~/.vim/bundle/vundle/
 call vundle#rc()
@@ -16,8 +12,8 @@ call vundle#rc()
 " Manage plugins (github repos)
 Plugin 'gmarik/vundle'
 
-" Components
-  """"""""""
+" UI Components
+  """""""""""""
 
 " File explorer (,e)
 Plugin 'scrooloose/nerdtree'
@@ -67,8 +63,8 @@ Plugin 'jimsei/winresizer'
 " Location and quickfix window toggle (,l and ,q)
 Plugin 'milkypostman/vim-togglelist'
 
-" Show N out of M in searches
-Plugin 'vim-scripts/IndexedSearch'
+" Incrementally highlight all pattern matches (/ and ?)
+Plugin 'haya14busa/incsearch.vim'
 
 " Cycle through the clipboard history after pasting (]p and [p)
 Plugin 'maxbrunsfeld/vim-yankstack'
@@ -130,10 +126,10 @@ Plugin 'esneider/vim-simlight'
 " Plugin initialization
   """""""""""""""""""""
 
-" yankstack plugin configuration: must be before initialization
+" Yankstack plugin configuration: must be before initialization
 let g:yankstack_map_keys = 0
 
-" yankstack plugin initialization: must be before any mapping using y or p
+" Yankstack plugin initialization: must be before any mapping using y or p
 silent! call yankstack#setup()
 
 " }}}
@@ -157,9 +153,6 @@ autocmd BufReadPost * silent! execute 'normal! g`"'
 
 " Check for file changes after 'updatetime' milliseconds of cursor hold
 autocmd CursorHold * silent! checktime
-
-" Focus NERDTree when opening vim in a folder
-autocmd VimEnter * if isdirectory(expand('<amatch>')) | NERDTreeFocus | endif
 
 " Automatically cd into the current file's directory
 autocmd BufEnter * silent! cd %:p:h
@@ -371,10 +364,6 @@ set scrolloff=5
 " Try to change the terminal title
 set icon title
 
-" Show wrapped-line indicator
-" FIXME: is NonText
-" set showbreak=↪
-
 " Indent wrapped lines correctly
 if v:version > 704 || (v:version == 704  && has('patch338'))
     set breakindent
@@ -445,18 +434,8 @@ match Todo '\v^(\<|\=|\>){7}([^=].+)?$'
 " Key mappings {{{
 """"""""""""""
 
-" Map backspace key to dismiss search highlighting
-nnoremap <silent> <BS> :nohlsearch<CR>
-
 " Map tab key to jump to matching entity: (), [], {}, etc
-nnoremap <silent> <Tab> %
-
-" Turn off Vim's regex characters and make searches use normal regexes
-" FIXME: the IndexedSearch plugin overrides these mappings
-nnoremap / /\v
-vnoremap / /\v
-nnoremap ? ?\v
-vnoremap ? ?\v
+nmap <silent> <Tab> %
 
 " Disable Ex mode and use Q for formatting the current paragraph (or selection)
 vnoremap <silent> Q gq
@@ -470,10 +449,6 @@ inoremap <silent> <Down> <C-\><C-o>gj
 
 " Toggle folds with space
 nnoremap <silent> <Space> za
-
-" Center on the matching line when moving through search results
-noremap <silent> N Nzz
-noremap <silent> n nzz
 
 " Remap jj to escape in insert mode
 inoremap jj <Esc>
@@ -563,6 +538,17 @@ vnoremap K :m '<-2<CR>gv=gv
 
 " Use Ctrl-J to split a line
 nnoremap <NL> i<CR><ESC>
+
+" Plugin IncSearch redirects
+map /  <Plug>(incsearch-forward)
+map ?  <Plug>(incsearch-backward)
+map g/ <Plug>(incsearch-stay)
+map n  <Plug>(incsearch-nohl-n)zz
+map N  <Plug>(incsearch-nohl-N)zz
+map *  <Plug>(incsearch-nohl-*)
+map #  <Plug>(incsearch-nohl-#)
+map g* <Plug>(incsearch-nohl-g*)
+map g# <Plug>(incsearch-nohl-g#)
 
 " }}}
 
@@ -699,7 +685,7 @@ let NERDTreeIgnore = ['\.svn$', '\.git$', '\.o$', '\~$', '\.swp$', '\.pyc$', '\.
 let g:NERDTreeMapCWD = 'cc'
 
 " NERDTreeTabs plugin configuration
-let g:nerdtree_tabs_open_on_console_startup = 1
+let g:nerdtree_tabs_open_on_gui_startup = 0
 
 " Taglist plugin configuration
 let g:tagbar_compact = 1
@@ -766,6 +752,10 @@ let g:signify_sign_change = '~'
 
 " WinResizer plugin configuration
 let g:winresizer_start_key = '<Leader>w'
+
+" IncSearch plugin configuration
+let g:incsearch#auto_nohlsearch = 1
+let g:incsearch#magic = '\v'
 
 " % matches complex opening/closing entities
 runtime macros/matchit.vim
