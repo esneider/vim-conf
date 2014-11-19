@@ -63,6 +63,9 @@ Plugin 'jimsei/winresizer'
 " Location and quickfix window toggle (,l and ,q)
 Plugin 'milkypostman/vim-togglelist'
 
+" Show N out of M in searches
+Plugin 'vim-scripts/IndexedSearch'
+
 " Incrementally highlight all pattern matches (/ and ?)
 Plugin 'haya14busa/incsearch.vim'
 
@@ -156,6 +159,9 @@ autocmd CursorHold * silent! checktime
 
 " Automatically cd into the current file's directory
 autocmd BufEnter * silent! cd %:p:h
+
+" Show search index
+autocmd User IncSearchLeave ShowSearchIndex
 
 " }}}
 
@@ -282,7 +288,7 @@ set omnifunc=syntaxcomplete#Complete
 """"""""""""""
 
 " Enable auto indenting on new lines (and be smart on newlines)
-set autoindent smartindent copyindent
+set autoindent cindent copyindent
 
 " Use spaces instead of tabs (and be smart on newlines)
 set expandtab smarttab
@@ -434,6 +440,9 @@ match Todo '\v^(\<|\=|\>){7}([^=].+)?$'
 " Key mappings {{{
 """"""""""""""
 
+" Map backspace key to dismiss search highlighting
+nnoremap <silent> <BS> :nohlsearch<CR>
+
 " Map tab key to jump to matching entity: (), [], {}, etc
 nmap <silent> <Tab> %
 
@@ -496,13 +505,13 @@ nnoremap <silent> <Down> g<C-]>
 
 " Move through splits with Ctrl-{hjkl}
 nnoremap <silent> <C-h> :wincmd h<CR>
-inoremap <silent> <C-h> <C-\><C-o>:wincmd h<CR>
+inoremap <silent> <C-h> <Esc>:wincmd h<CR>
 nnoremap <silent> <C-j> :wincmd j<CR>
-inoremap <silent> <C-j> <C-\><C-o>:wincmd j<CR>
+inoremap <silent> <C-j> <Esc>:wincmd j<CR>
 nnoremap <silent> <C-k> :wincmd k<CR>
-inoremap <silent> <C-k> <C-\><C-o>:wincmd k<CR>
+inoremap <silent> <C-k> <Esc>:wincmd k<CR>
 nnoremap <silent> <C-l> :wincmd l<CR>
-inoremap <silent> <C-l> <C-\><C-o>:wincmd l<CR>
+inoremap <silent> <C-l> <Esc>:wincmd l<CR>
 
 " Make ' jump to saved line & column rather than just line
 nnoremap ' `
@@ -536,15 +545,15 @@ nnoremap <silent> [t :tabprevious<CR>
 vnoremap J :m '>+1<CR>gv=gv
 vnoremap K :m '<-2<CR>gv=gv
 
-" Use Ctrl-J to split a line
-nnoremap <NL> i<CR><ESC>
+" Use S to split a line
+nnoremap S i<CR><ESC>
 
 " Plugin IncSearch redirects
 map /  <Plug>(incsearch-forward)
 map ?  <Plug>(incsearch-backward)
 map g/ <Plug>(incsearch-stay)
-map n  <Plug>(incsearch-nohl-n)zz
-map N  <Plug>(incsearch-nohl-N)zz
+map n  <Plug>(incsearch-nohl-n)zvzz:ShowSearchIndex<CR>
+map N  <Plug>(incsearch-nohl-N)zvzz:ShowSearchIndex<CR>
 map *  <Plug>(incsearch-nohl-*)
 map #  <Plug>(incsearch-nohl-#)
 map g* <Plug>(incsearch-nohl-g*)
@@ -602,7 +611,7 @@ nnoremap <silent> <Leader>f :Ack!<Space>"<C-R><C-W>"<CR>
 nnoremap <Leader>F :Ack!<Space>""<Left>
 
 " [G]it [c]ommit
-nnoremap <silent> <Leader>gc :Gcommit -a<CR>
+nnoremap <silent> <Leader>gc :Git add -p<CR>:Gcommit<CR>
 
 " [G]it [d]iff
 nnoremap <silent> <Leader>gd :Git diff --color<CR>
@@ -752,6 +761,9 @@ let g:signify_sign_change = '~'
 
 " WinResizer plugin configuration
 let g:winresizer_start_key = '<Leader>w'
+
+" IndexedSearch plugin configuration
+let g:indexed_search_mappings = 0
 
 " IncSearch plugin configuration
 let g:incsearch#auto_nohlsearch = 1
