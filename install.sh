@@ -49,7 +49,7 @@ brew_install() {
 
 apt_get_install() {
     if run_silent dpkg-query -Wf'${Status}' "${1}" | grep "^i"; then
-        install "${1}" sudo apt-get install "${@}"
+        install "${1}" sudo apt-get install -y "${@}"
     fi
 }
 

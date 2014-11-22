@@ -170,7 +170,7 @@ autocmd User IncSearchLeave ShowSearchIndex
 """""""""""""""""""
 
 " Ruby filetype detection
-autocmd BufRead,BufNewFile Gemfile,Capfile,config.ru setfiletype ruby
+autocmd BufRead,BufNewFile Gemfile,Capfile,config.ru,Vagrantfile setfiletype ruby
 
 " Markdown filetype detection
 autocmd BufRead,BufNewFile *.md setfiletype markdown
