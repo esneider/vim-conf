@@ -193,6 +193,9 @@ autocmd FileType gitcommit,svn,asciidoc,markdown setlocal spell
 " Use vim help for K in vimscript
 autocmd FileType vim setlocal keywordprg=:help
 
+" Disable automatic label dedent.
+autocmd FileType cpp setlocal cinoptions+=L0
+
 " All autocmds should be before this
 augroup END
 
@@ -750,8 +753,7 @@ let g:tex_conceal = 'adgm'
 let g:tex_pdf_map_keys = 0
 
 " Ack plugin configuration
-let g:ackprg = executable('ag') ? 'ag' : '~/.vim/.extra/ack.pl -H'
-let g:ackprg .= ' --nocolor --nogroup --column'
+let g:ackprg = 'ag --nocolor --nogroup --column'
 
 " Signify plugin configuration
 let g:signify_update_on_bufenter = 0
