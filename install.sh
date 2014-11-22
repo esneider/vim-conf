@@ -1,75 +1,60 @@
 #!/bin/bash
 
-# Config
+readonly   VUNDLE_URL="https://github.com/gmarik/vundle.git"
+readonly    FONTS_URL="https://github.com/Lokaltog/powerline-fonts.git"
+readonly GITCTAGS_URL="https://github.com/esneider/gitctags.git"
+readonly HOMEBREW_URL="https://raw.github.com/Homebrew/homebrew/go/install"
+readonly MAC_LIB_PATH="/Library/Developer/CommandLineTools/usr/lib"
 
-EXTRAS_PATH="${HOME}/.vim/.extra"
-
-VUNDLE_URL="https://github.com/gmarik/vundle.git"
-
-ACK_URL="http://beyondgrep.com/ack-2.12-single-file"
-
-FONTS_URL="https://github.com/Lokaltog/powerline-fonts.git"
-
-GITCTAGS_URL="https://github.com/esneider/gitctags.git"
-
-MAC_LIB_PATH="/Library/Developer/CommandLineTools/usr/lib"
-
-HOMEBREW_URL="https://raw.github.com/Homebrew/homebrew/go/install"
-
-# Functions
-
-function run_silent {
+run_silent() {
     eval "(${@}) > /dev/null 2> /dev/null"
 }
 
-function exists {
+exists() {
     run_silent "command -v ${1}"
 }
 
-function version_has {
-    run_silent "${1} --version | grep -i \"${2}\""
-}
-
-function error {
+error() {
     echo "ERROR: ${1}"
     exit 1
 }
 
-function warn {
+warn() {
     echo "WARNING: ${1}"
 }
 
-function progress {
+progress() {
     echo "${1}..."
 }
 
-function note {
-    echo "${@}" | fmt -sw 74 | sed "s/^/      /"
-    echo
-}
-
-function install {
+install() {
     progress "Installing ${1}"
+
     if ! run_silent "${@:2}"; then
         warn "failed to install ${1}, proceeding anyway"
     fi
 }
 
-function brew_install {
-    if exists brew && ! run_silent brew list "${1}"; then
-        install "${1}" brew install "${@}"
-    fi
-}
-
-function npm_install {
+npm_install() {
     if exists npm && ! run_silent npm list -g "${1}"; then
         install "${1}" npm install -g "${@}"
     fi
 }
 
-function setup_mac {
+brew_install() {
+    if exists brew && ! run_silent brew list "${1}"; then
+        install "${1}" brew install "${@}"
+    fi
+}
 
-    # Make sure the developer tools are installed
+apt_get_install() {
+    if run_silent dpkg-query -Wf'${Status}' "${1}" | grep "^i"; then
+        install "${1}" sudo apt-get install "${@}"
+    fi
+}
+
+setup_mac() {
+    # Make sure the developer tools are installed and ready
 
     if ! exists xcode-select; then
         error "you should install Xcode from the App Store"
@@ -79,22 +64,17 @@ function setup_mac {
         install "developer tools" "xcode-select" --install
     fi
 
-    # Add Xcode libraries to the path (libclang, etc)
-
-    if [[ -e ${MAC_LIB_PATH} ]] &&
-       [[ ":${DYLD_LIBRARY_PATH}:" != *":${MAC_LIB_PATH}:"* ]]
-    then
+    if [[ -e ${MAC_LIB_PATH} ]] && [[ ":${DYLD_LIBRARY_PATH}:" != *":${MAC_LIB_PATH}:"* ]]; then
         echo 'export DYLD_LIBRARY_PATH="'${MAC_LIB_PATH}':${DYLD_LIBRARY_PATH}"' >> ~/.bash_profile
     fi
 
     # Make sure we have Homebrew
 
     if ! exists brew; then
-
         progress "Installing Homebrew"
 
         if ! ruby -e "$(curl -fsSL ${HOMEBREW_URL})"; then
-            error "failed to install homebrew, aborting"
+            error "failed to install homebrew"
         fi
 
         echo 'export ARCHFLAGS="-arch x86_64"' >> ~/.bash_profile
@@ -103,182 +83,110 @@ function setup_mac {
 
     # Install dependencies
 
+    brew_install cmake
+    brew_install curl
     brew_install git
-    brew_install wget
     brew_install node
     brew_install ctags
     brew_install ag
+    brew_install vim --with-python
+}
 
-    # Install vim with python support
+setup_ubuntu() {
+    apt_get_install build-essential
+    apt_get_install cmake
+    apt_get install python-dev
+    apt_get_install libclang-dev
+    apt_get_install git
+    apt_get_install nodejs
+    apt_get_install npm
+    apt_get_install exuberant-ctags
+    apt_get_install silversearcher-ag
+}
 
-    if ! exists vim ||
-       ! version_has vim "+python"
+initial_setup() {
+    # Basic checks
+
+    cd "$(dirname "${0}")"
+
+    if ! [ -f vimrc ]; then
+        error "can't find vimrc file"
+    fi
+
+    progress "Checking internet connection"
+
+    if ! run_silent ping -w 5000 -c 1 google.com &&
+       ! run_silent ping -W 5000 -c 1 google.com
     then
-        install "vim" brew install vim --with-python
+        error "no internet connection"
+    fi
+
+    # Try to setup dependencies
+
+    if [[ $(uname -s) == "Darwin" ]] && ! exists port; then
+        progress "Setting up dependencies for MacOS"
+        setup_mac
+    fi
+
+    if [[ $(uname -v) == *"Ubuntu"* ]]; then
+        progress "Setting up dependencies for Ubuntu"
+        setup_ubuntu
+    fi
+
+    if ! exists vim; then
+        error "you must install 'vim'"
+    fi
+
+    if ! exists git; then
+        error "you must install 'git'"
     fi
 }
 
-function setup_ubuntu {
+install_vimrc() {
+    # Make backup
 
-    : # TODO
+    progress "Making backup"
+
+    run_silent mv -f ~/.vim ~/.vim.bak
+    run_silent mv -f ~/.vimrc ~/.vimrc.bak
+
+    mkdir ~/.vim{,/bundle,/extras,/undo}
+
+    # Install
+
+    progress "Installing vimrc"
+
+    if ! run_silent git clone "${VUNDLE_URL}" ~/.vim/bundle/vundle; then
+        run_silent mv -f ~/.vimrc.bak ~/.vimrc
+        run_silent mv -f ~/.vim.bak ~/.vim
+        error "can't connect to github"
+    fi
+
+    if ! run_silent ln vimrc ~/.vimrc; then
+        warn "failed to hard-link vimrc, falling back to copy"
+        cp vimrc ~/.vimrc
+    fi
+
+    vim +PluginInstall +qall
 }
 
-# Check if working directory set on the repo
+final_setup() {
+    npm_install jshint
+    npm_install csslint
 
-cd "$(dirname "${0}")"
+    install "fonts"     git clone "${FONTS_URL}"    "~/.vim/extras/fonts"
+    install "git-ctags" git clone "${GITCTAGS_URL}" "~/.vim/extras/gitctags"
 
-if ! [ -f vimrc ]
-then
-    error "can't find 'vimrc'"
-fi
+    run_silent cd ~/.vim/extras/gitctags && ./setup.sh
 
-# Check for internet connection (for github)
+    install "tern" cd ~/.vim/bundle/tern_for_vim  && npm install
+    install "YCM"  cd ~/.vim/bundle/YouCompleteMe && ./install.sh --clang-completer
+}
 
-progress "Checking internet connection"
+initial_setup
+install_vimrc
+final_setup
 
-if ! run_silent ping -w 5000 -c 1 github.com &&
-   ! run_silent ping -W 5000 -c 1 github.com
-then
-    error "you don't have an internet connection or github may be down"
-fi
-
-# Try to setup dependencies
-
-if [[ $(uname -s) == "Darwin" ]] && ! exists port; then
-    progress "Setting up dependencies for MacOS"
-    setup_mac
-fi
-
-if [[ $(uname -s) == "Linux" ]] && [[ $(uname -v) == *"Ubuntu"* ]]; then
-    progress "Setting up dependencies for Ubuntu"
-    setup_ubuntu
-fi
-
-# Check for vim presence
-
-if ! exists vim
-then
-    error "you must install 'vim'"
-fi
-
-# Check for git presence
-
-if ! exists git
-then
-    error "you must install 'git'"
-fi
-
-# Make backup
-
-progress "Making backup"
-
-run_silent rm -rf ~/.vimrc.bak ~/.vim.bak
-run_silent mv ~/.vimrc ~/.vimrc.bak
-run_silent mv ~/.vim ~/.vim.bak
-
-# Install vundle
-
-progress "Installing vundle"
-
-if ! run_silent git clone "${VUNDLE_URL}" ~/.vim/bundle/vundle
-then
-    run_silent mv ~/.vimrc.bak ~/.vimrc
-    run_silent mv ~/.vim.bak ~/.vim
-
-    error "you don't have an internet connection or github may be down, try later"
-fi
-
-# Install
-
-progress "Installing vimrc"
-
-if ! run_silent ln vimrc ~/.vimrc
-then
-    warn "failed to hard-link vimrc, falling back to copy"
-
-    cp vimrc ~/.vimrc
-fi
-
-mkdir ~/.vim/.undo
-
-# Install plugins
-
-progress "Installing plugins"
-
-vim +PluginInstall +qall
-
-# Install ack
-
-progress "Installing ack"
-
-run_silent mkdir "${EXTRAS_PATH}"
-
-if ! exists curl && ! exists wget
-then
-    warn "you don't have curl nor wget, so ack won't be installed"
-
-elif exists curl && run_silent curl -o "${EXTRAS_PATH}/ack.pl" "${ACK_URL}"
-then
-    chmod 0755 "${EXTRAS_PATH}/ack.pl"
-
-elif exists wget && run_silent wget -O "${EXTRAS_PATH}/ack.pl" "${ACK_URL}"
-then
-    chmod 0755 "${EXTRAS_PATH}/ack.pl"
-else
-    warn "can't get ack, proceeding anyway"
-fi
-
-# Install extras
-
-progress "Installing fonts"
-
-if ! run_silent git clone "${FONTS_URL}" "${EXTRAS_PATH}/fonts"
-then
-    warn "can't get fonts, proceeding anyway"
-fi
-
-progress "Installing automatic git ctags"
-
-if ! run_silent git clone "${GITCTAGS_URL}" "${EXTRAS_PATH}/gitctags"
-then
-    warn "can't get git ctags, proceeding anyway"
-
-elif ! run_silent "${EXTRAS_PATH}/gitctags/setup.sh"
-then
-    warn "error installing git ctags, proceeding anyway"
-fi
-
-# Install some syntax checkers
-
-npm_install jshint
-npm_install csslint
-
-# Check plugin dependencies
-
-echo "Done!!!"
-echo
-echo "NOTES:"
-
-if ! version_has vim "+python"
-then
-    note "You should install vim with python support (+python)"
-fi
-
-if ! exists ctags || ! version_has ctags "exuberant"
-then
-    note "You should install 'exuberant ctags' to use tags in vim"
-fi
-
-if ! exists perl || ! exists ag
-then
-    note "You should install 'perl' or 'ag' to use the ack plugin"
-fi
-
-if exists gcc
-then
-    note "If you are going to use C or C++, you should install 'libclang'"
-fi
-
-note "You may want to install and set your terminal to use one of the fonts in"\
-     "'${EXTRAS_PATH}/fonts' to have a pretty status line"
-
+echo -e "\nDone!!!\n"
+echo -e "\tYou may want to config your terminal to use one of the fonts"
+echo -e "\tin '~/.vim/extras/fonts' to have a pretty status bar"
