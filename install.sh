@@ -82,6 +82,7 @@ setup_ubuntu() {
     apt_get_install npm
     apt_get_install exuberant-ctags
     apt_get_install silversearcher-ag
+    apt_get_install vim
 }
 
 initial_setup() {
