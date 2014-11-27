@@ -178,9 +178,6 @@ autocmd BufRead,BufNewFile Gemfile,Capfile,config.ru,Vagrantfile setfiletype rub
 " Markdown filetype detection
 autocmd BufRead,BufNewFile *.md setfiletype markdown
 
-" Json filetype detection
-autocmd BufRead,BufNewFile *.json setfiletype javascript
-
 " Use NASM as the default assembly syntax
 autocmd BufRead,BufNewFile *.asm setfiletype nasm
 
