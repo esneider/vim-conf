@@ -617,7 +617,7 @@ nnoremap <silent> <Leader>f :Ack!<Space>"<C-R><C-W>"<CR>
 nnoremap <Leader>F :Ack!<Space>""<Left>
 
 " [G]it [c]ommit
-nnoremap <silent> <Leader>gc :Git add -p<CR>:Gcommit<CR>
+nnoremap <silent> <Leader>gc :Git add -p<CR>:Gcommit -v<CR>
 
 " [G]it [d]iff
 nnoremap <silent> <Leader>gd :Git diff --color<CR>
