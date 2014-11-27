@@ -45,6 +45,9 @@ Plugin 'tpope/vim-surround'
 " Support repeating surround actions
 Plugin 'tpope/vim-repeat'
 
+" Change case (crs: snake_case, crm: MixedCase, crc: camelCase, cru: UPPER_CASE)
+Plugin 'tpope/vim-abolish'
+
 " Toggle comments (,/)
 Plugin 'tomtom/tcomment_vim'
 
@@ -71,6 +74,9 @@ Plugin 'haya14busa/incsearch.vim'
 
 " Cycle through the clipboard history after pasting (]p and [p)
 Plugin 'maxbrunsfeld/vim-yankstack'
+
+" Smart automatic removal of trailing whitespaces
+Plugin 'esneider/vim-trailing'
 
 " External tools
   """"""""""""""
@@ -145,9 +151,6 @@ silent! call yankstack#setup()
 augroup vimrc
 autocmd!
 
-" Remove trailing whitespace before saving
-autocmd BufRead,BufWrite * if ! &bin | silent! %s/\s\+$//ge | endif
-
 " Highlight first word after column 80
 autocmd BufWinEnter * let w:m2 = matchadd('CursorLine', '\%81v\s*\zs\S\+', -1)
 
@@ -193,7 +196,7 @@ autocmd FileType gitcommit,svn,asciidoc,markdown setlocal spell
 " Use vim help for K in vimscript
 autocmd FileType vim setlocal keywordprg=:help
 
-" Disable automatic label dedent.
+" Disable automatic label dedenting
 autocmd FileType cpp setlocal cinoptions+=L0
 
 " All autocmds should be before this
