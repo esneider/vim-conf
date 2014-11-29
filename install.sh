@@ -5,12 +5,12 @@ readonly    FONTS_URL="https://github.com/Lokaltog/powerline-fonts.git"
 readonly GITCTAGS_URL="https://github.com/esneider/gitctags.git"
 readonly HOMEBREW_URL="https://raw.github.com/Homebrew/homebrew/go/install"
 
-run_silent() {
+silent() {
     eval "(${@}) >/dev/null 2>&1"
 }
 
 exists() {
-    run_silent "command -v ${1}"
+    silent command -v "${1}"
 }
 
 error() {
@@ -20,19 +20,19 @@ error() {
 
 install() {
     echo "Installing ${1}..."
-    if ! run_silent "${@:2}"; then
+    if ! silent "${@:2}"; then
         echo "WARNING: failed to install ${1}"
     fi
 }
 
 npm_install() {
-    if exists npm && ! run_silent npm list -g "${1}"; then
+    if exists npm && ! silent npm list -g "${1}"; then
         install "${1}" npm install -g "${@}"
     fi
 }
 
 brew_install() {
-    if exists brew && ! run_silent brew list "${1}"; then
+    if exists brew && ! silent brew list "${1}"; then
         install "${1}" brew install "${@}"
     fi
 }
@@ -48,7 +48,7 @@ setup_mac() {
         error "you should install Xcode from the App Store"
     fi
 
-    if ! run_silent "xcode-select" -p; then # TODO: is this working?
+    if ! silent "xcode-select" -p; then # TODO: is this working?
         install "developer tools" "xcode-select" --install
     fi
 
@@ -69,7 +69,7 @@ setup_mac() {
     brew_install node
     brew_install ctags
     brew_install ag
-    brew_install vim --with-python
+    brew_install vim
 }
 
 setup_ubuntu() {
@@ -92,8 +92,8 @@ initial_setup() {
         error "can't find vimrc file"
     fi
 
-    if ! run_silent ping -w 5000 -c 1 google.com &&
-       ! run_silent ping -W 5000 -c 1 google.com
+    if ! silent ping -w 5000 -c 1 google.com &&
+       ! silent ping -W 5000 -c 1 google.com
     then
         error "no internet connection"
     fi
@@ -118,18 +118,18 @@ initial_setup() {
 install_vimrc() {
     echo "Installing vimrc..."
 
-    run_silent mv -f ~/.vim ~/.vim.bak
-    run_silent mv -f ~/.vimrc ~/.vimrc.bak
+    silent mv -f ~/.vim ~/.vim.bak
+    silent mv -f ~/.vimrc ~/.vimrc.bak
 
     mkdir ~/.vim{,/bundle,/extras,/undo}
 
-    if ! run_silent git clone "${VUNDLE_URL}" ~/.vim/bundle/vundle; then
-        run_silent mv -f ~/.vimrc.bak ~/.vimrc
-        run_silent mv -f ~/.vim.bak ~/.vim
+    if ! silent git clone "${VUNDLE_URL}" ~/.vim/bundle/vundle; then
+        silent mv -f ~/.vimrc.bak ~/.vimrc
+        silent mv -f ~/.vim.bak ~/.vim
         error "can't connect to github"
     fi
 
-    if ! run_silent ln vimrc ~/.vimrc; then
+    if ! silent ln vimrc ~/.vimrc; then
         echo "WARNING: failed to hard-link vimrc, falling back to copy"
         cp vimrc ~/.vimrc
     fi
@@ -143,11 +143,14 @@ final_setup() {
 
     cd ~/.vim/bundle/tern_for_vim
     install "tern" npm install
-    install "fonts" git clone "${FONTS_URL}" "~/.vim/extras/fonts"
-    install "git-ctags" git clone "${GITCTAGS_URL}" "~/.vim/extras/gitctags"
-    install "YCM (slooow)" ~/.vim/bundle/YouCompleteMe/install.sh --clang-completer
 
-    run_silent ~/.vim/extras/gitctags/setup.sh
+    cd ~/.vim/bundle/YouCompleteMe
+    install "YCM (slooow)" ./install.sh --clang-completer
+
+    cd ~/.vim/extras
+    install "fonts" git clone "${FONTS_URL}" fonts
+    install "git-ctags" git clone "${GITCTAGS_URL}" gitctags
+    silent ./gitctags/setup.sh
 }
 
 initial_setup
