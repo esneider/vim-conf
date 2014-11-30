@@ -549,7 +549,7 @@ vnoremap J :m '>+1<CR>gv=gv
 vnoremap K :m '<-2<CR>gv=gv
 
 " Use S to split a line
-nnoremap S i<CR><ESC>
+nnoremap S i<CR><Esc>
 
 " Plugin IncSearch redirects
 map /  <Plug>(incsearch-forward)
@@ -561,6 +561,10 @@ map *  <Plug>(incsearch-nohl-*)
 map #  <Plug>(incsearch-nohl-#)
 map g* <Plug>(incsearch-nohl-g*)
 map g# <Plug>(incsearch-nohl-g#)
+
+" Make : easier to type
+nnoremap ; :
+nnoremap : ;
 
 " }}}
 
