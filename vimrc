@@ -166,6 +166,10 @@ autocmd BufEnter * silent! cd %:p:h
 " Show search index
 autocmd User IncSearchLeave ShowSearchIndex
 
+" Hide cursor line when focus is lost, and in insert mode
+autocmd WinLeave,InsertEnter * set nocursorline
+autocmd WinEnter,InsertLeave * set cursorline
+
 " }}}
 
 """""""""""""""""""
