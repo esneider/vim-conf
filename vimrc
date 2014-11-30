@@ -339,6 +339,9 @@ set display+=lastline
 " Use only one space after '.' when joining lines, instead of two
 set nojoinspaces
 
+" Set automatic formatting settings
+set formatoptions=tcroqn
+
 " Handle comments when joining lines
 if v:version > 703 || (v:version == 703 && has('patch541'))
     set formatoptions+=j
