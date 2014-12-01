@@ -31,6 +31,12 @@ npm_install() {
     fi
 }
 
+pip_install() {
+    if exists pip && ! (pip show "${1}" | grep ".") >/dev/null 2>&1; then
+        install "${1}" pip install "${@}"
+    fi
+}
+
 brew_install() {
     if exists brew && ! silent brew list "${1}"; then
         install "${1}" brew install "${@}"
@@ -67,6 +73,7 @@ setup_mac() {
     brew_install curl
     brew_install git
     brew_install node
+    brew_install shellcheck
     brew_install ctags
     brew_install ag
     brew_install vim
@@ -80,6 +87,7 @@ setup_ubuntu() {
     apt_get_install git
     apt_get_install nodejs
     apt_get_install npm
+    apt_get_install shellcheck
     apt_get_install exuberant-ctags
     apt_get_install silversearcher-ag
     apt_get_install vim
@@ -138,6 +146,7 @@ install_vimrc() {
 }
 
 final_setup() {
+    pip_install flake8
     npm_install jshint
     npm_install csslint
 
