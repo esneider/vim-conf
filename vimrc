@@ -573,6 +573,15 @@ map #  <Plug>(incsearch-nohl-#)
 nnoremap ; :
 nnoremap : ;
 
+" TESTING: move automatically inside delimiters after typing them
+inoremap '' ''<Left>
+inoremap "" ""<Left>
+inoremap () ()<Left>
+inoremap <> <><Left>
+inoremap {} {}<Left>
+inoremap [] []<Left>
+inoremap () ()<Left>
+
 " }}}
 
 """"""""""""""""""
