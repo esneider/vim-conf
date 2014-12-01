@@ -48,6 +48,9 @@ Plugin 'tpope/vim-repeat'
 " Change case (crs: snake_case, crm: MixedCase, crc: camelCase, cru: UPPER_CASE)
 Plugin 'tpope/vim-abolish'
 
+" Add function arguments text objects (a noun)
+Plugin 'vim-scripts/argtextobj.vim'
+
 " Toggle comments (,/)
 Plugin 'tomtom/tcomment_vim'
 
