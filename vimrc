@@ -511,7 +511,7 @@ nnoremap <silent> <Right> :tabnext<CR>
 
 " Move to tag definition and back with down/up arrows
 nnoremap <silent> <Up> <C-t>
-nnoremap <silent> <Down> g<C-]>
+nnoremap <silent> <Down> :set noignorecase<CR>g<C-]>:set ignorecase<CR>
 
 " Move through splits with Ctrl-{hjkl}
 nnoremap <silent> <C-h> :wincmd h<CR>
@@ -536,8 +536,8 @@ nnoremap <silent> ]c /\v^(\<\|\=\|\>){7}([^=].+)?$<CR>
 nnoremap <silent> [c ?\v^(\<\|\=\|\>){7}([^=].+)\?$<CR>
 
 " Jump to next/previous diff marker (signify plugin)
-nmap <silent> ]d <plug>(signify-next-hunk)
-nmap <silent> [d <plug>(signify-prev-hunk)
+nmap <silent> ]d <Plug>(signify-next-hunk)
+nmap <silent> [d <Plug>(signify-prev-hunk)
 
 " Switch to next/previous colorscheme
 nnoremap <silent> ]k :call Kolors(+1)<CR>
@@ -561,13 +561,10 @@ nnoremap S i<CR><Esc>
 " Plugin IncSearch redirects
 map /  <Plug>(incsearch-forward)
 map ?  <Plug>(incsearch-backward)
-map g/ <Plug>(incsearch-stay)
 map n  <Plug>(incsearch-nohl-n)zvzz:ShowSearchIndex<CR>
 map N  <Plug>(incsearch-nohl-N)zvzz:ShowSearchIndex<CR>
 map *  <Plug>(incsearch-nohl-*)
 map #  <Plug>(incsearch-nohl-#)
-map g* <Plug>(incsearch-nohl-g*)
-map g# <Plug>(incsearch-nohl-g#)
 
 " Make : easier to type
 nnoremap ; :
@@ -687,10 +684,10 @@ nnoremap <silent> <Leader>r :CtrlPRecipes<CR>
 " Toggle [s]pell checking
 nnoremap <silent> <Leader>s :setlocal spell!<CR>
 
-" Open the [T]agbar Plugin
+" Open the [T]agbar plugin
 nnoremap <silent> <Leader>t :TagbarToggle<CR>
 
-" Open the G[u]ndo Plugin
+" Open the G[u]ndo plugin
 nnoremap <silent> <Leader>u :GundoToggle<CR>
 
 " Edit [v]imrc in a new tab
