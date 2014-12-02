@@ -534,26 +534,6 @@ nnoremap ` '
 nnoremap <MiddleMouse> <Nop>
 inoremap <MiddleMouse> <Nop>
 
-" Jump to next/previous merge conflict marker
-nnoremap <silent> ]c /\v^(\<\|\=\|\>){7}([^=].+)?$<CR>
-nnoremap <silent> [c ?\v^(\<\|\=\|\>){7}([^=].+)\?$<CR>
-
-" Jump to next/previous diff marker (signify plugin)
-nmap <silent> ]d <Plug>(signify-next-hunk)
-nmap <silent> [d <Plug>(signify-prev-hunk)
-
-" Switch to next/previous colorscheme
-nnoremap <silent> ]k :call Kolors(+1)<CR>
-nnoremap <silent> [k :call Kolors(-1)<CR>
-
-" After pasting, cycle forwards/backwards through the clipboard history
-nmap <silent> ]p <Plug>yankstack_substitute_newer_paste
-nmap <silent> [p <Plug>yankstack_substitute_older_paste
-
-" Switch to next/previous tab
-nnoremap <silent> ]t :tabnext<CR>
-nnoremap <silent> [t :tabprevious<CR>
-
 " Move selection one line down/up
 vnoremap J :m '>+1<CR>gv=gv
 vnoremap K :m '<-2<CR>gv=gv
@@ -581,6 +561,40 @@ inoremap <> <><Left>
 inoremap {} {}<Left>
 inoremap [] []<Left>
 inoremap () ()<Left>
+
+" }}}
+
+""""""""""""""""""""""
+" Directional mappings {{{
+""""""""""""""""""""""
+
+" Jump to next/previous merge conflict marker
+nnoremap <silent> ]c /\v^(\<\|\=\|\>){7}([^=].+)?$<CR>
+nnoremap <silent> [c ?\v^(\<\|\=\|\>){7}([^=].+)\?$<CR>
+
+" Jump to next/previous diff marker (signify plugin)
+nmap <silent> ]d <Plug>(signify-next-hunk)
+nmap <silent> [d <Plug>(signify-prev-hunk)
+
+" Move to next/previous location list entry (error)
+nnoremap <silent> ]e :lnext
+nnoremap <silent> [e :lprevious
+
+" Switch to next/previous colorscheme
+nnoremap <silent> ]k :call Kolors(+1)<CR>
+nnoremap <silent> [k :call Kolors(-1)<CR>
+
+" Move to next/previous method with ]m and [m
+
+" After pasting, cycle forwards/backwards through the clipboard history
+nmap <silent> ]p <Plug>yankstack_substitute_newer_paste
+nmap <silent> [p <Plug>yankstack_substitute_older_paste
+
+" Move to next/previous spelling error with ]s and [s
+
+" Switch to next/previous tab
+nnoremap <silent> ]t :tabnext<CR>
+nnoremap <silent> [t :tabprevious<CR>
 
 " }}}
 
