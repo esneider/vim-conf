@@ -61,7 +61,7 @@ setup_mac() {
     if ! exists brew; then
         echo "Installing homebrew..."
 
-        if ! ruby -e "$(curl -fsSL ${HOMEBREW_URL})"; then
+        if ! ruby -e "$(curl -fsSL "${HOMEBREW_URL}")"; then
             error "failed to install homebrew"
         fi
 

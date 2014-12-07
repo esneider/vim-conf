@@ -577,8 +577,8 @@ nmap <silent> ]d <Plug>(signify-next-hunk)
 nmap <silent> [d <Plug>(signify-prev-hunk)
 
 " Move to next/previous location list entry (error)
-nnoremap <silent> ]e :lnext
-nnoremap <silent> [e :lprevious
+nnoremap <silent> ]e :lnext<CR>
+nnoremap <silent> [e :lprevious<CR>
 
 " Switch to next/previous colorscheme
 nnoremap <silent> ]k :call Kolors(+1)<CR>
@@ -640,6 +640,9 @@ vnoremap <silent> <Leader>/ :TCommentMaybeInline<CR>
 
 " [C]heck syntax
 nnoremap <silent> <Leader>c :w<CR>:SyntasticCheck<CR>
+
+" [C]lear syntax error markers
+nnoremap <silent> <Leader>C :SyntasticReset<CR>
 
 " Toggle repo [d]iff signs
 nnoremap <silent> <Leader>d :SignifyToggle<CR>
