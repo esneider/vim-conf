@@ -624,10 +624,10 @@ cnoremap <C-A> <Home>
 let mapleader=','
 
 " Open a split on the given side
-nnoremap <silent> <Leader><Left>   :leftabove  vsplit<CR>
-nnoremap <silent> <Leader><Right>  :rightbelow vsplit<CR>
-nnoremap <silent> <Leader><Up>     :leftabove  split<CR>
-nnoremap <silent> <Leader><Down>   :rightbelow split<CR>
+nnoremap <silent> <Leader><Up>    :leftabove split<CR>
+nnoremap <silent> <Leader><Left>  :leftabove vsplit<CR>
+nnoremap <silent> <Leader><Down>  :rightbelow split<CR>
+nnoremap <silent> <Leader><Right> :rightbelow vsplit<CR>
 
 " Open last file
 nnoremap <silent> <Leader><Leader> <C-^>

@@ -80,6 +80,8 @@ setup_mac() {
 }
 
 setup_ubuntu() {
+    sudo apt-get update
+
     apt_get_install build-essential
     apt_get_install cmake
     apt_get_install python-dev
