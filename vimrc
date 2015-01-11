@@ -70,7 +70,7 @@ Plugin 'jimsei/winresizer'
 Plugin 'milkypostman/vim-togglelist'
 
 " Show N out of M in searches
-Plugin 'vim-scripts/IndexedSearch'
+Plugin 'henrik/vim-indexed-search'
 
 " Incrementally highlight all pattern matches (/ and ?)
 Plugin 'haya14busa/incsearch.vim'
@@ -134,6 +134,9 @@ Plugin 'flazz/vim-colorschemes'
 
 " Function and namespace highlighting
 Plugin 'esneider/vim-simlight'
+
+" TESTING
+Plugin 'zeayes/vim-coloresque'
 
 " Plugin initialization
   """""""""""""""""""""
@@ -203,6 +206,9 @@ autocmd FileType vim setlocal keywordprg=:help
 " Disable automatic label dedenting
 autocmd FileType cpp setlocal cinoptions+=L0
 
+" Allow #, - and . in keywords
+autocmd FileType css setlocal iskeyword+=#,-,.
+
 " All autocmds should be before this
 augroup END
 
@@ -247,7 +253,7 @@ set noswapfile
 
 " Keep a persistent undo backup file
 if has('persistent_undo')
-    set undofile undodir=~/.vim/.undo//,~/tmp//,/tmp//
+    set undofile undodir=~/.vim/undo//,~/tmp//,/tmp//
 endif
 
 " Ctags index directories
@@ -546,8 +552,8 @@ map /  <Plug>(incsearch-forward)
 map ?  <Plug>(incsearch-backward)
 map n  <Plug>(incsearch-nohl-n)zvzz:ShowSearchIndex<CR>
 map N  <Plug>(incsearch-nohl-N)zvzz:ShowSearchIndex<CR>
-map *  <Plug>(incsearch-nohl-*)
-map #  <Plug>(incsearch-nohl-#)
+map *  <Plug>(incsearch-nohl-*)zv
+map #  <Plug>(incsearch-nohl-#)zv
 
 " Make : easier to type
 nnoremap ; :
@@ -815,7 +821,7 @@ let g:incsearch#auto_nohlsearch = 1
 let g:incsearch#magic = '\v'
 
 " % matches complex opening/closing entities
-runtime macros/matchit.vim
+runtime! macros/matchit.vim
 
 " }}}
 
