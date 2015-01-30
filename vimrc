@@ -206,8 +206,8 @@ autocmd FileType vim setlocal keywordprg=:help
 " Disable automatic label dedenting
 autocmd FileType cpp setlocal cinoptions+=L0
 
-" Allow #, - and . in keywords
-autocmd FileType css setlocal iskeyword+=#,-,.
+" Allow - and . in keywords
+autocmd FileType css setlocal iskeyword+=-,.
 
 " All autocmds should be before this
 augroup END
@@ -789,6 +789,9 @@ let g:ctrlp_map = '<Leader>o'
 let g:ctrlp_max_height = 15
 let g:ctrlp_switch_buffer = 'et'
 let g:ctrlp_clear_cache_on_exit = 0
+
+" Bash syntax configuration (don't include . in iskeyword)
+let g:sh_noisk = 1
 
 " Doxygen syntax configuration (javadoc highlighting for C, C++, C# files)
 let g:load_doxygen_syntax = 1
