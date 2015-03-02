@@ -709,7 +709,11 @@ nmap <silent> <Leader>k <Plug>DashSearch
 " Open the CtrlP-Funky extension with the word under the cursor ([m]ethod)
 nnoremap <silent> <Leader>m :CtrlPFunky <C-R><C-W><CR>
 
-" <Leader>o [O]pens files
+" [O]pen file
+nnoremap <silent> <Leader>o :CtrlP<CR>
+
+" [O]pen file after reloading file structure
+nnoremap <silent> <Leader>O :CtrlPClearCache<CR>:CtrlP<CR>
 
 " <Leader>q Toggles the [q]uickfix-list
 
@@ -785,7 +789,7 @@ let g:airline_theme = 'powerlineish'
 let g:tcommentMaps = 0
 
 " CtrlP plugin configuration
-let g:ctrlp_map = '<Leader>o'
+let g:ctrlp_map = ''
 let g:ctrlp_max_height = 15
 let g:ctrlp_switch_buffer = 'et'
 let g:ctrlp_clear_cache_on_exit = 0
