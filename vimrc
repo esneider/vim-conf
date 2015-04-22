@@ -520,7 +520,7 @@ nnoremap <silent> <Right> :tabnext<CR>
 
 " Move to tag definition and back with down/up arrows
 nnoremap <silent> <Up> <C-t>
-nnoremap <silent> <Down> :set noignorecase<CR>g<C-]>:set ignorecase<CR>
+nnoremap <silent> <Down> g<C-]>
 
 " Move through splits with Ctrl-{hjkl}
 nnoremap <silent> <C-h> :wincmd h<CR>
@@ -550,8 +550,8 @@ nnoremap S i<CR><Esc>
 " Plugin IncSearch redirects
 map /  <Plug>(incsearch-forward)
 map ?  <Plug>(incsearch-backward)
-map n  <Plug>(incsearch-nohl-n)zvzz:ShowSearchIndex<CR>
-map N  <Plug>(incsearch-nohl-N)zvzz:ShowSearchIndex<CR>
+map n  <Plug>(incsearch-nohl-n):ShowSearchIndex<CR>zvzz
+map N  <Plug>(incsearch-nohl-N):ShowSearchIndex<CR>zvzz
 map *  <Plug>(incsearch-nohl-*)zv
 map #  <Plug>(incsearch-nohl-#)zv
 
