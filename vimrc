@@ -57,6 +57,9 @@ Plugin 'tomtom/tcomment_vim'
 " Automatic completion (select with tab)
 Plugin 'Valloric/YouCompleteMe'
 
+" YCM config file generator
+Plugin 'rdnetto/YCM-Generator'
+
 " Select regions in visual mode (+ and _)
 Plugin 'terryma/vim-expand-region'
 
@@ -122,6 +125,9 @@ Plugin 'TeX-PDF'
 
 " Markdown compilation
 Plugin 'suan/vim-instant-markdown'
+
+" Rust syntax
+Plugin 'rust-lang/rust.vim'
 
 " Look and feel
   """""""""""""
@@ -550,14 +556,16 @@ nnoremap S i<CR><Esc>
 " Plugin IncSearch redirects
 map /  <Plug>(incsearch-forward)
 map ?  <Plug>(incsearch-backward)
-map n  <Plug>(incsearch-nohl-n):ShowSearchIndex<CR>zvzz
-map N  <Plug>(incsearch-nohl-N):ShowSearchIndex<CR>zvzz
+map n  <Plug>(incsearch-nohl-n)
+map N  <Plug>(incsearch-nohl-N)
 map *  <Plug>(incsearch-nohl-*)zv
 map #  <Plug>(incsearch-nohl-#)zv
 
 " Make : easier to type
 nnoremap ; :
 nnoremap : ;
+vnoremap ; :
+vnoremap : ;
 
 " TESTING: move automatically inside delimiters after typing them
 inoremap '' ''<Left>
