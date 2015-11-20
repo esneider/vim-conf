@@ -5,14 +5,11 @@
 " Necessary for lots of cool vim things
 set nocompatible
 
-" Call vundle
+" Call vundle (must be before any Plugin)
 set rtp+=~/.vim/bundle/vundle/
 call vundle#rc()
 
-" Manage plugins (github repos)
-Plugin 'gmarik/vundle'
-
-" UI Components
+" UI Components {{{
   """""""""""""
 
 " File explorer (,e)
@@ -28,7 +25,7 @@ Plugin 'sjl/gundo.vim'
 Plugin 'majutsushi/tagbar'
 
 " Fuzzy file finder (,o)
-Plugin 'kien/ctrlp.vim'
+Plugin 'ctrlpvim/ctrlp.vim'
 
 " Fuzzy function/method finder (,m)
 Plugin 'tacahiroy/ctrlp-funky'
@@ -36,14 +33,13 @@ Plugin 'tacahiroy/ctrlp-funky'
 " Vim recipe finder (,r)
 Plugin 'esneider/vim-recipes'
 
-" Commands
-  """"""""
+" }}}
+
+" Editor commands {{{
+  """""""""""""""
 
 " Add surround modifier to vim (s noun)
 Plugin 'tpope/vim-surround'
-
-" Support repeating surround actions
-Plugin 'tpope/vim-repeat'
 
 " Change case (crs: snake_case, crm: MixedCase, crc: camelCase, cru: UPPER_CASE)
 Plugin 'tpope/vim-abolish'
@@ -53,12 +49,6 @@ Plugin 'vim-scripts/argtextobj.vim'
 
 " Toggle comments (,/)
 Plugin 'tomtom/tcomment_vim'
-
-" Automatic completion (select with tab)
-Plugin 'Valloric/YouCompleteMe'
-
-" YCM config file generator
-Plugin 'rdnetto/YCM-Generator'
 
 " Select regions in visual mode (+ and _)
 Plugin 'terryma/vim-expand-region'
@@ -72,19 +62,44 @@ Plugin 'jimsei/winresizer'
 " Location and quickfix window toggle (,l and ,q)
 Plugin 'milkypostman/vim-togglelist'
 
+" Cycle through the clipboard history after pasting (]p and [p)
+Plugin 'maxbrunsfeld/vim-yankstack'
+
+" }}}
+
+" Editor enhancements {{{
+  """""""""""""""""""
+
+" Support repeating surround actions
+Plugin 'tpope/vim-repeat'
+
+" Automatic completion (select with tab)
+Plugin 'Valloric/YouCompleteMe'
+
+" YCM config file generator
+Plugin 'rdnetto/YCM-Generator'
+
 " Show N out of M in searches
 Plugin 'henrik/vim-indexed-search'
 
 " Incrementally highlight all pattern matches (/ and ?)
 Plugin 'haya14busa/incsearch.vim'
 
-" Cycle through the clipboard history after pasting (]p and [p)
-Plugin 'maxbrunsfeld/vim-yankstack'
+" Incrementally highlight all pattern matches (:s)
+Plugin 'osyo-manga/vim-over'
 
 " Smart automatic removal of trailing whitespaces
 Plugin 'esneider/vim-trailing'
 
-" External tools
+" Make f/F behave like ;/, after an f motion (same for F, t and T)
+Plugin 'rhysd/clever-f.vim'
+
+" Manage plugins (github repos)
+Plugin 'gmarik/vundle'
+
+" }}}
+
+" External tools {{{
   """"""""""""""
 
 " Syntax checker (,c)
@@ -105,7 +120,9 @@ Plugin 'rizzatti/dash.vim'
 " Warn after 20 writes without commiting
 Plugin 'esneider/YUNOcommit.vim'
 
-" Language specific
+" }}}
+
+" Language specific {{{
   """""""""""""""""
 
 " Switch between source and header file (,h)
@@ -129,7 +146,9 @@ Plugin 'suan/vim-instant-markdown'
 " Rust syntax
 Plugin 'rust-lang/rust.vim'
 
-" Look and feel
+" }}}
+
+" Look and feel {{{
   """""""""""""
 
 " Pretty status bar
@@ -144,13 +163,13 @@ Plugin 'esneider/vim-simlight'
 " TESTING
 Plugin 'zeayes/vim-coloresque'
 
-" Plugin initialization
-  """""""""""""""""""""
+" Clean interface
+Plugin 'junegunn/goyo.vim'
 
-" Yankstack plugin configuration: must be before initialization
+" }}}
+
+" Call yankstack (must be before any mapping using y or p)
 let g:yankstack_map_keys = 0
-
-" Yankstack plugin initialization: must be before any mapping using y or p
 silent! call yankstack#setup()
 
 " }}}
@@ -711,6 +730,9 @@ nnoremap <silent> <Leader>gt :Git ctags<CR>
 
 " Switch between source and [h]eader file
 nnoremap <silent> <Leader>h :FSHere<CR>
+
+" [I]mmersive mode (distraction free)
+nnoremap <silent> <Leader>i :Goyo<CR>
 
 " Extend K with Dash.app
 nmap <silent> <Leader>k <Plug>DashSearch
