@@ -559,8 +559,8 @@ nnoremap S i<CR><Esc>
 " Plugin IncSearch redirects
 map /  <Plug>(incsearch-forward)
 map ?  <Plug>(incsearch-backward)
-map n  <Plug>(incsearch-nohl-n)
-map N  <Plug>(incsearch-nohl-N)
+map n  <Plug>(incsearch-nohl-n)zvzz
+map N  <Plug>(incsearch-nohl-N)zvzz
 map *  <Plug>(incsearch-nohl-*)zv
 map #  <Plug>(incsearch-nohl-#)zv
 
