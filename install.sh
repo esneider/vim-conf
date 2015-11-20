@@ -151,12 +151,13 @@ final_setup() {
     pip_install flake8
     npm_install jshint
     npm_install csslint
+    npm_install instant-markdown-d
 
     cd ~/.vim/bundle/tern_for_vim
     install "tern" npm install
 
     cd ~/.vim/bundle/YouCompleteMe
-    install "YCM (slooow)" ./install.sh --clang-completer
+    install "YCM (slooow)" ./install.sh --clang-completer --system-libclang
 
     cd ~/.vim/extras
     install "fonts" git clone "${FONTS_URL}" fonts
