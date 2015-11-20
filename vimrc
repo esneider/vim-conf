@@ -804,6 +804,7 @@ let g:ctrlp_map = ''
 let g:ctrlp_max_height = 15
 let g:ctrlp_switch_buffer = 'et'
 let g:ctrlp_clear_cache_on_exit = 0
+let g:ctrlp_user_command = 'ag %s -l --nocolor -g ""'
 
 " Bash syntax configuration (don't include . in iskeyword)
 let g:sh_noisk = 1
