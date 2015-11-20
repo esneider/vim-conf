@@ -197,6 +197,9 @@ autocmd BufRead,BufNewFile *.md setfiletype markdown
 " Use NASM as the default assembly syntax
 autocmd BufRead,BufNewFile *.asm setfiletype nasm
 
+" Gradle filetype detection
+autocmd BufRead,BufNewFile *.gradle setfiletype groovy
+
 " Use 2 spaces for indentation in ruby, and allow ! and ? in keywords
 autocmd FileType ruby setlocal tabstop=2 softtabstop=2 shiftwidth=2 iskeyword+=!,?
 
