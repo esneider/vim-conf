@@ -717,7 +717,7 @@ nnoremap <Leader>gm :Gmove<Space>
 nnoremap <silent> <Leader>gp :Git push<CR>
 
 " [G]it [p]ull
-nnoremap <silent> <Leader>gP :Git pull --rebase<CR>
+nnoremap <silent> <Leader>gP :Git pull --rebase --prune<CR>
 
 " [G]it [r]emove
 nnoremap <silent> <Leader>gr :Gremove<CR>
