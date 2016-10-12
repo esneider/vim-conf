@@ -155,6 +155,9 @@ Plugin 'rust-lang/rust.vim'
 " Pretty status bar
 Plugin 'bling/vim-airline'
 
+" Airline themes
+Plugin 'vim-airline/vim-airline-themes'
+
 " Lots of colorschemes
 Plugin 'flazz/vim-colorschemes'
 
