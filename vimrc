@@ -843,7 +843,7 @@ let g:tex_conceal = 'adgm'
 let g:tex_pdf_map_keys = 0
 
 " Ack plugin configuration
-let g:ackprg = 'ag --nocolor --nogroup --column'
+let g:ackprg = 'cd "$(git rev-parse --show-toplevel)"; ag --nocolor --nogroup --column'
 
 " Signify plugin configuration
 let g:signify_update_on_bufenter = 0
