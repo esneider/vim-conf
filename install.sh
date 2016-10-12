@@ -157,7 +157,7 @@ final_setup() {
     install "tern" npm install
 
     cd ~/.vim/bundle/YouCompleteMe
-    install "YCM (slooow)" ./install.sh --clang-completer --system-libclang
+    install "YCM (slooow)" ./install.sh --clang-completer --tern-completer --system-libclang
 
     cd ~/.vim/extras
     install "fonts" git clone "${FONTS_URL}" fonts
