@@ -45,7 +45,8 @@ Plugin 'tpope/vim-surround'
 Plugin 'tpope/vim-abolish'
 
 " Add function arguments text objects (a noun)
-Plugin 'vim-scripts/argtextobj.vim'
+" FIXME: hangs vim
+" Plugin 'vim-scripts/argtextobj.vim'
 
 " Toggle comments (,/)
 Plugin 'tomtom/tcomment_vim'
