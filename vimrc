@@ -691,10 +691,10 @@ nnoremap <silent> <Leader>d :SignifyToggle<CR>
 nnoremap <silent> <Leader>e :NERDTreeTabsToggle<CR>
 
 " [F]ind in files the word under the cursor
-nnoremap <silent> <Leader>f :Ack!<Space>"<C-R><C-W>"<CR>
+nnoremap <silent> <Leader>f :cd `git rev-parse --show-toplevel`<CR>:Ack!<Space>"<C-R><C-W>"<CR>
 
 " [F]ind in files
-nnoremap <Leader>F :Ack!<Space>""<Left>
+nnoremap <Leader>F :cd `git rev-parse --show-toplevel`<CR>:Ack!<Space>""<Left>
 
 " [G]it [c]ommit
 nnoremap <silent> <Leader>gc :Git add -p<CR>:Gcommit -v<CR>
@@ -847,7 +847,7 @@ let g:tex_conceal = 'adgm'
 let g:tex_pdf_map_keys = 0
 
 " Ack plugin configuration
-let g:ackprg = 'cd "$(git rev-parse --show-toplevel)"; ag --nocolor --nogroup --column'
+let g:ackprg = 'ag --nocolor --nogroup --column'
 
 " Signify plugin configuration
 let g:signify_update_on_bufenter = 0
