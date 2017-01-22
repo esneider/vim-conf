@@ -697,6 +697,9 @@ nnoremap <silent> <Leader>f :cd `git rev-parse --show-toplevel`<CR>:Ack!<Space>"
 " [F]ind in files
 nnoremap <Leader>F :cd `git rev-parse --show-toplevel`<CR>:Ack!<Space>""<Left>
 
+" [G]it [b]lame
+nnoremap <silent> <Leader>gb :Gblame!<CR>
+
 " [G]it [c]ommit
 nnoremap <silent> <Leader>gc :Git add -p<CR>:Gcommit -v<CR>
 
