@@ -147,6 +147,12 @@ Plugin 'suan/vim-instant-markdown'
 " Rust syntax
 Plugin 'rust-lang/rust.vim'
 
+" Docker syntax
+Plugin 'ekalinin/Dockerfile.vim'
+
+" Terraform syntax
+Plugin 'hashivim/vim-terraform'
+
 " }}}
 
 " Look and feel {{{
