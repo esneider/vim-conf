@@ -496,6 +496,7 @@ nnoremap <silent> <BS> :nohlsearch<CR>
 
 " Map tab key to jump to matching entity: (), [], {}, etc
 nmap <silent> <Tab> %
+vmap <silent> <Tab> %
 
 " Disable Ex mode and use Q for formatting the current paragraph (or selection)
 vnoremap <silent> Q gq
